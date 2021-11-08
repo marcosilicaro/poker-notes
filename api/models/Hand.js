@@ -12,7 +12,13 @@ const HandSchema = new mongoose.Schema(
           "Mixed"
         ]
       },
+      "heroIniciativa": {
+        "type": "String"
+      },
       "heroPosition": {
+        "type": "String"
+      },
+      "heroExactPosition": {
         "type": "String"
       },
       "notes": {
@@ -23,6 +29,9 @@ const HandSchema = new mongoose.Schema(
     },
     "flop": {
       "situation": {
+        "type": "String"
+      },
+      "heroIniciativa": {
         "type": "String"
       },
       "boardCards": {
@@ -49,9 +58,12 @@ const HandSchema = new mongoose.Schema(
       "situation": {
         "type": "String"
       },
+      "heroIniciativa": {
+        "type": "String"
+      },
       "boardCards": {
         "carta": {
-          "type": "Number"
+          "type": "Mixed"
         },
         "color": {
           "type": "String"
@@ -76,9 +88,12 @@ const HandSchema = new mongoose.Schema(
       "situation": {
         "type": "String"
       },
+      "heroIniciativa": {
+        "type": "String"
+      },
       "boardCards": {
         "carta": {
-          "type": "Number"
+          "type": "Mixed"
         },
         "color": {
           "type": "String"

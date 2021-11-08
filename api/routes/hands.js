@@ -4,7 +4,6 @@ const Hand = require("../models/Hand")
 //CREATE HAND
 router.post("/createHand", async (req,res)=>{
     const newHand = new Hand({
-        //pitoduro:req.body.pitoduro
         preflop:req.body.preflop,
         flop:req.body.flop,
         turn:req.body.turn,
@@ -19,7 +18,6 @@ router.post("/createHand", async (req,res)=>{
 })
 
 //UPDATE
-
 router.put("/:id", async (req, res) => {
       try {
         const updatedHand = await Hand.findByIdAndUpdate(
@@ -36,7 +34,6 @@ router.put("/:id", async (req, res) => {
   });
 
 //DELETE
-
 router.delete("/:id", async (req, res) => {
       try {
         await Hand.findByIdAndDelete(req.params.id);
@@ -46,7 +43,7 @@ router.delete("/:id", async (req, res) => {
       }
   });
 
-//GET
+//GET BY ID
 router.get("/find/:id", async (req, res) => {
     try {
       const hand = await Hand.findById(req.params.id);
@@ -56,8 +53,32 @@ router.get("/find/:id", async (req, res) => {
     }
   });
 
-//GET ALL
+  //GET HANDS BY PARAMETER
+router.get("/:parameter", async (req, res) => {
+  //separamos parametro por '-' en una array
+  arrParams=req.params.parameter.split("-")
+  //descomprimimos los parametros
+  posicion=arrParams[0]
+  instancia=arrParams[1]
+  iniciativa=arrParams[1]
+  instanciaPuntoIniciativa=instancia+'heroIniciativa'
+  board=arrParams[3]
+  situacion=arrParams[4]
 
+
+    try {
+      const hand = await Hand.find({
+        'preflop.heroPosition': posicion
+      });
+      res.status(200).json(hand);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  
+  
+});
+
+//GET ALL
 router.get("/", async (req, res) => {
       try {
         const hands = await Hand.find();
