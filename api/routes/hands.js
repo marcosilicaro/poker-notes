@@ -63,7 +63,7 @@ router.get("/:parameter", async (req, res) => {
   instancia=arrParams[1] // ej: turn
   heroIniciativa=arrParams[2] // ej: CI
   boardType=arrParams[3] // ej: semimojado
-  situacion=arrParams[4] //ej: f2ndb (flop 2nd barrel)
+  situation=arrParams[4] //ej: vs2ndbarrel
 
   if (instancia==='preflop'){
     try {
@@ -78,12 +78,13 @@ router.get("/:parameter", async (req, res) => {
   }
 
   if (instancia==='flop'){
+    console.log(heroPosition)
     try {
       const hand = await Hand.find({
-        'flop.heroPosition': heroPosition,
+        'preflop.heroPosition': heroPosition,
         'flop.heroIniciativa': heroIniciativa,
         'flop.boardType': boardType,
-        'flop.situacion': situacion
+        'flop.situation': situation
       });
       res.status(200).json(hand);
     } catch (err) {
@@ -94,10 +95,10 @@ router.get("/:parameter", async (req, res) => {
   if (instancia==='turn'){
     try {
       const hand = await Hand.find({
-        'turn.heroPosition': heroPosition,
+        'preflop.heroPosition': heroPosition,
         'turn.heroIniciativa': heroIniciativa,
         'turn.boardType': boardType,
-        'turn.situacion': situacion
+        'turn.situation': situation
       });
       res.status(200).json(hand);
     } catch (err) {
@@ -108,10 +109,10 @@ router.get("/:parameter", async (req, res) => {
   if (instancia==='river'){
     try {
       const hand = await Hand.find({
-        'river.heroPosition': heroPosition,
+        'preflop.heroPosition': heroPosition,
         'river.heroIniciativa': heroIniciativa,
         'river.boardType': boardType,
-        'river.situacion': situacion
+        'river.situation': situation
       });
       res.status(200).json(hand);
     } catch (err) {

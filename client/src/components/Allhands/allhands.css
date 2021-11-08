@@ -1,33 +1,66 @@
-.userList {
-    flex: 4;
-  }
-  
-  .userListUser {
-    display: flex;
-    align-items: center;
-  }
-  
-  .userListImg {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-  }
-  
-  .userListEdit{
-      border: none;
-      border-radius: 10px;
-      padding: 5px 10px;
-      background-color: #3bb077;
-      color: white;
-      cursor: pointer;
-      margin-right: 20px;
-  }
-  
-  .userListDelete{
-      color: red;
-      cursor: pointer;
-  }
+.checkbox{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+}
 
- 
+.cardStyling{
+  font-weight: 1000;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+#flopDiv{
+  min-width: 80px
+}
+
+.greyBackground{
+  background-color: lightgray;
+  border-color: black;
+}
+
+.preflopNotes{
+  display:none;
+}
+
+.preflopNotes-active{
+  display:block;
+}
+
+.flopNotes{
+  display:none;
+}
+
+.flopNotes-active{
+  display:block;
+}
+
+.turnNotes{
+  display:none
+}
+
+.turnNotes-active{
+  display:block
+}
+
+.riverNotes{
+  display:none
+}
+
+.riverNotes-active{
+  display:block
+}
+
+.table td{
+  padding: 0 0 0 15px;
+}
+
+.table thead th {
+  width:auto
+}
+
+hr.dashed {
+  border-top: 3px dashed #bbb;
+  width: 40%;
+}
