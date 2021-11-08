@@ -1,6 +1,8 @@
 
 import React, {useState} from 'react'
 import './table.css'
+import axios from '../../axios'
+import { useEffect } from "react";
 
 const data = [{
     "id": 1,
@@ -195,587 +197,107 @@ const data = [{
     }
 }]
 
+ 
+
 function Table() {
 
-    const [notesOn, setNotesOn] = useState('')
-    const [idClicked, setIdClicked] = useState('')
+    const [handsData, sethandsData] = useState([])
 
-    const [anyCheckboxChecked, setAnyCheckboxChecked] = useState(false)
-    const [levelFiltered, setlevelFiltered] = useState()
-    const [boardTypeFiltered, setboardTypeFiltered] = useState()
-    const [situationFiltered, setsituationFiltered] = useState()
+    const [posicion, setPosicion] = useState('')
+    const [iniciativa, setIniciativa] = useState('')
+    const [instancia, setInstancia] = useState('')
+    const [boardType, setBoardType] = useState('')
+    const [situation, setSituation] = useState('')
 
-    const handleChange  = (e, boardFiltered, levelFiltered, situationFiltered) =>{
-        setAnyCheckboxChecked(e.currentTarget.checked)
-        setboardTypeFiltered(boardFiltered)
-        setlevelFiltered(levelFiltered)
-        setsituationFiltered(situationFiltered)
-    }
+// cada vez que se re-renderiza el componente (la app) se ejecuta get all
+  useEffect(() => {
+    axios.get("/").then((res)=>{
+        sethandsData(res.data)
+    })
+  }, [])
 
-    const refreshData = () => {
-        return data
-    }
-
-    
-
-    const filterBySituation = () => {
-        if (situationFiltered){
-            return data.filter(objeto => objeto[levelFiltered].situation===situationFiltered)
-        } 
-    }
-
-    const filterByBoardType = ()=> {
-        // si esta chequeado por board type
-        if(boardTypeFiltered){
-            return data.filter(objeto => objeto[levelFiltered].boardType===boardTypeFiltered)
-        } 
-    }
-
+  const clickButton = () => {
+    axios.get("/"+posicion+'-'+instancia+'-'+iniciativa+'-'+boardType).then((res)=>{
+        sethandsData(res.data)
+        console.log(posicion+'-'+iniciativa+'-'+instancia+'-'+boardType)
+    })
+  }
 
     
-
-    if(anyCheckboxChecked===true && boardTypeFiltered){
-        return ( 
-            <div className='table-container' >
-                <h2>Filter by Board Types</h2>
-                <div className='checkbox checkbox-boardTypes'>
-                    <div>
-                        <h4>Flop</h4>
-                        Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('seco')
-                        }}/><br/>
-                        Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('semi-mojado')
-                        }}/><br/>
-                        Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('ofensivo')
-                        }}/><br/>
-                        Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('mojado')
-                        }}/><br/>
-                    </div>
-                    <div>
-                        <h4>Turn</h4>
-                        Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('seco')
-                        }}/><br/>
-                        Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('semi-mojado')
-                        }}/><br/>
-                        Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('ofensivo')
-                        }}/><br/>
-                        Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('mojado')
-                        }}/><br/>
-                    </div>
-                    <div>
-                        <h4>River</h4>
-                        Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('seco')
-                        }}/><br/>
-                        Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('semi-mojado')
-                        }}/><br/>
-                        Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('ofensivo')
-                        }}/><br/>
-                        Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('mojado')
-                        }}/><br/>
-                    </div>
-                </div>
-                <hr class="dashed"/>
-                <br/>
-                <h2>Filter by Situation</h2>
-                <div className="checkbox checkbox-situation">
-                <div>
-                        <h4>Flop</h4>
-                        vs 2nd Barrel  <input type="checkbox" name="2nd-barrel" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setsituationFiltered('2nd-barrel')
-                        }}/><br/>
-                        vs Check Behind<input type="checkbox" name="vs-check-behind" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setsituationFiltered('vs-check-behind')
-                        }}/><br/>
-                    </div>
-                    <div>
-                        <h4>Turn</h4>
-                        3rd Barrel  <input type="checkbox" name="3rd-barrel" onChange={(e) => handleChange(e, 'turn')}/><br/>
-                        vs Check Behind  <input type="checkbox" name="vs-check-behind" onChange={(e) => handleChange(e, 'turn')}  /><br/>
-                    </div>
-                    <div>
-                        <h4>River</h4>
-                        4th Barrel  <input type="checkbox" name="4th-barrel" onChange={(e) => handleChange(e, 'river')}/><br/>
-                        vs Check Behind  <input type="checkbox" name="vs-check-behind" onChange={(e) => handleChange(e, 'river')}  /><br/><br/><br/>
-                    </div>
-                </div>
-    
-    
-                <table className='table table-bordered'>
-                    <thead>
-                        <th>Preflop</th>
-                        <th>Flop</th>
-                        <th>Turn</th>
-                        <th>River</th>
-                    </thead>
-                    <tbody>
-    
-                    {filterByBoardType(anyCheckboxChecked,levelFiltered,boardTypeFiltered,situationFiltered)
-                    .map((objeto)=>(
-                                <tr key= {objeto.id} onClick={() => setIdClicked(objeto.id)}>
-                                    <td className='greyBackground'> 
-                                        <span onClick={() => setNotesOn("preflop")}><span className={`${objeto.preflop.heroCards[0].color}  cardStyling`}>{objeto.preflop.heroCards[0].carta}</span> <span className={`${objeto.preflop.heroCards[1].color} cardStyling`}>{objeto.preflop.heroCards[1].carta}</span></span>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='preflop' && objeto.id===idClicked? 'preflopNotes-active' : 'preflopNotes'}`}>
-                                            {objeto.preflop.notes}
-                                        </div>
-                                    </td>
-                                    <td> <div onClick={() => setNotesOn("flop") } id="flopDiv"><span className={`${objeto.flop.boardCards[0].color} cardStyling`}>{objeto.flop.boardCards[0].carta}</span> <span className={`${objeto.flop.boardCards[1].color} cardStyling`}>{objeto.flop.boardCards[1].carta}</span> <span className={`${objeto.flop.boardCards[2].color} cardStyling`}>{objeto.flop.boardCards[2].carta}</span></div>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='flop' && objeto.id===idClicked ? 'flopNotes-active' : 'flopNotes'}`}>
-                                            {objeto.flop.notes}
-                                        </div>
-                                    </td>
-                                    <td > <span onClick={() => setNotesOn("turn")}><span className={`${objeto.turn.boardCards.color} cardStyling`}>{objeto.turn.boardCards.carta}</span></span>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='turn' && objeto.id===idClicked ? 'turnNotes-active' : 'turnNotes'}`}>
-                                            {objeto.turn.notes}
-                                        </div>
-                                    </td>
-                                    <td > <span onClick={() => setNotesOn("river")}><span className={`${objeto.river.boardCards.color} cardStyling`}>{objeto.river.boardCards.carta}</span></span>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='river' && objeto.id===idClicked ?  'riverNotes-active' : 'riverNotes'}`}>
-                                            {objeto.river.notes}
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        )
-                    }
-                    </tbody>
-                </table>
-            </div>
-        )
-    } else if (anyCheckboxChecked===true && situationFiltered){
-        return ( 
-            <div className='table-container' >
-                <h2>Filter by Board Types</h2>
-                <div className='checkbox checkbox-boardTypes'>
-                    <div>
-                        <h4>Flop</h4>
-                        Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('seco')
-                        }}/><br/>
-                        Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('semi-mojado')
-                        }}/><br/>
-                        Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('ofensivo')
-                        }}/><br/>
-                        Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('mojado')
-                        }}/><br/>
-                    </div>
-                    <div>
-                        <h4>Turn</h4>
-                        Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('seco')
-                        }}/><br/>
-                        Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('semi-mojado')
-                        }}/><br/>
-                        Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('ofensivo')
-                        }}/><br/>
-                        Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('mojado')
-                        }}/><br/>
-                    </div>
-                    <div>
-                        <h4>River</h4>
-                        Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('seco')
-                        }}/><br/>
-                        Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('semi-mojado')
-                        }}/><br/>
-                        Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('ofensivo')
-                        }}/><br/>
-                        Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('mojado')
-                        }}/><br/>
-                    </div>
-                </div>
-                <hr class="dashed"/>
-                <br/>
-                <h2>Filter by Situation</h2>
-                <div className="checkbox checkbox-situation">
-                <div>
-                        <h4>Flop</h4>
-                        vs 2nd Barrel  <input type="checkbox" name="2nd-barrel" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setsituationFiltered('2nd-barrel')
-                        }}/><br/>
-                        vs Check Behind<input type="checkbox" name="vs-check-behind" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setsituationFiltered('vs-check-behind')
-                        }}/><br/>
-                    </div>
-                    <div>
-                        <h4>Turn</h4>
-                        3rd Barrel  <input type="checkbox" name="3rd-barrel" onChange={(e) => handleChange(e, 'turn')}/><br/>
-                        vs Check Behind  <input type="checkbox" name="vs-check-behind" onChange={(e) => handleChange(e, 'turn')}  /><br/>
-                    </div>
-                    <div>
-                        <h4>River</h4>
-                        4th Barrel  <input type="checkbox" name="4th-barrel" onChange={(e) => handleChange(e, 'river')}/><br/>
-                        vs Check Behind  <input type="checkbox" name="vs-check-behind" onChange={(e) => handleChange(e, 'river')}  /><br/><br/><br/>
-                    </div>
-                </div>
-    
-    
-                <table className='table table-bordered'>
-                    <thead>
-                        <th>Preflop</th>
-                        <th>Flop</th>
-                        <th>Turn</th>
-                        <th>River</th>
-                    </thead>
-                    <tbody>
-    
-                    {filterBySituation(anyCheckboxChecked,levelFiltered,boardTypeFiltered,situationFiltered)
-                    .map((objeto)=>(
-                                <tr key= {objeto.id} onClick={() => setIdClicked(objeto.id)}>
-                                    <td className='greyBackground'> 
-                                        <span onClick={() => setNotesOn("preflop")}><span className={`${objeto.preflop.heroCards[0].color}  cardStyling`}>{objeto.preflop.heroCards[0].carta}</span> <span className={`${objeto.preflop.heroCards[1].color} cardStyling`}>{objeto.preflop.heroCards[1].carta}</span></span>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='preflop' && objeto.id===idClicked? 'preflopNotes-active' : 'preflopNotes'}`}>
-                                            {objeto.preflop.notes}
-                                        </div>
-                                    </td>
-                                    <td> <div onClick={() => setNotesOn("flop") } id="flopDiv"><span className={`${objeto.flop.boardCards[0].color} cardStyling`}>{objeto.flop.boardCards[0].carta}</span> <span className={`${objeto.flop.boardCards[1].color} cardStyling`}>{objeto.flop.boardCards[1].carta}</span> <span className={`${objeto.flop.boardCards[2].color} cardStyling`}>{objeto.flop.boardCards[2].carta}</span></div>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='flop' && objeto.id===idClicked ? 'flopNotes-active' : 'flopNotes'}`}>
-                                            {objeto.flop.notes}
-                                        </div>
-                                    </td>
-                                    <td > <span onClick={() => setNotesOn("turn")}><span className={`${objeto.turn.boardCards.color} cardStyling`}>{objeto.turn.boardCards.carta}</span></span>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='turn' && objeto.id===idClicked ? 'turnNotes-active' : 'turnNotes'}`}>
-                                            {objeto.turn.notes}
-                                        </div>
-                                    </td>
-                                    <td > <span onClick={() => setNotesOn("river")}><span className={`${objeto.river.boardCards.color} cardStyling`}>{objeto.river.boardCards.carta}</span></span>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='river' && objeto.id===idClicked ?  'riverNotes-active' : 'riverNotes'}`}>
-                                            {objeto.river.notes}
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        )
-                    }
-                    </tbody>
-                </table>
-            </div>
-        )
-    } else if (anyCheckboxChecked===true && situationFiltered && boardTypeFiltered){
-        return ( 
-            <div className='table-container' >
-                <h2>Filter by Board Types</h2>
-                <div className='checkbox checkbox-boardTypes'>
-                    <div>
-                        <h4>Flop</h4>
-                        Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('seco')
-                        }}/><br/>
-                        Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('semi-mojado')
-                        }}/><br/>
-                        Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('ofensivo')
-                        }}/><br/>
-                        Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setboardTypeFiltered('mojado')
-                        }}/><br/>
-                    </div>
-                    <div>
-                        <h4>Turn</h4>
-                        Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('seco')
-                        }}/><br/>
-                        Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('semi-mojado')
-                        }}/><br/>
-                        Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('ofensivo')
-                        }}/><br/>
-                        Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('turn')
-                            setboardTypeFiltered('mojado')
-                        }}/><br/>
-                    </div>
-                    <div>
-                        <h4>River</h4>
-                        Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('seco')
-                        }}/><br/>
-                        Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('semi-mojado')
-                        }}/><br/>
-                        Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('ofensivo')
-                        }}/><br/>
-                        Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('river')
-                            setboardTypeFiltered('mojado')
-                        }}/><br/>
-                    </div>
-                </div>
-                <hr class="dashed"/>
-                <br/>
-                <h2>Filter by Situation</h2>
-                <div className="checkbox checkbox-situation">
-                <div>
-                        <h4>Flop</h4>
-                        vs 2nd Barrel  <input type="checkbox" name="2nd-barrel" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setsituationFiltered('2nd-barrel')
-                        }}/><br/>
-                        vs Check Behind<input type="checkbox" name="vs-check-behind" onChange={(e) => {
-                            setAnyCheckboxChecked(e.currentTarget.checked)
-                            setlevelFiltered('flop')
-                            setsituationFiltered('vs-check-behind')
-                        }}/><br/>
-                    </div>
-                    <div>
-                        <h4>Turn</h4>
-                        3rd Barrel  <input type="checkbox" name="3rd-barrel" onChange={(e) => handleChange(e, 'turn')}/><br/>
-                        vs Check Behind  <input type="checkbox" name="vs-check-behind" onChange={(e) => handleChange(e, 'turn')}  /><br/>
-                    </div>
-                    <div>
-                        <h4>River</h4>
-                        4th Barrel  <input type="checkbox" name="4th-barrel" onChange={(e) => handleChange(e, 'river')}/><br/>
-                        vs Check Behind  <input type="checkbox" name="vs-check-behind" onChange={(e) => handleChange(e, 'river')}  /><br/><br/><br/>
-                    </div>
-                </div>
-    
-    
-                <table className='table table-bordered'>
-                    <thead>
-                        <th>Preflop</th>
-                        <th>Flop</th>
-                        <th>Turn</th>
-                        <th>River</th>
-                    </thead>
-                    <tbody>
-    
-                    {filterBySituation(filterByBoardType())
-                    .map((objeto)=>(
-                                <tr key= {objeto.id} onClick={() => setIdClicked(objeto.id)}>
-                                    <td className='greyBackground'> 
-                                        <span onClick={() => setNotesOn("preflop")}><span className={`${objeto.preflop.heroCards[0].color}  cardStyling`}>{objeto.preflop.heroCards[0].carta}</span> <span className={`${objeto.preflop.heroCards[1].color} cardStyling`}>{objeto.preflop.heroCards[1].carta}</span></span>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='preflop' && objeto.id===idClicked? 'preflopNotes-active' : 'preflopNotes'}`}>
-                                            {objeto.preflop.notes}
-                                        </div>
-                                    </td>
-                                    <td> <div onClick={() => setNotesOn("flop") } id="flopDiv"><span className={`${objeto.flop.boardCards[0].color} cardStyling`}>{objeto.flop.boardCards[0].carta}</span> <span className={`${objeto.flop.boardCards[1].color} cardStyling`}>{objeto.flop.boardCards[1].carta}</span> <span className={`${objeto.flop.boardCards[2].color} cardStyling`}>{objeto.flop.boardCards[2].carta}</span></div>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='flop' && objeto.id===idClicked ? 'flopNotes-active' : 'flopNotes'}`}>
-                                            {objeto.flop.notes}
-                                        </div>
-                                    </td>
-                                    <td > <span onClick={() => setNotesOn("turn")}><span className={`${objeto.turn.boardCards.color} cardStyling`}>{objeto.turn.boardCards.carta}</span></span>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='turn' && objeto.id===idClicked ? 'turnNotes-active' : 'turnNotes'}`}>
-                                            {objeto.turn.notes}
-                                        </div>
-                                    </td>
-                                    <td > <span onClick={() => setNotesOn("river")}><span className={`${objeto.river.boardCards.color} cardStyling`}>{objeto.river.boardCards.carta}</span></span>
-                                        <div onClick={() => setNotesOn("")} className={` ${notesOn==='river' && objeto.id===idClicked ?  'riverNotes-active' : 'riverNotes'}`}>
-                                            {objeto.river.notes}
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        )
-                    }
-                    </tbody>
-                </table>
-            </div>
-        )
-    }else if(anyCheckboxChecked===false) {
-
-        return ( 
+    return ( 
         <div className='table-container' >
-            <h2>Filter by Board Types</h2>
+            <h2>Filters</h2>
             <div className='checkbox checkbox-boardTypes'>
                 <div>
-                    <h4>Flop</h4>
-                    Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('flop')
-                        setboardTypeFiltered('seco')
-                    }}/><br/>
-                    Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('flop')
-                        setboardTypeFiltered('semi-mojado')
-                    }}/><br/>
-                    Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('flop')
-                        setboardTypeFiltered('ofensivo')
-                    }}/><br/>
-                    Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('flop')
-                        setboardTypeFiltered('mojado')
-                    }}/><br/>
+                    <h4>Posicion</h4>
+                    OOP  <input type="checkbox" name="OOP"  onChange={(e) => {
+                            setPosicion(e.currentTarget.name)
+                        }}/><br/><br/>
+                    IP  <input type="checkbox" name="IP" onChange={(e) => {
+                            setPosicion(e.currentTarget.name)
+                        }}/><br/><br/>
                 </div>
                 <div>
-                    <h4>Turn</h4>
-                    Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('turn')
-                        setboardTypeFiltered('seco')
-                    }}/><br/>
-                    Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('turn')
-                        setboardTypeFiltered('semi-mojado')
-                    }}/><br/>
-                    Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('turn')
-                        setboardTypeFiltered('ofensivo')
-                    }}/><br/>
-                    Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('turn')
-                        setboardTypeFiltered('mojado')
-                    }}/><br/>
+                    <h4>Instancia</h4>
+                    PREFLOP  <input type="checkbox" name="preflop" onChange={(e) => {
+                            setInstancia(e.currentTarget.name)
+                        }}/><br/><br/>
+                    FLOP  <input type="checkbox" name="flop" onChange={(e) => {
+                            setInstancia(e.currentTarget.name)
+                        }}/><br/><br/>
+                    TURN  <input type="checkbox" name="turn" onChange={(e) => {
+                            setInstancia(e.currentTarget.name)
+                        }}/><br/><br/>
+                    RIVER  <input type="checkbox" name="river" onChange={(e) => {
+                            setInstancia(e.currentTarget.name)
+                        }}/><br/><br/>
                 </div>
                 <div>
-                    <h4>River</h4>
+                    <h4>Iniciativa</h4>
+                    Sin iniciativa  <input type="checkbox" name="SI" onChange={(e) => {
+                            setIniciativa(e.currentTarget.name)
+                        }}/><br/><br/>
+                    Con iniciativa  <input type="checkbox" name="CI" onChange={(e) => {
+                        setIniciativa(e.currentTarget.name)
+                        }}/><br/><br/>
+                </div>
+                <div>
+                    <h4>Board Type</h4>
                     Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('river')
-                        setboardTypeFiltered('seco')
-                    }}/><br/>
-                    Semi-mojado  <input type="checkbox" name="semi-mojado" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('river')
-                        setboardTypeFiltered('semi-mojado')
-                    }}/><br/>
+                            setBoardType(e.currentTarget.name)
+                        }}/><br/><br/>
+                    Semi-mojado  <input type="checkbox" name="semimojado" onChange={(e) => {
+                            setBoardType(e.currentTarget.name)
+                        }}/><br/><br/>
                     Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('river')
-                        setboardTypeFiltered('ofensivo')
-                    }}/><br/>
+                            setBoardType(e.currentTarget.name)
+                        }}/><br/><br/>
                     Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('river')
-                        setboardTypeFiltered('mojado')
-                    }}/><br/>
+                            setBoardType(e.currentTarget.name)
+                        }}/><br/><br/>
+                </div>
+                <div>
+                    <h4>Situation</h4>
+                    vs 2nd barrel  <input type="checkbox" name="2ndbarrel" onChange={(e) => {
+                            setSituation(e.currentTarget.name)
+                        }}/><br/><br/>
+                    vs 3rd barrel  <input type="checkbox" name="3rdbarrel" onChange={(e) => {
+                            setSituation(e.currentTarget.name)
+                        }}/><br/><br/>
+                    vs 4th barrel  <input type="checkbox" name="4thbarrel" onChange={(e) => {
+                            setSituation(e.currentTarget.name)
+                        }}/><br/><br/>
                 </div>
             </div>
-            <hr class="dashed"/>
-            <br/>
-            <h2>Filter by Situation</h2>
-            <div className="checkbox checkbox-situation">
-            <div>
-                    <h4>Flop</h4>
-                    vs 2nd Barrel  <input type="checkbox" name="2nd-barrel" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('flop')
-                        setsituationFiltered('2nd-barrel')
-                    }}/><br/>
-                    vs Check Behind<input type="checkbox" name="vs-check-behind" onChange={(e) => {
-                        setAnyCheckboxChecked(e.currentTarget.checked)
-                        setlevelFiltered('flop')
-                        setsituationFiltered('vs-check-behind')
-                    }}/><br/>
-                </div>
-                <div>
-                    <h4>Turn</h4>
-                    3rd Barrel  <input type="checkbox" name="3rd-barrel" onChange={(e) => handleChange(e, 'turn')}/><br/>
-                    vs Check Behind  <input type="checkbox" name="vs-check-behind" onChange={(e) => handleChange(e, 'turn')}  /><br/>
-                </div>
-                <div>
-                    <h4>River</h4>
-                    4th Barrel  <input type="checkbox" name="4th-barrel" onChange={(e) => handleChange(e, 'river')}/><br/>
-                    vs Check Behind  <input type="checkbox" name="vs-check-behind" onChange={(e) => handleChange(e, 'river')}  /><br/><br/><br/>
-                </div>
-            </div>
+
+            <button onClick={(e) => {clickButton()}}> SEND</button>
+            <button onClick={(e) => {
+                setPosicion('')
+                setBoardType('')
+                setIniciativa('')
+                setInstancia('')
+                setSituation('')
+            }}> RESET</button>
 
 
             <table className='table table-bordered'>
@@ -787,29 +309,22 @@ function Table() {
                 </thead>
                 <tbody>
 
-                {refreshData()
-                .map((objeto)=>(
-                            <tr key= {objeto.id} onClick={() => setIdClicked(objeto.id)}>
+                {handsData.map((objeto)=>(
+                            <tr >
                                 <td className='greyBackground'> 
-                                    <span onClick={() => setNotesOn("preflop")}><span className={`${objeto.preflop.heroCards[0].color}  cardStyling`}>{objeto.preflop.heroCards[0].carta}</span> <span className={`${objeto.preflop.heroCards[1].color} cardStyling`}>{objeto.preflop.heroCards[1].carta}</span></span>
-                                    <div onClick={() => setNotesOn("")} className={` ${notesOn==='preflop' && objeto.id===idClicked? 'preflopNotes-active' : 'preflopNotes'}`}>
-                                        {objeto.preflop.notes}
-                                    </div>
+                                    <span className={`${objeto.preflop.heroCards[0].color} cardStyling`}>{objeto.preflop.heroCards[0].carta}</span> 
+                                    <span className={`${objeto.preflop.heroCards[1].color} cardStyling`}>{objeto.preflop.heroCards[1].carta}</span>
                                 </td>
-                                <td> <div onClick={() => setNotesOn("flop") } id="flopDiv"><span className={`${objeto.flop.boardCards[0].color} cardStyling`}>{objeto.flop.boardCards[0].carta}</span> <span className={`${objeto.flop.boardCards[1].color} cardStyling`}>{objeto.flop.boardCards[1].carta}</span> <span className={`${objeto.flop.boardCards[2].color} cardStyling`}>{objeto.flop.boardCards[2].carta}</span></div>
-                                    <div onClick={() => setNotesOn("")} className={` ${notesOn==='flop' && objeto.id===idClicked ? 'flopNotes-active' : 'flopNotes'}`}>
-                                        {objeto.flop.notes}
-                                    </div>
+                                <td > 
+                                    <span className={`${objeto.flop.boardCards[0].color}  cardStyling`}>{objeto.flop.boardCards[0].carta}</span> 
+                                    <span className={`${objeto.flop.boardCards[1].color}  cardStyling`}>{objeto.flop.boardCards[1].carta}</span>
+                                    <span className={`${objeto.flop.boardCards[2].color}  cardStyling`}>{objeto.flop.boardCards[2].carta}</span>
                                 </td>
-                                <td > <span onClick={() => setNotesOn("turn")}><span className={`${objeto.turn.boardCards.color} cardStyling`}>{objeto.turn.boardCards.carta}</span></span>
-                                    <div onClick={() => setNotesOn("")} className={` ${notesOn==='turn' && objeto.id===idClicked ? 'turnNotes-active' : 'turnNotes'}`}>
-                                        {objeto.turn.notes}
-                                    </div>
+                                <td > 
+                                    <span className={`${objeto.turn.boardCards.color}  cardStyling`}>{objeto.turn.boardCards.carta}</span>
                                 </td>
-                                <td > <span onClick={() => setNotesOn("river")}><span className={`${objeto.river.boardCards.color} cardStyling`}>{objeto.river.boardCards.carta}</span></span>
-                                    <div onClick={() => setNotesOn("")} className={` ${notesOn==='river' && objeto.id===idClicked ?  'riverNotes-active' : 'riverNotes'}`}>
-                                        {objeto.river.notes}
-                                    </div>
+                                <td > 
+                                    <span className={`${objeto.river.boardCards.color}  cardStyling`}>{objeto.river.boardCards.carta}</span>
                                 </td>
                             </tr>
                         )
@@ -817,8 +332,9 @@ function Table() {
                 }
                 </tbody>
             </table>
+            {posicion} - {instancia} - {iniciativa} - {boardType} - {situation}
         </div>
-    )}
+    )
 }
 
 export default Table

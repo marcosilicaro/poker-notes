@@ -14,6 +14,14 @@ mongoose.connect(process.env.MONGO_URL,{ // conexion a db usando mongoose y dote
 .catch((err) => console.log("error en la conexion "+ err))
 
 app.use(express.json()) // obligas a que express acepte json como argumento de la route que va para db
+
+//permitir que se hagan api request desde el frontend sin header
+app.use((req,res,next)=>{
+    res.setHeader("Access-Control-Allow-Origin","*")
+    res.setHeader("Access-Control-Allow-Headers","*")
+    next()
+})
+
 app.use("",newHandRoute) // definiendo ruta de creacion de mano
 
 

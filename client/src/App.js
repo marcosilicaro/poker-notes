@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Addhands from "./components/Addhands/Addhands"
 
 function App() {
+
   return (
     <Router>
       <Navbar/>
