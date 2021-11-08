@@ -57,25 +57,68 @@ router.get("/find/:id", async (req, res) => {
 router.get("/:parameter", async (req, res) => {
   //separamos parametro por '-' en una array
   arrParams=req.params.parameter.split("-")
+
   //descomprimimos los parametros
-  posicion=arrParams[0]
-  instancia=arrParams[1]
-  iniciativa=arrParams[1]
-  instanciaPuntoIniciativa=instancia+'heroIniciativa'
-  board=arrParams[3]
-  situacion=arrParams[4]
+  heroPosition=arrParams[0] // ej: OOP
+  instancia=arrParams[1] // ej: turn
+  heroIniciativa=arrParams[2] // ej: CI
+  boardType=arrParams[3] // ej: semimojado
+  situacion=arrParams[4] //ej: f2ndb (flop 2nd barrel)
 
-
+  if (instancia==='preflop'){
     try {
       const hand = await Hand.find({
-        'preflop.heroPosition': posicion
+        'preflop.heroPosition': heroPosition,
+        'preflop.heroIniciativa': heroIniciativa
       });
       res.status(200).json(hand);
     } catch (err) {
       res.status(500).json(err);
     }
-  
-  
+  }
+
+  if (instancia==='flop'){
+    try {
+      const hand = await Hand.find({
+        'flop.heroPosition': heroPosition,
+        'flop.heroIniciativa': heroIniciativa,
+        'flop.boardType': boardType,
+        'flop.situacion': situacion
+      });
+      res.status(200).json(hand);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+
+  if (instancia==='turn'){
+    try {
+      const hand = await Hand.find({
+        'turn.heroPosition': heroPosition,
+        'turn.heroIniciativa': heroIniciativa,
+        'turn.boardType': boardType,
+        'turn.situacion': situacion
+      });
+      res.status(200).json(hand);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+
+  if (instancia==='river'){
+    try {
+      const hand = await Hand.find({
+        'river.heroPosition': heroPosition,
+        'river.heroIniciativa': heroIniciativa,
+        'river.boardType': boardType,
+        'river.situacion': situacion
+      });
+      res.status(200).json(hand);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+
 });
 
 //GET ALL
