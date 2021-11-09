@@ -11,6 +11,12 @@
     cursor: pointer;
 }
 
+.clickableSituations{
+    cursor: pointer;
+    color:blue
+}
+
+
 #flopDiv{
     min-width: 80px
 }
@@ -64,4 +70,7 @@ hr.dashed {
     border-top: 3px dashed #bbb;
     width: 40%;
   }
-  
+
+  #situationFilter{
+      width: 35vw;
+  }

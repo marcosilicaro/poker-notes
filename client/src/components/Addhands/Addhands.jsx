@@ -42,7 +42,7 @@ function Addhands() {
             }
           ],
           "heroIniciativa": document.getElementById("flop.heroIniciativa").value,
-          "boardType": document.getElementById("flop.boardType").value,
+          "boardType": document.getElementById("flop.boardType").value.toLowerCase(),
           "decision": document.getElementById("flop.decision").value,
           "villainType": "",
           "notes": [
@@ -56,7 +56,7 @@ function Addhands() {
           },
           "heroIniciativa": document.getElementById("turn.heroIniciativa").value,
           "situation": document.getElementById("turnSituation").value,
-          "boardType": document.getElementById("turn.boardType").value,
+          "boardType": document.getElementById("turn.boardType").value.toLowerCase(),
           "decision": document.getElementById("turn.decision").value,
           "villainType": "",
           "notes": [
@@ -70,7 +70,7 @@ function Addhands() {
           },
           "heroIniciativa": document.getElementById("river.heroIniciativa").value,
           "situation": document.getElementById("riverSituation").value,
-          "boardType": document.getElementById("river.boardType").value,
+          "boardType": document.getElementById("river.boardType").value.toLowerCase(),
           "decision": document.getElementById("river.decision").value,
           "villainType": "",
           "notes": [
@@ -258,24 +258,24 @@ function Addhands() {
               <select name="Situation" id="flopSituation" defaultValue='-'  >
                 <option value="-">-</option>
                 <optgroup label="IP-Con Iniciativa">
-                    <option value="H OR en preflop">H OR en preflop</option>
-                    <option value="H 3bet en preflop">H 3bet en preflop</option>
-                    <option value="H 4bet en preflop">H 4bet en preflop</option>
+                    <option value="H OR en anterior instancia">H OR en anterior instancia</option>
+                    <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
+                    <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="IP-Sin Iniciativa">
-                    <option value="vs OR en preflop">vs OR en preflop</option>
-                    <option value="vs 3bet en preflop">vs 3bet en preflop</option>
-                    <option value="vs 4bet en preflop">vs 4bet en preflop</option>
+                    <option value="vs OR anterior instancia">vs OR anterior instancia</option>
+                    <option value="vs 3bet anterior instancia">vs 3bet anterior instancia</option>
+                    <option value="vs 4bet anterior instancia">vs 4bet anterior instancia</option>
                 </optgroup>
                 <optgroup label="OOP-Con Iniciativa">
-                    <option value="H OR en preflop">H OR en preflop</option>
-                    <option value="H 3bet en preflop">H 3bet en preflop</option>
-                    <option value="H 4bet en preflop">H 4bet en preflop</option>
+                    <option value="H OR anterior instancia">H OR en anterior instancia</option>
+                    <option value="H 3bet anterior instancia">H 3bet en anterior instancia</option>
+                    <option value="H 4bet anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="OOP-Sin Iniciativa">
-                    <option value="vs OR en preflop">vs OR en preflop</option>
-                    <option value="vs 3bet en preflop">vs 3bet en preflop</option>
-                    <option value="vs 4bet en preflop">vs 4bet en preflop</option>
+                    <option value="vs OR en anterior instancia">vs OR en anterior instancia</option>
+                    <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
+                    <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
                 </optgroup>
               </select>
               <label>Board Type</label>
@@ -346,24 +346,24 @@ function Addhands() {
               <select name="Situation" id="turnSituation" defaultValue='-'  >
                 <option value="-">-</option>
                 <optgroup label="IP-Con Iniciativa">
-                    <option value="H 2nd barrel en flop">H 2nd barrel en flop</option>
-                    <option value="H 3bet en flop">H 3bet en flop</option>
-                    <option value="H 4bet en flop">H 4bet en flop</option>
+                    <option value="H 2nd barrel en anterior instancia">H 2nd barrel en anterior instancia</option>
+                    <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
+                    <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="IP-Sin Iniciativa">
-                    <option value="vs 2nd barrel en flop">vs 2nd barrel en flop</option>
-                    <option value="vs 3bet en flop">vs 3bet en flop</option>
-                    <option value="vs 4bet en flop">vs 4bet en flop</option>
+                    <option value="vs 2nd barrel en anterior instancia">vs 2nd barrel e anterior instancian anterior instancia</option>
+                    <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
+                    <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="OOP-Con Iniciativa">
-                    <option value="H 2nd barrel en flop">H 2nd barrel en flop</option>
-                    <option value="H 3bet en flop">H 3bet en flop</option>
-                    <option value="H 4bet en flop">H 4bet en flop</option>
+                    <option value="H 2nd barrel en anterior instancia">H 2nd barrel en anterior instancia</option>
+                    <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
+                    <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="OOP-Sin Iniciativa">
-                    <option value="vs 2nd barrel en flop">vs 2nd barrel en flop</option>
-                    <option value="vs 3bet en flop">vs 3bet en flop</option>
-                    <option value="vs 4bet en flop">vs 4bet en flop</option>
+                    <option value="vs 2nd barrel en anterior instancia">vs 2nd barrel en anterior instancia</option>
+                    <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
+                    <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
                 </optgroup>
               </select>
               <label>Board Type</label>
@@ -434,24 +434,24 @@ function Addhands() {
               <select name="Situation" id="riverSituation" defaultValue='-'  >
                 <option value="-">-</option>
                 <optgroup label="IP-Con Iniciativa">
-                    <option value="H 3rd barrel en turn">H 3rd barrel en turn</option>
-                    <option value="H 3bet en turn">H 3bet en turn</option>
-                    <option value="H 4bet en turn">H 4bet en turn</option>
+                    <option value="H 3rd barrel en anterior instancia">H 3rd barrel en anterior instancia</option>
+                    <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
+                    <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="IP-Sin Iniciativa">
-                    <option value="vs 3rd barrel en turn">vs 3rd barrel en turn</option>
-                    <option value="vs 3bet en turn">vs 3bet en turn</option>
-                    <option value="vs 4bet en turn">vs 4bet en turn</option>
+                    <option value="vs 3rd barrel en anterior instancia">vs 3rd barrel en anterior instancia</option>
+                    <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
+                    <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="OOP-Con Iniciativa">
-                    <option value="H 3rd barrel en turn">H 3rd barrel en turn</option>
-                    <option value="H 3bet en turn">H 3bet en turn</option>
-                    <option value="H 4bet en turn">H 4bet en turn</option>
+                    <option value="H 3rd barrel en anterior instancia">H 3rd barrel en anterior instancia</option>
+                    <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
+                    <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="OOP-Sin Iniciativa">
-                    <option value="vs 3rd barrel en turn">vs 3rd barrel en turn</option>
-                    <option value="vs 3bet en turn">vs 3bet en turn</option>
-                    <option value="vs 4bet en turn">vs 4bet en turn</option>
+                    <option value="vs 3rd barrel en anterior instancia">vs 3rd barrel en anterior instancia</option>
+                    <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
+                    <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
                 </optgroup>
               </select>
               <label>Board Type</label>

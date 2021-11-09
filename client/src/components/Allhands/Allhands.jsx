@@ -15,6 +15,7 @@ function Allhands() {
     const [instancia, setInstancia] = useState('')
     const [boardType, setBoardType] = useState('')
     const [situation, setSituation] = useState('')
+    
 
 // cada vez que se re-renderiza el componente (la app) se ejecuta get all
   useEffect(() => {
@@ -30,7 +31,18 @@ function Allhands() {
     })
   }
 
-    
+  let situationList = []
+  
+  handsData.forEach((hand)=> {
+    situationList.push(hand.flop.situation)
+    situationList.push(hand.turn.situation)
+    situationList.push(hand.river.situation)
+  })
+
+  let uniqueSituations = [...new Set(situationList)];
+
+
+
     return ( 
         <div className='table-container' >
             <h2>Filters</h2>
@@ -73,7 +85,7 @@ function Allhands() {
                     Seco  <input type="checkbox" name="seco" onChange={(e) => {
                             setBoardType(e.currentTarget.name)
                         }}/><br/><br/>
-                    Semi-mojado  <input type="checkbox" name="semimojado" onChange={(e) => {
+                    Semi-mojado  <input type="checkbox" name="semi mojado" onChange={(e) => {
                             setBoardType(e.currentTarget.name)
                         }}/><br/><br/>
                     Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
@@ -83,19 +95,18 @@ function Allhands() {
                             setBoardType(e.currentTarget.name)
                         }}/><br/><br/>
                 </div>
-                <div>
-                    <h4>Situation</h4>
-                    vs 2nd barrel  <input type="checkbox" name="vs2ndbarrel" onChange={(e) => {
-                            setSituation(e.currentTarget.name)
-                        }}/><br/><br/>
-                    vs 3rd barrel  <input type="checkbox" name="vs3rdbarrel" onChange={(e) => {
-                            setSituation(e.currentTarget.name)
-                        }}/><br/><br/>
-                    vs 4th barrel  <input type="checkbox" name="vs4thbarrel" onChange={(e) => {
-                            setSituation(e.currentTarget.name)
-                        }}/><br/><br/>
-                </div>
             </div>
+            <h4>Situation</h4>
+            <div>
+                <input type="text" name="situationFilter" id="situationFilter" onChange={(e) => {
+                    setSituation(e.currentTarget.value)
+                }}/><br/><br/>
+                {uniqueSituations.map((item)=>(<p className='clickableSituations' onClick={(e) => {
+                    document.getElementById("situationFilter").value=e.currentTarget.innerHTML
+                    setSituation(e.currentTarget.innerHTML)
+                }}>{item}</p>))}
+            </div>
+            <br/>
 
             <button onClick={(e) => {clickButton()}}> SEND</button>
             <button onClick={(e) => {
@@ -104,7 +115,7 @@ function Allhands() {
                 setIniciativa('')
                 setInstancia('')
                 setSituation('')
-            }}> RESET</button>
+            }}> RESET</button><br/><br/>
 
 
             <table className='table table-bordered'>
