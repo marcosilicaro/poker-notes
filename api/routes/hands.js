@@ -11,10 +11,21 @@ router.post("/createHand", async (req,res)=>{
     });
     try{
         const hand = await newHand.save() // esperas a que hand se guarde en db para recibir la respuesta
-    res.status(201).json(hand)
+        res.status(201).json(hand)
     }catch(err){
         res.status(500).json(err)
     }  
+})
+
+//CREATE HAND DIFERENTE -- BORRAR
+router.post("/createHandDiferente", async (req,res)=>{
+  const newHand = new Hand(req.body);
+  try{
+      const savedHand = await newHand.save() // esperas a que hand se guarde en db para recibir la respuesta
+      res.status(201).json(savedHand)
+  }catch(err){
+      res.status(500).json(err)
+  }  
 })
 
 //UPDATE

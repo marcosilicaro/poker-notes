@@ -1,66 +1,67 @@
 .checkbox{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
 }
 
 .cardStyling{
-  font-weight: 1000;
-  font-size: 30px;
-  cursor: pointer;
+    font-weight: 1000;
+    font-size: 30px;
+    cursor: pointer;
 }
 
 #flopDiv{
-  min-width: 80px
+    min-width: 80px
 }
 
 .greyBackground{
-  background-color: lightgray;
-  border-color: black;
+    background-color: lightgray;
+    border-color: black;
 }
 
 .preflopNotes{
-  display:none;
+    display:none;
 }
 
 .preflopNotes-active{
-  display:block;
+    display:block;
 }
 
 .flopNotes{
-  display:none;
+    display:none;
 }
 
 .flopNotes-active{
-  display:block;
+    display:block;
 }
 
 .turnNotes{
-  display:none
+    display:none
 }
 
 .turnNotes-active{
-  display:block
+    display:block
 }
 
 .riverNotes{
-  display:none
+    display:none
 }
 
 .riverNotes-active{
-  display:block
+    display:block
 }
 
 .table td{
-  padding: 0 0 0 15px;
+    padding: 0 0 0 15px;
 }
 
 .table thead th {
-  width:auto
+    width:auto
 }
 
 hr.dashed {
-  border-top: 3px dashed #bbb;
-  width: 40%;
-}
+    border-top: 3px dashed #bbb;
+    width: 40%;
+  }
+  
