@@ -83,11 +83,6 @@
     flex: 4;
   }
   
-  .addProductForm {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
   .addProductItem {
     width: fit-content;
     display: flex;
@@ -135,3 +130,9 @@
       min-height:100px;
       margin-bottom: 4vh;
   }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
