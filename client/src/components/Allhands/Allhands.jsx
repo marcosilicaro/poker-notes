@@ -15,6 +15,11 @@ function Allhands() {
     const [instancia, setInstancia] = useState('')
     const [boardType, setBoardType] = useState('')
     const [situation, setSituation] = useState('')
+
+    const [showFlopNotes, setShowFlopNotes] = useState(false)
+    const [showTurnNotes, setShowTurnNotes] = useState(false)
+    const [showRiverNotes, setShowRiverNotes] = useState(false)
+    const [idClicked, setidClicked] = useState('')
     
 
 // cada vez que se re-renderiza el componente (la app) se ejecuta get all
@@ -41,7 +46,7 @@ function Allhands() {
 
   let uniqueSituations = [...new Set(situationList)];
 
-
+    const navRef = React.useRef(null);
 
     return ( 
         <div className='table-container' >
@@ -130,19 +135,52 @@ function Allhands() {
                 {handsData.map((objeto)=>(
                             <tr >
                                 <td className='greyBackground'> 
-                                    <span className={`${objeto.preflop.heroCards[0].color} cardStyling`}>{objeto.preflop.heroCards[0].carta}</span> 
-                                    <span className={`${objeto.preflop.heroCards[1].color} cardStyling`}>{objeto.preflop.heroCards[1].carta}</span>
+                                    <div>
+                                        <span className={`${objeto.preflop.heroCards[0].color} cardStyling`}>{objeto.preflop.heroCards[0].carta}</span> 
+                                        <span className={`${objeto.preflop.heroCards[1].color} cardStyling`}>{objeto.preflop.heroCards[1].carta}</span>
+                                        
+                                    </div> 
                                 </td>
                                 <td > 
-                                    <span className={`${objeto.flop.boardCards[0].color}  cardStyling`}>{objeto.flop.boardCards[0].carta}</span> 
-                                    <span className={`${objeto.flop.boardCards[1].color}  cardStyling`}>{objeto.flop.boardCards[1].carta}</span>
-                                    <span className={`${objeto.flop.boardCards[2].color}  cardStyling`}>{objeto.flop.boardCards[2].carta}</span>
+                                    <div onClick={(e) => {
+                                        setidClicked(objeto._id)
+                                        showFlopNotes===true  ? setShowFlopNotes(false):setShowFlopNotes(true)
+                                    }}>
+                                        <span className={`${objeto.flop.boardCards[0].color}  cardStyling`}>{objeto.flop.boardCards[0].carta}</span> 
+                                        <span className={`${objeto.flop.boardCards[1].color}  cardStyling`}>{objeto.flop.boardCards[1].carta}</span>
+                                        <span className={`${objeto.flop.boardCards[2].color}  cardStyling`}>{objeto.flop.boardCards[2].carta}</span>
+                                        <div className={showFlopNotes===true && idClicked===objeto._id ? 'preflopNotes-active':'preflopNotes'} >
+                                            {objeto.flop.decision}<br/>
+                                            {objeto.flop.notes[0]}
+                                        </div>
+                                    </div> 
+                                    
                                 </td>
                                 <td > 
-                                    <span className={`${objeto.turn.boardCards.color}  cardStyling`}>{objeto.turn.boardCards.carta}</span>
+                                    <div onClick={(e) => {
+                                        setidClicked(objeto._id)
+                                        showTurnNotes===true ? setShowTurnNotes(false):setShowTurnNotes(true)
+                                    }}>
+                                        <span className={`${objeto.turn.boardCards.color}  cardStyling`}>{objeto.turn.boardCards.carta}</span>
+                                        <div className={showTurnNotes===true && idClicked===objeto._id ? 'preflopNotes-active':'preflopNotes'} >
+                                            {objeto.turn.decision}<br/>
+                                            {objeto.turn.notes[0]}
+                                        </div>
+                                    </div> 
+                                    
                                 </td>
                                 <td > 
-                                    <span className={`${objeto.river.boardCards.color}  cardStyling`}>{objeto.river.boardCards.carta}</span>
+                                    <div onClick={(e) => {
+                                        setidClicked(objeto._id)
+                                        showRiverNotes===true ? setShowRiverNotes(false):setShowRiverNotes(true)
+                                    }}>
+                                        <span className={`${objeto.river.boardCards.color}  cardStyling`}>{objeto.river.boardCards.carta}</span>
+                                        <div className={showRiverNotes===true && idClicked===objeto._id ? 'preflopNotes-active':'preflopNotes'} >
+                                            {objeto.river.decision}<br/>
+                                            {objeto.river.notes[0]}
+                                        </div>
+                                    </div>
+                                    
                                 </td>
                             </tr>
                         )

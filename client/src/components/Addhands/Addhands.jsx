@@ -263,9 +263,7 @@ function Addhands() {
                     <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="IP-Sin Iniciativa">
-                    <option value="vs OR anterior instancia">vs OR anterior instancia</option>
-                    <option value="vs 3bet anterior instancia">vs 3bet anterior instancia</option>
-                    <option value="vs 4bet anterior instancia">vs 4bet anterior instancia</option>
+                    <option value="vs 2nd barrel">vs 2nd barrel</option>
                 </optgroup>
                 <optgroup label="OOP-Con Iniciativa">
                     <option value="H OR anterior instancia">H OR en anterior instancia</option>
@@ -273,9 +271,7 @@ function Addhands() {
                     <option value="H 4bet anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="OOP-Sin Iniciativa">
-                    <option value="vs OR en anterior instancia">vs OR en anterior instancia</option>
-                    <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
-                    <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
+                <option value="vs 2nd barrel">vs 2nd barrel</option>
                 </optgroup>
               </select>
               <label>Board Type</label>
@@ -289,11 +285,11 @@ function Addhands() {
               <label>Decision</label>
               <select name="Decision" id="flop.decision" defaultValue='-'  >
                 <option value="-">-</option>
-                <option value="SI">CHECK/CALL</option>
-                <option value="CI">CHECK/FOLD</option>
-                <option value="CI">CHECK/RAISE</option>
-                <option value="CI">CHECK BEHIND</option>
-                <option value="CI">BET</option>
+                <option value="CHECK/CALL">CHECK/CALL</option>
+                <option value="CHECK/FOLD">CHECK/FOLD</option>
+                <option value="CHECK/RAISE">CHECK/RAISE</option>
+                <option value="CHECK BEHIND">CHECK BEHIND</option>
+                <option value="BET">BET</option>
               </select>
               
               <label>Notes</label>
@@ -377,11 +373,11 @@ function Addhands() {
               <label>Decision</label>
               <select name="Decision" id="turn.decision" defaultValue='-'  >
                 <option value="-">-</option>
-                <option value="SI">CHECK/CALL</option>
-                <option value="CI">CHECK/FOLD</option>
-                <option value="CI">CHECK/RAISE</option>
-                <option value="CI">CHECK BEHIND</option>
-                <option value="CI">BET</option>
+                <option value="CHECK/CALL">CHECK/CALL</option>
+                <option value="CHECK/FOLD">CHECK/FOLD</option>
+                <option value="CHECK/RAISE">CHECK/RAISE</option>
+                <option value="CHECK BEHIND">CHECK BEHIND</option>
+                <option value="BET">BET</option>
               </select>
               
               <label>Notes</label>
@@ -465,11 +461,11 @@ function Addhands() {
               <label>Decision</label>
               <select name="Decision" id="river.decision" defaultValue='-'  >
                 <option value="-">-</option>
-                <option value="SI">CHECK/CALL</option>
-                <option value="CI">CHECK/FOLD</option>
-                <option value="CI">CHECK/RAISE</option>
-                <option value="CI">CHECK BEHIND</option>
-                <option value="CI">BET</option>
+                <option value="CHECK/CALL">CHECK/CALL</option>
+                <option value="CHECK/FOLD">CHECK/FOLD</option>
+                <option value="CHECK/RAISE">CHECK/RAISE</option>
+                <option value="CHECK BEHIND">CHECK BEHIND</option>
+                <option value="BET">BET</option>
               </select>
               
               <label>Notes</label>
