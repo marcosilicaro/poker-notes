@@ -1,18 +1,11 @@
 import React from 'react'
 import axios from '../../axios'
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 function EditHand({ElObjetoSelecto}) {
-
-    
-
-    const [positionExist, setpositionExist] = useState('-')
-    const [handsData, sethandsData] = useState([])
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      axios.post("/createHand", {
+      axios.put("/"+ElObjetoSelecto._id, {
           "preflop": {
             "heroCards": [
               {
@@ -84,16 +77,15 @@ function EditHand({ElObjetoSelecto}) {
             ]
           }
       });
-      alert('mano subida')
-      window.location.reload()
+      alert('mano updated')
     };
 
-    // cada vez que se re-renderiza el componente (la app) se ejecuta get all
-  useEffect(() => {
-    axios.get("/").then((res)=>{
-        sethandsData(res.data)
-    })
-  }, [])
+    const handleErase = (e) => {
+        e.preventDefault();
+        axios.delete("/"+ElObjetoSelecto._id);
+        alert('mano erased')
+      };
+
 
   console.log(ElObjetoSelecto)
 
@@ -113,13 +105,13 @@ function EditHand({ElObjetoSelecto}) {
                 id="heroPosition" 
                 defaultValue='-'
                   >
-                  <option value='-'>{ElObjetoSelecto.preflop.heroPosition}</option>
+                  <option value={ElObjetoSelecto.preflop.heroPosition}>{ElObjetoSelecto.preflop.heroPosition}</option>
                   <option value="OOP">OOP</option>
                   <option value="IP">IP</option>
                 </select>
                 <label>Table Position</label>
                 <select name="Table Position" id="heroExactPosition" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.preflop.heroExactPosition}</option>
+                  <option value={ElObjetoSelecto.preflop.heroExactPosition}>{ElObjetoSelecto.preflop.heroExactPosition}</option>
                   <option value="SB">SB</option>
                   <option value="BB">BB</option>
                   <option value="UTG">UTG</option>
@@ -129,7 +121,7 @@ function EditHand({ElObjetoSelecto}) {
                 </select>
                 <label>Iniciativa</label>
                 <select name="Iniciativa" id="preflop.heroIniciativa" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.preflop.heroIniciativa}</option>
+                  <option value={ElObjetoSelecto.preflop.heroIniciativa}>{ElObjetoSelecto.preflop.heroIniciativa}</option>
                   <option value="SI">SIN INICIATIVA</option>
                   <option value="CI">CON INICIATIVA</option>
                 </select>
@@ -145,7 +137,7 @@ function EditHand({ElObjetoSelecto}) {
               <div className="addProductItem cartas-box">
                 <label>Carta 1 PREFLOP</label>
                 <select name="carta-1-preflop" id="carta-1-preflop" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.preflop.heroCards[0].carta}</option> 
+                  <option value={ElObjetoSelecto.preflop.heroCards[0].carta}>{ElObjetoSelecto.preflop.heroCards[0].carta}</option> 
                   <option value="A" >A</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -161,7 +153,7 @@ function EditHand({ElObjetoSelecto}) {
                   <option value="K">K</option>
                 </select>
                 <select name="colorCarta-1-preflop" id="colorCarta-1-preflop" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.preflop.heroCards[0].color}</option>
+                  <option value={ElObjetoSelecto.preflop.heroCards[0].color}>{ElObjetoSelecto.preflop.heroCards[0].color}</option>
                   <option value="negro">PICAS - NEGRO</option>
                   <option value="verde">TREBOLES - VERDE</option>
                   <option value="azul">DIAMANTES - AZUL</option>
@@ -169,7 +161,7 @@ function EditHand({ElObjetoSelecto}) {
                 </select>
                 <label>Carta 2 PREFLOP</label>
                 <select name="carta-2-preflop" id="carta-2-preflop"  defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.preflop.heroCards[1].carta}</option>
+                  <option value={ElObjetoSelecto.preflop.heroCards[1].carta}>{ElObjetoSelecto.preflop.heroCards[1].carta}</option>
                   <option value="A" >A</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -185,7 +177,7 @@ function EditHand({ElObjetoSelecto}) {
                   <option value="K">K</option>
                 </select>
                 <select name="Iniciativa" id="colorCarta-2-preflop"  defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.preflop.heroCards[1].color}</option>
+                  <option value={ElObjetoSelecto.preflop.heroCards[1].color}>{ElObjetoSelecto.preflop.heroCards[1].color}</option>
                   <option value="negro">PICAS - NEGRO</option>
                   <option value="verde">TREBOLES - VERDE</option>
                   <option value="azul">DIAMANTES - AZUL</option>
@@ -199,7 +191,7 @@ function EditHand({ElObjetoSelecto}) {
               <div className="addProductItem cartas-box">
                 <label>Carta 1 FLOP</label>
                 <select name="carta-1-flop" id="carta-1-flop"  >
-                  <option value="-">{ElObjetoSelecto.flop.boardCards[0].carta}</option> 
+                  <option value={ElObjetoSelecto.flop.boardCards[0].carta}>{ElObjetoSelecto.flop.boardCards[0].carta}</option> 
                   <option value="A" >A</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -215,7 +207,7 @@ function EditHand({ElObjetoSelecto}) {
                   <option value="K">K</option>
                 </select>
                 <select name="colorCarta-1-flop" id="colorCarta-1-flop" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.flop.boardCards[0].color}</option>
+                  <option value={ElObjetoSelecto.flop.boardCards[0].color}>{ElObjetoSelecto.flop.boardCards[0].color}</option>
                   <option value="negro">PICAS - NEGRO</option>
                   <option value="verde">TREBOLES - VERDE</option>
                   <option value="azul">DIAMANTES - AZUL</option>
@@ -223,7 +215,7 @@ function EditHand({ElObjetoSelecto}) {
                 </select>
                 <label>Carta 2 FLOP</label>
                 <select name="carta-2-flop" id="carta-2-flop"  defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.flop.boardCards[1].carta}</option>
+                  <option value={ElObjetoSelecto.flop.boardCards[1].carta}>{ElObjetoSelecto.flop.boardCards[1].carta}</option>
                   <option value="A" >A</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -239,7 +231,7 @@ function EditHand({ElObjetoSelecto}) {
                   <option value="K">K</option>
                 </select>
                 <select name="colorCarta-2-flop" id="colorCarta-2-flop" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.flop.boardCards[1].color}</option>
+                  <option value={ElObjetoSelecto.flop.boardCards[1].color}>{ElObjetoSelecto.flop.boardCards[1].color}</option>
                   <option value="negro">PICAS - NEGRO</option>
                   <option value="verde">TREBOLES - VERDE</option>
                   <option value="azul">DIAMANTES - AZUL</option>
@@ -247,7 +239,7 @@ function EditHand({ElObjetoSelecto}) {
                 </select>
                 <label>Carta 3 FLOP</label>
                 <select name="carta-3-flop" id="carta-3-flop"  defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.flop.boardCards[2].carta}</option>
+                  <option value={ElObjetoSelecto.flop.boardCards[2].carta}>{ElObjetoSelecto.flop.boardCards[2].carta}</option>
                   <option value="A" >A</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -263,7 +255,7 @@ function EditHand({ElObjetoSelecto}) {
                   <option value="K">K</option>
                 </select>
                 <select name="colorCarta-3-flop" id="colorCarta-3-flop"  defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.flop.boardCards[2].color}</option>
+                  <option value={ElObjetoSelecto.flop.boardCards[2].color}>{ElObjetoSelecto.flop.boardCards[2].color}</option>
                   <option value="negro">PICAS - NEGRO</option>
                   <option value="verde">TREBOLES - VERDE</option>
                   <option value="azul">DIAMANTES - AZUL</option>
@@ -273,19 +265,19 @@ function EditHand({ElObjetoSelecto}) {
               <div className="addProductItem">
               <label>Posicion</label>
                 <select name="heroPosition" id="heroPositionPija" defaultValue='-' >
-                  <option value="-">{ElObjetoSelecto.preflop.heroPosition}</option>
+                  <option value={ElObjetoSelecto.preflop.heroPosition}>{ElObjetoSelecto.preflop.heroPosition}</option>
                   <option value="OOP">OOP</option>
                   <option value="IP">IP</option>
                 </select>
                 <label>Iniciativa</label>
                 <select name="Iniciativa" id="flop.heroIniciativa" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.flop.heroIniciativa}</option>
+                  <option value={ElObjetoSelecto.flop.heroIniciativa}>{ElObjetoSelecto.flop.heroIniciativa}</option>
                   <option value="SI">SIN INICIATIVA</option>
                   <option value="CI">CON INICIATIVA</option>
                 </select>
                 <label>Situacion</label>
                 <select name="Situation" id="flopSituation" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.flop.situation}</option>
+                  <option value={ElObjetoSelecto.flop.situation}>{ElObjetoSelecto.flop.situation}</option>
                   <optgroup label="IP-Con Iniciativa">
                       <option value="H OR en anterior instancia">H OR en anterior instancia</option>
                       <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
@@ -305,7 +297,7 @@ function EditHand({ElObjetoSelecto}) {
                 </select>
                 <label>Board Type</label>
                 <select name="Board Type" id="flop.boardType" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.flop.boardType}</option>
+                  <option value={ElObjetoSelecto.flop.boardType}>{ElObjetoSelecto.flop.boardType}</option>
                   <option value="SECO">SECO</option>
                   <option value="SEMI MOJADO">SEMI MOJADO</option>
                   <option value="OFENSIVO">OFENSIVO</option>
@@ -313,7 +305,7 @@ function EditHand({ElObjetoSelecto}) {
                 </select>
                 <label>Decision</label>
                 <select name="Decision" id="flop.decision" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.flop.decision}</option>
+                  <option value={ElObjetoSelecto.flop.decision}>{ElObjetoSelecto.flop.decision}</option>
                   <option value="CHECK/CALL">CHECK/CALL</option>
                   <option value="CHECK/FOLD">CHECK/FOLD</option>
                   <option value="CHECK/RAISE">CHECK/RAISE</option>
@@ -337,7 +329,7 @@ function EditHand({ElObjetoSelecto}) {
               <div className="addProductItem cartas-box">
                 <label>Carta 1 TURN</label>
                 <select name="carta-1-turn" id="carta-1-turn" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.turn.boardCards.carta}</option> 
+                  <option value={ElObjetoSelecto.turn.boardCards.carta}>{ElObjetoSelecto.turn.boardCards.carta}</option> 
                   <option value="A" >A</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -353,7 +345,7 @@ function EditHand({ElObjetoSelecto}) {
                   <option value="K">K</option>
                 </select>
                 <select name="colorCarta-1-turn" id="colorCarta-1-turn" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.turn.boardCards.color}</option>
+                  <option value={ElObjetoSelecto.turn.boardCards.color}>{ElObjetoSelecto.turn.boardCards.color}</option>
                   <option value="negro">PICAS - NEGRO</option>
                   <option value="verde">TREBOLES - VERDE</option>
                   <option value="azul">DIAMANTES - AZUL</option>
@@ -363,19 +355,19 @@ function EditHand({ElObjetoSelecto}) {
               <div className="addProductItem">
                 <label>Posicion</label>
                 <select name="heroPosition" id="heroPositionPija2" defaultValue='-' >
-                  <option value="-">{ElObjetoSelecto.preflop.heroPosition}</option>
+                  <option value={ElObjetoSelecto.preflop.heroPosition}>{ElObjetoSelecto.preflop.heroPosition}</option>
                   <option value="OOP">OOP</option>
                   <option value="IP">IP</option>
                 </select>
                 <label>Iniciativa</label>
                 <select name="Iniciativa" id="turn.heroIniciativa" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.turn.heroIniciativa}</option>
+                  <option value={ElObjetoSelecto.turn.heroIniciativa}>{ElObjetoSelecto.turn.heroIniciativa}</option>
                   <option value="SI">SIN INICIATIVA</option>
                   <option value="CI">CON INICIATIVA</option>
                 </select>
                 <label>Situacion</label>
                 <select name="Situation" id="turnSituation" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.turn.situation}</option>
+                  <option value={ElObjetoSelecto.turn.situation}>{ElObjetoSelecto.turn.situation}</option>
                   <optgroup label="IP-Con Iniciativa">
                       <option value="H 2nd barrel en anterior instancia">H 2nd barrel en anterior instancia</option>
                       <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
@@ -399,7 +391,7 @@ function EditHand({ElObjetoSelecto}) {
                 </select>
                 <label>Board Type</label>
                 <select name="Board Type" id="turn.boardType" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.turn.boardType}</option>
+                  <option value={ElObjetoSelecto.turn.boardType}>{ElObjetoSelecto.turn.boardType}</option>
                   <option value="SECO">SECO</option>
                   <option value="SEMI MOJADO">SEMI MOJADO</option>
                   <option value="OFENSIVO">OFENSIVO</option>
@@ -407,7 +399,7 @@ function EditHand({ElObjetoSelecto}) {
                 </select>
                 <label>Decision</label>
                 <select name="Decision" id="turn.decision" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.turn.decision}</option>
+                  <option value={ElObjetoSelecto.turn.decision}>{ElObjetoSelecto.turn.decision}</option>
                   <option value="CHECK/CALL">CHECK/CALL</option>
                   <option value="CHECK/FOLD">CHECK/FOLD</option>
                   <option value="CHECK/RAISE">CHECK/RAISE</option>
@@ -431,7 +423,7 @@ function EditHand({ElObjetoSelecto}) {
               <div className="addProductItem cartas-box">
                 <label>Carta 1 RIVER</label>
                 <select name="carta-1-river" id="carta-1-river" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.river.boardCards.carta}</option> 
+                  <option value={ElObjetoSelecto.river.boardCards.carta}>{ElObjetoSelecto.river.boardCards.carta}</option> 
                   <option value="A" >A</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -447,7 +439,7 @@ function EditHand({ElObjetoSelecto}) {
                   <option value="K">K</option>
                 </select>
                 <select name="colorCarta-1-river" id="colorCarta-1-river" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.river.boardCards.color}</option>
+                  <option value={ElObjetoSelecto.river.boardCards.color}>{ElObjetoSelecto.river.boardCards.color}</option>
                   <option value="negro">PICAS - NEGRO</option>
                   <option value="verde">TREBOLES - VERDE</option>
                   <option value="azul">DIAMANTES - AZUL</option>
@@ -457,19 +449,19 @@ function EditHand({ElObjetoSelecto}) {
               <div className="addProductItem">
               <label>Posicion</label>
                 <select name="heroPosition" id="heroPositionPija3" defaultValue='-' >
-                  <option value="-">{ElObjetoSelecto.preflop.heroPosition}</option>
+                  <option value={ElObjetoSelecto.preflop.heroPosition}>{ElObjetoSelecto.preflop.heroPosition}</option>
                   <option value="OOP">OOP</option>
                   <option value="IP">IP</option>
                 </select>
                 <label>Iniciativa</label>
                 <select name="Iniciativa" id="river.heroIniciativa" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.river.heroIniciativa}</option>
+                  <option value={ElObjetoSelecto.river.heroIniciativa}>{ElObjetoSelecto.river.heroIniciativa}</option>
                   <option value="SI">SIN INICIATIVA</option>
                   <option value="CI">CON INICIATIVA</option>
                 </select>
                 <label>Situacion</label>
                 <select name="Situation" id="riverSituation" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.river.situation}</option>
+                  <option value={ElObjetoSelecto.river.situation}>{ElObjetoSelecto.river.situation}</option>
                   <optgroup label="IP-Con Iniciativa">
                       <option value="H 3rd barrel en anterior instancia">H 3rd barrel en anterior instancia</option>
                       <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
@@ -493,7 +485,7 @@ function EditHand({ElObjetoSelecto}) {
                 </select>
                 <label>Board Type</label>
                 <select name="Board Type" id="river.boardType" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.river.boardType}</option>
+                  <option value={ElObjetoSelecto.river.boardType}>{ElObjetoSelecto.river.boardType}</option>
                   <option value="SECO">SECO</option>
                   <option value="SEMI MOJADO">SEMI MOJADO</option>
                   <option value="OFENSIVO">OFENSIVO</option>
@@ -501,7 +493,7 @@ function EditHand({ElObjetoSelecto}) {
                 </select>
                 <label>Decision</label>
                 <select name="Decision" id="river.decision" defaultValue='-'  >
-                  <option value="-">{ElObjetoSelecto.river.decision}</option>
+                  <option value={ElObjetoSelecto.river.decision}>{ElObjetoSelecto.river.decision}</option>
                   <option value="CHECK/CALL">CHECK/CALL</option>
                   <option value="CHECK/FOLD">CHECK/FOLD</option>
                   <option value="CHECK/RAISE">CHECK/RAISE</option>
@@ -521,7 +513,9 @@ function EditHand({ElObjetoSelecto}) {
             </div> 
               
                 <button onClick={handleSubmit}>SEND</button>
-                <br/><br/><br/><br/>
+                <br/>
+                <button onClick={handleErase}>ERASE</button>
+                <br/><br/><br/>
             </form>
           </div>
       )

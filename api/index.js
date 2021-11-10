@@ -19,6 +19,7 @@ app.use(express.json()) // obligas a que express acepte json como argumento de l
 app.use((req,res,next)=>{
     res.setHeader("Access-Control-Allow-Origin","*")
     res.setHeader("Access-Control-Allow-Headers","*")
+    res.setHeader("Access-Control-Allow-Methods","POST, PUT, GET, OPTIONS, DELETE")
     next()
 })
 
