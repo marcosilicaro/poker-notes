@@ -512,8 +512,8 @@ function EditHand({ElObjetoSelecto}) {
               </div>
             </div> 
               
-                <button onClick={handleSubmit}>SEND</button>
-                <br/>
+                <button onClick={handleSubmit}>UPDATE</button>
+                <br/><br/><br/><br/><br/>
                 <button onClick={handleErase}>ERASE</button>
                 <br/><br/><br/>
             </form>
