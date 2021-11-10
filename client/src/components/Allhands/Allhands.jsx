@@ -151,7 +151,8 @@ function Allhands() {
                                         <span className={`${objeto.flop.boardCards[2].color}  cardStyling`}>{objeto.flop.boardCards[2].carta}</span>
                                         <div className={showFlopNotes===true && idClicked===objeto._id ? 'preflopNotes-active':'preflopNotes'} >
                                             {objeto.flop.decision}<br/>
-                                            {objeto.flop.notes[0]}
+                                            {objeto.flop.notes[0]}<br/><br/>
+                                            {objeto._id}
                                         </div>
                                     </div> 
                                     

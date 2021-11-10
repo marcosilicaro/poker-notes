@@ -1,12 +1,14 @@
 import './addhands.css'
 import axios from '../../axios'
+import { useState } from 'react';
 
 function Addhands() {
 
+  const [positionExist, setpositionExist] = useState('-')
 
   const handleSubmit = (e) => {
     e.preventDefault();
-     axios.post("/createHand", {
+    axios.post("/createHand", {
         "preflop": {
           "heroCards": [
             {
@@ -78,6 +80,8 @@ function Addhands() {
           ]
         }
     });
+    alert('mano subida')
+    window.location.reload()
   };
 
     return (
@@ -86,10 +90,22 @@ function Addhands() {
           <form className="addProductForm">
 
           <h2>Preflop</h2><br/>
-          <div className='divider'>
-            <div className="addProductItem">
+          <div className='divider' 
+              >
+            <div className="addProductItem" >
               <label>Posicion</label>
-              <select name="Posicion" id="heroPosition" defaultValue='-' >
+              <select 
+              name="heroPosition" 
+              id="heroPosition" 
+              defaultValue='-' 
+              className={positionExist=== '-'?'background-rojo':'background-negro'}
+              onChange={(e) => {
+                    document.getElementById("heroPositionPija").value=e.currentTarget.value
+                    document.getElementById("heroPositionPija2").value=e.currentTarget.value
+                    document.getElementById("heroPositionPija3").value=e.currentTarget.value
+                    setpositionExist('true')
+                } 
+                }>
                 <option value="-">-</option>
                 <option value="OOP">OOP</option>
                 <option value="IP">IP</option>
@@ -175,7 +191,7 @@ function Addhands() {
           <div className='divider'>
             <div className="addProductItem cartas-box">
               <label>Carta 1 FLOP</label>
-              <select name="carta-1-flop" id="carta-1-flop" defaultValue='-'  >
+              <select name="carta-1-flop" id="carta-1-flop"  >
                 <option value="-">-</option> 
                 <option value="A" >A</option>
                 <option value="2">2</option>
@@ -248,6 +264,12 @@ function Addhands() {
               </select>
             </div>
             <div className="addProductItem">
+            <label>Posicion</label>
+              <select name="heroPosition" id="heroPositionPija" defaultValue='-' className={positionExist=== '-'?'background-rojo':'background-negro'}>
+                <option value="-">-</option>
+                <option value="OOP">OOP</option>
+                <option value="IP">IP</option>
+              </select>
               <label>Iniciativa</label>
               <select name="Iniciativa" id="flop.heroIniciativa" defaultValue='-'  >
                 <option value="-">-</option>
@@ -332,6 +354,12 @@ function Addhands() {
               </select>
             </div>
             <div className="addProductItem">
+              <label>Posicion</label>
+              <select name="heroPosition" id="heroPositionPija2" defaultValue='-' className={positionExist=== '-'?'background-rojo':'background-negro'}>
+                <option value="-">-</option>
+                <option value="OOP">OOP</option>
+                <option value="IP">IP</option>
+              </select>
               <label>Iniciativa</label>
               <select name="Iniciativa" id="turn.heroIniciativa" defaultValue='-'  >
                 <option value="-">-</option>
@@ -420,6 +448,12 @@ function Addhands() {
               </select>
             </div>
             <div className="addProductItem">
+            <label>Posicion</label>
+              <select name="heroPosition" id="heroPositionPija3" defaultValue='-' className={positionExist=== '-'?'background-rojo':'background-negro'}>
+                <option value="-">-</option>
+                <option value="OOP">OOP</option>
+                <option value="IP">IP</option>
+              </select>
               <label>Iniciativa</label>
               <select name="Iniciativa" id="river.heroIniciativa" defaultValue='-'  >
                 <option value="-">-</option>

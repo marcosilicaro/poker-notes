@@ -136,3 +136,11 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.background-rojo{
+  background-color: red;
+}
+
+.background-negro{
+  background-color:default
+}
