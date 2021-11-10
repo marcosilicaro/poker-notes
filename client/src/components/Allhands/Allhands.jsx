@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
  
 
-function Allhands() {
+function Allhands({ setObjetoSelecto }) {
 
     const [handsData, sethandsData] = useState([])
 
@@ -45,8 +45,6 @@ function Allhands() {
   })
 
   let uniqueSituations = [...new Set(situationList)];
-
-    const navRef = React.useRef(null);
 
     return ( 
         <div className='table-container' >
@@ -134,7 +132,12 @@ function Allhands() {
 
                 {handsData.map((objeto)=>(
                             <tr >
-                                <td className='greyBackground'> 
+                                <td 
+                                className='greyBackground' 
+                                onClick={(e) => {
+                                    setObjetoSelecto(objeto)
+                                }}
+                                > 
                                     <div>
                                         <span className={`${objeto.preflop.heroCards[0].color} cardStyling`}>{objeto.preflop.heroCards[0].carta}</span> 
                                         <span className={`${objeto.preflop.heroCards[1].color} cardStyling`}>{objeto.preflop.heroCards[1].carta}</span>

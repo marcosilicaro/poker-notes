@@ -24,6 +24,12 @@ export default function Sidebar() {
               All Hand
             </li>
             </Link>
+            <Link to="/edithand">
+            <li className="sidebarListItem">
+              <ViewCarousel className="sidebarIcon" />
+              Edit Hand
+            </li>
+            </Link>
           </ul>
         </div>
         
