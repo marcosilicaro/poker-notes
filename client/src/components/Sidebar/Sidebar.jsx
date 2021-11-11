@@ -4,6 +4,7 @@ import {
     ViewCarousel
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import CreateIcon from '@mui/icons-material/Create';
 
 export default function Sidebar() {
   return (
@@ -21,12 +22,12 @@ export default function Sidebar() {
             <Link to="/allhands">
             <li className="sidebarListItem">
               <ViewCarousel className="sidebarIcon" />
-              All Hand
+              All Hands
             </li>
             </Link>
             <Link to="/edithand">
             <li className="sidebarListItem">
-              <ViewCarousel className="sidebarIcon" />
+              <CreateIcon className="sidebarIcon" />
               Edit Hand
             </li>
             </Link>

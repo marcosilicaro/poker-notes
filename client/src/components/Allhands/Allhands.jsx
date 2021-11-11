@@ -123,10 +123,10 @@ function Allhands({ setObjetoSelecto }) {
 
             <table className='table table-bordered'>
                 <thead>
-                    <th>Preflop</th>
-                    <th>Flop</th>
-                    <th>Turn</th>
-                    <th>River</th>
+                    <th className='th-preflop'>Preflop</th>
+                    <th className='th-flop'>Flop</th>
+                    <th className='th-turn'>Turn</th>
+                    <th className='th-river'>River</th>
                 </thead>
                 <tbody>
 

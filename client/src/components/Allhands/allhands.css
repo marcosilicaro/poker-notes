@@ -74,3 +74,19 @@ hr.dashed {
   #situationFilter{
       width: 35vw;
   }
+
+.th-preflop{
+    width:10% !important
+}
+
+.th-flop{
+    width:30% !important
+}
+
+.th-turn{
+    width:30% !important
+}
+
+.th-river{
+    width:30% !important
+}

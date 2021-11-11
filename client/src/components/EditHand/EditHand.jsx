@@ -384,9 +384,7 @@ function EditHand({ElObjetoSelecto}) {
                       <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                   </optgroup>
                   <optgroup label="OOP-Sin Iniciativa">
-                      <option value="vs 2nd barrel en anterior instancia">vs 2nd barrel en anterior instancia</option>
-                      <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
-                      <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
+                      <option value="vs 3rd barrel">vs 3rd barrel</option>
                   </optgroup>
                 </select>
                 <label>Board Type</label>
@@ -410,7 +408,7 @@ function EditHand({ElObjetoSelecto}) {
                 <label>Notes</label>
                 <textarea
                   type="text"
-                  value={ElObjetoSelecto.turn.notes[0]}
+                  defaultValue={ElObjetoSelecto.turn.notes[0]}
                   name="Notas-preflop"
                   className="notes"
                   id="turn.notes"
