@@ -20,6 +20,10 @@ function Allhands({ setObjetoSelecto }) {
     const [showTurnNotes, setShowTurnNotes] = useState(false)
     const [showRiverNotes, setShowRiverNotes] = useState(false)
     const [idClicked, setidClicked] = useState('')
+
+    const [flopTitleClicked, setflopTitleClicked] = useState(false)
+    const [turnTitleClicked, setturnTitleClicked] = useState(false)
+    const [riverTitleClicked, setriverTitleClicked] = useState(false)
     
 
 // cada vez que se re-renderiza el componente (la app) se ejecuta get all
@@ -123,10 +127,10 @@ function Allhands({ setObjetoSelecto }) {
 
             <table className='table table-bordered'>
                 <thead>
-                    <th className='th-preflop'>Preflop</th>
-                    <th className='th-flop'>Flop</th>
-                    <th className='th-turn'>Turn</th>
-                    <th className='th-river'>River</th>
+                    <th className='th-preflop' >Preflop</th>
+                    <th className='th-flop' onClick={(e) => {flopTitleClicked===false? setflopTitleClicked(true):setflopTitleClicked(false)}}>Flop</th>
+                    <th className='th-turn' onClick={(e) => {turnTitleClicked===false? setturnTitleClicked(true):setturnTitleClicked(false)}}>Turn</th>
+                    <th className='th-river' onClick={(e) => {riverTitleClicked===false? setriverTitleClicked(true):setriverTitleClicked(false)}}>River</th>
                 </thead>
                 <tbody>
 
@@ -152,7 +156,7 @@ function Allhands({ setObjetoSelecto }) {
                                         <span className={`${objeto.flop.boardCards[0].color}  cardStyling`}>{objeto.flop.boardCards[0].carta}</span> 
                                         <span className={`${objeto.flop.boardCards[1].color}  cardStyling`}>{objeto.flop.boardCards[1].carta}</span>
                                         <span className={`${objeto.flop.boardCards[2].color}  cardStyling`}>{objeto.flop.boardCards[2].carta}</span>
-                                        <div className={showFlopNotes===true && idClicked===objeto._id ? 'preflopNotes-active':'preflopNotes'} >
+                                        <div id='flop-notes' className={showFlopNotes===true && idClicked===objeto._id || flopTitleClicked===true ? 'preflopNotes-active':'preflopNotes'} >
                                             {objeto.flop.decision}<br/>
                                             {objeto.flop.notes[0]}<br/><br/>
                                             {objeto._id}
@@ -166,7 +170,7 @@ function Allhands({ setObjetoSelecto }) {
                                         showTurnNotes===true ? setShowTurnNotes(false):setShowTurnNotes(true)
                                     }}>
                                         <span className={`${objeto.turn.boardCards.color}  cardStyling`}>{objeto.turn.boardCards.carta}</span>
-                                        <div className={showTurnNotes===true && idClicked===objeto._id ? 'preflopNotes-active':'preflopNotes'} >
+                                        <div  id='turn-notes' className={showTurnNotes===true && idClicked===objeto._id  || turnTitleClicked===true ? 'preflopNotes-active':'preflopNotes'} >
                                             {objeto.turn.decision}<br/>
                                             {objeto.turn.notes[0]}
                                         </div>
@@ -179,7 +183,7 @@ function Allhands({ setObjetoSelecto }) {
                                         showRiverNotes===true ? setShowRiverNotes(false):setShowRiverNotes(true)
                                     }}>
                                         <span className={`${objeto.river.boardCards.color}  cardStyling`}>{objeto.river.boardCards.carta}</span>
-                                        <div className={showRiverNotes===true && idClicked===objeto._id ? 'preflopNotes-active':'preflopNotes'} >
+                                        <div  id='river-notes' className={showRiverNotes===true && idClicked===objeto._id   || riverTitleClicked===true ? 'preflopNotes-active':'preflopNotes'} >
                                             {objeto.river.decision}<br/>
                                             {objeto.river.notes[0]}
                                         </div>

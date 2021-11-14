@@ -20,6 +20,11 @@ function Addhands() {
               "color": document.getElementById("colorCarta-2-preflop").value
             }
           ],
+          "heroCardsPija": [
+            {
+              "pija": "jajajaja dijo pija"
+            }
+          ],
           "heroIniciativa": document.getElementById("preflop.heroIniciativa").value,
           "heroPosition":  document.getElementById("heroPosition").value,
           "heroExactPosition": document.getElementById("heroExactPosition").value,
@@ -280,17 +285,10 @@ function Addhands() {
               <select name="Situation" id="flopSituation" defaultValue='-'  >
                 <option value="-">-</option>
                 <optgroup label="IP-Con Iniciativa">
-                    <option value="H OR en anterior instancia">H OR en anterior instancia</option>
-                    <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
-                    <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="IP-Sin Iniciativa">
-                    <option value="vs 2nd barrel">vs 2nd barrel</option>
                 </optgroup>
                 <optgroup label="OOP-Con Iniciativa">
-                    <option value="H OR anterior instancia">H OR en anterior instancia</option>
-                    <option value="H 3bet anterior instancia">H 3bet en anterior instancia</option>
-                    <option value="H 4bet anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="OOP-Sin Iniciativa">
                 <option value="vs 2nd barrel">vs 2nd barrel</option>
@@ -368,26 +366,16 @@ function Addhands() {
               </select>
               <label>Situacion</label>
               <select name="Situation" id="turnSituation" defaultValue='-'  >
-                <option value="-">-</option>
+              <option value="-">-</option>
                 <optgroup label="IP-Con Iniciativa">
-                    <option value="H 2nd barrel en anterior instancia">H 2nd barrel en anterior instancia</option>
-                    <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
-                    <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="IP-Sin Iniciativa">
-                    <option value="vs 2nd barrel en anterior instancia">vs 2nd barrel e anterior instancian anterior instancia</option>
-                    <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
-                    <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="OOP-Con Iniciativa">
-                    <option value="H 2nd barrel en anterior instancia">H 2nd barrel en anterior instancia</option>
-                    <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
-                    <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
+                <option value="H checkraise en flop">H checkraise en flop</option>
                 </optgroup>
                 <optgroup label="OOP-Sin Iniciativa">
-                    <option value="vs 2nd barrel en anterior instancia">vs 2nd barrel en anterior instancia</option>
-                    <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
-                    <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
+                <option value="vs 3rd barrel">vs 3rd barrel</option>
                 </optgroup>
               </select>
               <label>Board Type</label>
@@ -463,25 +451,18 @@ function Addhands() {
               <label>Situacion</label>
               <select name="Situation" id="riverSituation" defaultValue='-'  >
                 <option value="-">-</option>
+                <option value="-">-</option>
                 <optgroup label="IP-Con Iniciativa">
-                    <option value="H 3rd barrel en anterior instancia">H 3rd barrel en anterior instancia</option>
-                    <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
-                    <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="IP-Sin Iniciativa">
-                    <option value="vs 3rd barrel en anterior instancia">vs 3rd barrel en anterior instancia</option>
-                    <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
-                    <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
                 </optgroup>
                 <optgroup label="OOP-Con Iniciativa">
-                    <option value="H 3rd barrel en anterior instancia">H 3rd barrel en anterior instancia</option>
-                    <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
-                    <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
+                <option value="h cbet en turn">h cbet en turn</option>
+                <option value="h cbet en turn">h check behind en turn</option>
                 </optgroup>
                 <optgroup label="OOP-Sin Iniciativa">
-                    <option value="vs 3rd barrel en anterior instancia">vs 3rd barrel en anterior instancia</option>
-                    <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
-                    <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
+                <option value="vs 4th barrel">vs 4th barrel</option>
+                <option value="vs check behind de V en turn">vs check behind de V en turn</option>
                 </optgroup>
               </select>
               <label>Board Type</label>

@@ -90,3 +90,7 @@ hr.dashed {
 .th-river{
     width:30% !important
 }
+
+always-show{
+    display:blocks !important
+}

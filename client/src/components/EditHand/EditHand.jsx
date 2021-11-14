@@ -279,17 +279,10 @@ function EditHand({ElObjetoSelecto}) {
                 <select name="Situation" id="flopSituation" defaultValue='-'  >
                   <option value={ElObjetoSelecto.flop.situation}>{ElObjetoSelecto.flop.situation}</option>
                   <optgroup label="IP-Con Iniciativa">
-                      <option value="H OR en anterior instancia">H OR en anterior instancia</option>
-                      <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
-                      <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                   </optgroup>
                   <optgroup label="IP-Sin Iniciativa">
-                      <option value="vs 2nd barrel">vs 2nd barrel</option>
                   </optgroup>
                   <optgroup label="OOP-Con Iniciativa">
-                      <option value="H OR anterior instancia">H OR en anterior instancia</option>
-                      <option value="H 3bet anterior instancia">H 3bet en anterior instancia</option>
-                      <option value="H 4bet anterior instancia">H 4bet en anterior instancia</option>
                   </optgroup>
                   <optgroup label="OOP-Sin Iniciativa">
                   <option value="vs 2nd barrel">vs 2nd barrel</option>
@@ -319,7 +312,7 @@ function EditHand({ElObjetoSelecto}) {
                   name="Notas-preflop"
                   className="notes"
                   id="flop.notes"
-                  value={ElObjetoSelecto.flop.notes[0]}
+                  defaultValue={ElObjetoSelecto.flop.notes[0]}
                 />
               </div>
             </div>
@@ -369,19 +362,10 @@ function EditHand({ElObjetoSelecto}) {
                 <select name="Situation" id="turnSituation" defaultValue='-'  >
                   <option value={ElObjetoSelecto.turn.situation}>{ElObjetoSelecto.turn.situation}</option>
                   <optgroup label="IP-Con Iniciativa">
-                      <option value="H 2nd barrel en anterior instancia">H 2nd barrel en anterior instancia</option>
-                      <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
-                      <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                   </optgroup>
                   <optgroup label="IP-Sin Iniciativa">
-                      <option value="vs 2nd barrel en anterior instancia">vs 2nd barrel e anterior instancian anterior instancia</option>
-                      <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
-                      <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
                   </optgroup>
                   <optgroup label="OOP-Con Iniciativa">
-                      <option value="H 2nd barrel en anterior instancia">H 2nd barrel en anterior instancia</option>
-                      <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
-                      <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                   </optgroup>
                   <optgroup label="OOP-Sin Iniciativa">
                       <option value="vs 3rd barrel">vs 3rd barrel</option>
@@ -461,24 +445,13 @@ function EditHand({ElObjetoSelecto}) {
                 <select name="Situation" id="riverSituation" defaultValue='-'  >
                   <option value={ElObjetoSelecto.river.situation}>{ElObjetoSelecto.river.situation}</option>
                   <optgroup label="IP-Con Iniciativa">
-                      <option value="H 3rd barrel en anterior instancia">H 3rd barrel en anterior instancia</option>
-                      <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
-                      <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                   </optgroup>
                   <optgroup label="IP-Sin Iniciativa">
-                      <option value="vs 3rd barrel en anterior instancia">vs 3rd barrel en anterior instancia</option>
-                      <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
-                      <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
                   </optgroup>
                   <optgroup label="OOP-Con Iniciativa">
-                      <option value="H 3rd barrel en anterior instancia">H 3rd barrel en anterior instancia</option>
-                      <option value="H 3bet en anterior instancia">H 3bet en anterior instancia</option>
-                      <option value="H 4bet en anterior instancia">H 4bet en anterior instancia</option>
                   </optgroup>
                   <optgroup label="OOP-Sin Iniciativa">
-                      <option value="vs 3rd barrel en anterior instancia">vs 3rd barrel en anterior instancia</option>
-                      <option value="vs 3bet en anterior instancia">vs 3bet en anterior instancia</option>
-                      <option value="vs 4bet en anterior instancia">vs 4bet en anterior instancia</option>
+                      <option value="vs 4th barrel">vs 4th barrel</option>
                   </optgroup>
                 </select>
                 <label>Board Type</label>
@@ -502,7 +475,7 @@ function EditHand({ElObjetoSelecto}) {
                 <label>Notes</label>
                 <textarea
                   type="text"
-                  value={ElObjetoSelecto.river.notes[0]}
+                  defaultValue={ElObjetoSelecto.river.notes[0]}
                   name="Notas"
                   className="notes"
                   id="river.notes"
