@@ -4,7 +4,7 @@
     justify-content: flex-start;
 }
 
-textarea{
+textarea{ 
     height:10vh
 }
 
@@ -27,3 +27,26 @@ label{
     font-weight: 600;
     margin-top: 30px;
 }
+
+.addProductItem{
+    margin-right: 50px;
+}
+
+.divider{
+    margin-bottom: 3vh;
+}
+
+.visibleCards{
+    font-weight: 1000;
+    font-size: 70px;
+    font-weight: bolder;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    width:100%;
+    padding: 10px;
+    border:1px solid black;
+  }
