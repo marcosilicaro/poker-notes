@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from '../../axios'
+import './edithand.css'
 
 function EditHand({ElObjetoSelecto}) {
   
@@ -43,6 +44,11 @@ function EditHand({ElObjetoSelecto}) {
             "heroIniciativa": document.getElementById("flop.heroIniciativa").value,
             "boardType": document.getElementById("flop.boardType").value.toLowerCase(),
             "decision": document.getElementById("flop.decision").value,
+            "flopCheckCall": document.getElementById("flopCheckCall").value,
+            "flopCheckFold": document.getElementById("flopCheckFold").value,
+            "flopCheckRaise": document.getElementById("flopCheckRaise").value,
+            "flopCheckBehind": document.getElementById("flopCheckBehind").value,
+            "flopBet": document.getElementById("flopBet").value,
             "villainType": "",
             "notes": [
               document.getElementById("flop.notes").value
@@ -57,6 +63,11 @@ function EditHand({ElObjetoSelecto}) {
             "situation": document.getElementById("turnSituation").value,
             "boardType": document.getElementById("turn.boardType").value.toLowerCase(),
             "decision": document.getElementById("turn.decision").value,
+            "turnCheckCall": document.getElementById("turnCheckCall").value,
+            "turnCheckFold": document.getElementById("turnCheckFold").value,
+            "turnCheckRaise": document.getElementById("turnCheckRaise").value,
+            "turnCheckBehind": document.getElementById("turnCheckBehind").value,
+            "turnBet": document.getElementById("turnBet").value,
             "villainType": "",
             "notes": [
               document.getElementById("turn.notes").value
@@ -71,6 +82,11 @@ function EditHand({ElObjetoSelecto}) {
             "situation": document.getElementById("riverSituation").value,
             "boardType": document.getElementById("river.boardType").value.toLowerCase(),
             "decision": document.getElementById("river.decision").value,
+            "riverCheckCall": document.getElementById("riverCheckCall").value,
+            "riverCheckFold": document.getElementById("riverCheckFold").value,
+            "riverCheckRaise": document.getElementById("riverCheckRaise").value,
+            "riverCheckBehind": document.getElementById("riverCheckBehind").value,
+            "riverBet": document.getElementById("riverBet").value,
             "villainType": "",
             "notes": [
               document.getElementById("river.notes").value
@@ -314,6 +330,66 @@ function EditHand({ElObjetoSelecto}) {
                   id="flop.notes"
                   defaultValue={ElObjetoSelecto.flop.notes[0]}
                 />
+
+                <div className="notesOnDecisions">
+                  <div className="top-decision">
+                    <div className="check-call">
+                      <label>Check-call</label>
+                      <textarea
+                        type="text"
+                        name="check-call"
+                        className="check-call"
+                        id="flopCheckCall"
+                        defaultValue={ElObjetoSelecto.flop.flopCheckCall? ElObjetoSelecto.flop.flopCheckCall : ""}
+                      />
+                    </div>
+                    <div className="check-fold">
+                      <label>Check-fold</label>
+                      <textarea
+                        type="text"
+                        name="check-fold"
+                        className="check-fold"
+                        id="flopCheckFold"
+                        defaultValue={ElObjetoSelecto.flop.flopCheckFold? ElObjetoSelecto.flop.flopCheckFold : ""}
+                      />
+                    </div>
+                    <div className="check-raise">
+                      <label>Check-raise</label>
+                      <textarea
+                        type="text"
+                        name="check-raise"
+                        className="check-raise"
+                        id="flopCheckRaise"
+                        defaultValue={ElObjetoSelecto.flop.flopCheckRaise? ElObjetoSelecto.flop.flopCheckRaise : ""}
+                      />
+                    </div>
+                  </div>
+                  <div className="bottom-decisions">
+                    <div className="check-behind">
+                      <label>Check-behind</label><br/>
+                      <textarea
+                        type="text"
+                        name="check-behind"
+                        className="check-behind"
+                        id="flopCheckBehind"
+                        defaultValue={ElObjetoSelecto.flop.flopCheckBehind? ElObjetoSelecto.flop.flopCheckBehind : ""}
+                      />
+                    </div>
+                    <div className="bet">
+                      <label>Bet</label><br/>
+                      <textarea
+                        type="text"
+                        name="bet"
+                        className="bet"
+                        id="flopBet"
+                        defaultValue={ElObjetoSelecto.flop.flopBet? ElObjetoSelecto.flop.flopBet : ""}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                .
+
               </div>
             </div>
   
@@ -397,7 +473,65 @@ function EditHand({ElObjetoSelecto}) {
                   className="notes"
                   id="turn.notes"
                 />
+
+                <div className="notesOnDecisions">
+                  <div className="top-decision">
+                    <div className="check-call">
+                      <label>Check-call</label>
+                      <textarea
+                        type="text"
+                        name="check-call"
+                        className="check-call"
+                        id="turnCheckCall"
+                        defaultValue={ElObjetoSelecto.turn.turnCheckCall? ElObjetoSelecto.turn.turnCheckCall : ""}
+                      />
+                    </div>
+                    <div className="check-fold">
+                      <label>Check-fold</label>
+                      <textarea
+                        type="text"
+                        name="check-fold"
+                        className="check-fold"
+                        id="turnCheckFold"
+                        defaultValue={ElObjetoSelecto.turn.turnCheckFold? ElObjetoSelecto.turn.turnCheckFold : ""}
+                      />
+                    </div>
+                    <div className="check-raise">
+                      <label>Check-raise</label>
+                      <textarea
+                        type="text"
+                        name="check-raise"
+                        className="check-raise"
+                        id="turnCheckRaise"
+                        defaultValue={ElObjetoSelecto.turn.turnCheckRaise? ElObjetoSelecto.turn.turnCheckRaise : ""}
+                      />
+                    </div>
+                  </div>
+                  <div className="bottom-decisions">
+                    <div className="check-behind">
+                      <label>Check-behind</label><br/>
+                      <textarea
+                        type="text"
+                        name="check-behind"
+                        className="check-behind"
+                        id="turnCheckBehind"
+                        defaultValue={ElObjetoSelecto.turn.turnCheckBehind? ElObjetoSelecto.turn.turnCheckBehind : ""}
+                      />
+                    </div>
+                    <div className="bet">
+                      <label>Bet</label><br/>
+                      <textarea
+                        type="text"
+                        name="bet"
+                        className="bet"
+                        id="turnBet"
+                        defaultValue={ElObjetoSelecto.turn.turnBet? ElObjetoSelecto.turn.turnBet : ""}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
+              
             </div> 
   
             <h2>River</h2>
@@ -480,6 +614,63 @@ function EditHand({ElObjetoSelecto}) {
                   className="notes"
                   id="river.notes"
                 />
+
+<div className="notesOnDecisions">
+                  <div className="top-decision">
+                    <div className="check-call">
+                      <label>Check-call</label>
+                      <textarea
+                        type="text"
+                        name="check-call"
+                        className="check-call"
+                        id="riverCheckCall"
+                        defaultValue={ElObjetoSelecto.river.riverCheckCall? ElObjetoSelecto.river.riverCheckCall : ""}
+                      />
+                    </div>
+                    <div className="check-fold">
+                      <label>Check-fold</label>
+                      <textarea
+                        type="text"
+                        name="check-fold"
+                        className="check-fold"
+                        id="riverCheckFold"
+                        defaultValue={ElObjetoSelecto.river.riverCheckFold? ElObjetoSelecto.river.riverCheckFold : ""}
+                      />
+                    </div>
+                    <div className="check-raise">
+                      <label>Check-raise</label>
+                      <textarea
+                        type="text"
+                        name="check-raise"
+                        className="check-raise"
+                        id="riverCheckRaise"
+                        defaultValue={ElObjetoSelecto.river.riverCheckRaise? ElObjetoSelecto.river.riverCheckRaise : ""}
+                      />
+                    </div>
+                  </div>
+                  <div className="bottom-decisions">
+                    <div className="check-behind">
+                      <label>Check-behind</label><br/>
+                      <textarea
+                        type="text"
+                        name="check-behind"
+                        className="check-behind"
+                        id="riverCheckBehind"
+                        defaultValue={ElObjetoSelecto.river.riverCheckBehind? ElObjetoSelecto.river.riverCheckBehind : ""}
+                      />
+                    </div>
+                    <div className="bet">
+                      <label>Bet</label><br/>
+                      <textarea
+                        type="text"
+                        name="bet"
+                        className="bet"
+                        id="riverBet"
+                        defaultValue={ElObjetoSelecto.river.riverBet? ElObjetoSelecto.river.riverBet : ""}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div> 
               

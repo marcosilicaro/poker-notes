@@ -20,11 +20,6 @@ function Addhands() {
               "color": document.getElementById("colorCarta-2-preflop").value
             }
           ],
-          "heroCardsPija": [
-            {
-              "pija": "jajajaja dijo pija"
-            }
-          ],
           "heroIniciativa": document.getElementById("preflop.heroIniciativa").value,
           "heroPosition":  document.getElementById("heroPosition").value,
           "heroExactPosition": document.getElementById("heroExactPosition").value,

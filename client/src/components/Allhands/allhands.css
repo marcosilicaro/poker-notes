@@ -26,6 +26,13 @@
     border-color: black;
 }
 
+.borderBlack{
+    border:1px solid black;
+    padding:5px;
+    margin-top:1vh;
+    margin-right:1vw
+}
+
 .preflopNotes{
     display:none;
 }

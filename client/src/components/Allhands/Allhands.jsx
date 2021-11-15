@@ -157,9 +157,12 @@ function Allhands({ setObjetoSelecto }) {
                                         <span className={`${objeto.flop.boardCards[1].color}  cardStyling`}>{objeto.flop.boardCards[1].carta}</span>
                                         <span className={`${objeto.flop.boardCards[2].color}  cardStyling`}>{objeto.flop.boardCards[2].carta}</span>
                                         <div id='flop-notes' className={showFlopNotes===true && idClicked===objeto._id || flopTitleClicked===true ? 'preflopNotes-active':'preflopNotes'} >
-                                            {objeto.flop.decision}<br/>
-                                            {objeto.flop.notes[0]}<br/><br/>
-                                            {objeto._id}
+                                            <div className='borderBlack'><h5>Notes</h5>   {objeto.flop.notes[0]}</div>
+                                            {objeto.flop.flopCheckCall===''?'':<div className='borderBlack'><h5>CHECK/CALL</h5>{objeto.flop.flopCheckCall}</div>}
+                                            {objeto.flop.flopCheckFold===''?'':<div className='borderBlack'><h5>CHECK/FOLD</h5>{objeto.flop.flopCheckFold}</div>}
+                                            {objeto.flop.flopCheckRaise===''?'':<div className='borderBlack'><h5>CHECK/RAISE</h5>{objeto.flop.flopCheckRaise}</div>}
+                                            {objeto.flop.flopCheckBehind===''?'':<div className='borderBlack'><h5>CHECK/BEHIND</h5>{objeto.flop.flopCheckBehind}</div>}
+                                            {objeto.flop.flopBet===''?'':<div className='borderBlack'><h5>BET</h5>{objeto.flop.flopBet}</div>}<br/>
                                         </div>
                                     </div> 
                                     
@@ -171,8 +174,15 @@ function Allhands({ setObjetoSelecto }) {
                                     }}>
                                         <span className={`${objeto.turn.boardCards.color}  cardStyling`}>{objeto.turn.boardCards.carta}</span>
                                         <div  id='turn-notes' className={showTurnNotes===true && idClicked===objeto._id  || turnTitleClicked===true ? 'preflopNotes-active':'preflopNotes'} >
-                                            {objeto.turn.decision}<br/>
-                                            {objeto.turn.notes[0]}
+                                          
+
+
+                                            <div className='borderBlack'><h5>Notes</h5>   {objeto.turn.notes[0]}</div>
+                                            {objeto.turn.turnCheckCall===''?'':<div className='borderBlack'><h5>CHECK/CALL</h5>{objeto.turn.turnCheckCall}</div>}
+                                            {objeto.turn.turnCheckFold===''?'':<div className='borderBlack'><h5>CHECK/FOLD</h5>{objeto.turn.turnCheckFold}</div>}
+                                            {objeto.turn.turnCheckRaise===''?'':<div className='borderBlack'><h5>CHECK/RAISE</h5>{objeto.turn.turnCheckRaise}</div>}
+                                            {objeto.turn.turnCheckBehind===''?'':<div className='borderBlack'><h5>CHECK/BEHIND</h5>{objeto.turn.turnCheckBehind}</div>}
+                                            {objeto.turn.turnBet===''?'':<div className='borderBlack'><h5>BET</h5>{objeto.turn.turnBet}</div>}<br/>
                                         </div>
                                     </div> 
                                     
@@ -184,8 +194,14 @@ function Allhands({ setObjetoSelecto }) {
                                     }}>
                                         <span className={`${objeto.river.boardCards.color}  cardStyling`}>{objeto.river.boardCards.carta}</span>
                                         <div  id='river-notes' className={showRiverNotes===true && idClicked===objeto._id   || riverTitleClicked===true ? 'preflopNotes-active':'preflopNotes'} >
-                                            {objeto.river.decision}<br/>
-                                            {objeto.river.notes[0]}
+
+
+                                            <div className='borderBlack'><h5>Notes</h5>   {objeto.river.notes[0]}</div>
+                                            {objeto.river.riverCheckCall===''?'':<div className='borderBlack'><h5>CHECK/CALL</h5>{objeto.river.riverCheckCall}</div>}
+                                            {objeto.river.riverCheckFold===''?'':<div className='borderBlack'><h5>CHECK/FOLD</h5>{objeto.river.riverCheckFold}</div>}
+                                            {objeto.river.riverCheckRaise===''?'':<div className='borderBlack'><h5>CHECK/RAISE</h5>{objeto.river.riverCheckRaise}</div>}
+                                            {objeto.river.riverCheckBehind===''?'':<div className='borderBlack'><h5>CHECK/BEHIND</h5>{objeto.river.riverCheckBehind}</div>}
+                                            {objeto.river.riverBet===''?'':<div className='borderBlack'><h5>BET</h5>{objeto.river.riverBet}</div>}<br/>
                                         </div>
                                     </div>
                                     

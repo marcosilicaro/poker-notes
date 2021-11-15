@@ -1,0 +1,29 @@
+.top-decision{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+textarea{
+    height:10vh
+}
+
+.top-decision textarea{
+    margin-right: 10px;
+}
+
+.bottom-decisions textarea{
+    margin-right: 10px;
+}
+
+.bottom-decisions{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+label{
+    color: gray;
+    font-weight: 600;
+    margin-top: 30px;
+}
