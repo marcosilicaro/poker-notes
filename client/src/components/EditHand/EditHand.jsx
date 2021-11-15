@@ -127,34 +127,6 @@ function EditHand({ ElObjetoSelecto }) {
 
         <h2>Preflop</h2><br />
         <div className='divider'  >
-          <div className="addProductItem" >
-            <label>Posicion</label>
-            <select
-              name="heroPosition"
-              id="heroPosition"
-              defaultValue='-'
-            >
-              <option value={ElObjetoSelecto.preflop.heroPosition}>{ElObjetoSelecto.preflop.heroPosition}</option>
-              <option value="OOP">OOP</option>
-              <option value="IP">IP</option>
-            </select>
-            <label>Table Position</label>
-            <select name="Table Position" id="heroExactPosition" defaultValue='-'  >
-              <option value={ElObjetoSelecto.preflop.heroExactPosition}>{ElObjetoSelecto.preflop.heroExactPosition}</option>
-              <option value="SB">SB</option>
-              <option value="BB">BB</option>
-              <option value="UTG">UTG</option>
-              <option value="HJ">HJ</option>
-              <option value="CO">CO</option>
-              <option value="BTN">BTN</option>
-            </select>
-            <label>Iniciativa</label>
-            <select name="Iniciativa" id="preflop.heroIniciativa" defaultValue='-'  >
-              <option value={ElObjetoSelecto.preflop.heroIniciativa}>{ElObjetoSelecto.preflop.heroIniciativa}</option>
-              <option value="SI">SIN INICIATIVA</option>
-              <option value="CI">CON INICIATIVA</option>
-            </select>
-          </div>
           <div className="addProductItem cartas-box">
             <label>Carta 1 PREFLOP</label>
             <select
@@ -233,6 +205,35 @@ function EditHand({ ElObjetoSelecto }) {
               <option value="rojo">CORAZONES - ROJO</option>
             </select>
           </div>
+          <div className="addProductItem" >
+            <label>Posicion</label>
+            <select
+              name="heroPosition"
+              id="heroPosition"
+              defaultValue='-'
+            >
+              <option value={ElObjetoSelecto.preflop.heroPosition}>{ElObjetoSelecto.preflop.heroPosition}</option>
+              <option value="OOP">OOP</option>
+              <option value="IP">IP</option>
+            </select>
+            <label>Table Position</label>
+            <select name="Table Position" id="heroExactPosition" defaultValue='-'  >
+              <option value={ElObjetoSelecto.preflop.heroExactPosition}>{ElObjetoSelecto.preflop.heroExactPosition}</option>
+              <option value="SB">SB</option>
+              <option value="BB">BB</option>
+              <option value="UTG">UTG</option>
+              <option value="HJ">HJ</option>
+              <option value="CO">CO</option>
+              <option value="BTN">BTN</option>
+            </select>
+            <label>Iniciativa</label>
+            <select name="Iniciativa" id="preflop.heroIniciativa" defaultValue='-'  >
+              <option value={ElObjetoSelecto.preflop.heroIniciativa}>{ElObjetoSelecto.preflop.heroIniciativa}</option>
+              <option value="SI">SIN INICIATIVA</option>
+              <option value="CI">CON INICIATIVA</option>
+            </select>
+          </div>
+
           <div className="addProductItem" >
             <label>Notes</label>
             <textarea
@@ -403,7 +404,8 @@ function EditHand({ ElObjetoSelecto }) {
               <option value="CHECK BEHIND">CHECK BEHIND</option>
               <option value="BET">BET</option>
             </select>
-
+          </div>
+          <div className="addProductItem">
             <label>Notes</label>
             <textarea
               type="text"
@@ -412,68 +414,65 @@ function EditHand({ ElObjetoSelecto }) {
               id="flop.notes"
               defaultValue={ElObjetoSelecto.flop.notes[0]}
             />
-
-            <div className="notesOnDecisions">
-              <div className="top-decision">
-                <div className="check-call">
-                  <label>Check-call</label>
-                  <textarea
-                    type="text"
-                    name="check-call"
-                    className="check-call"
-                    id="flopCheckCall"
-                    defaultValue={ElObjetoSelecto.flop.flopCheckCall ? ElObjetoSelecto.flop.flopCheckCall : ""}
-                  />
-                </div>
-                <div className="check-fold">
-                  <label>Check-fold</label>
-                  <textarea
-                    type="text"
-                    name="check-fold"
-                    className="check-fold"
-                    id="flopCheckFold"
-                    defaultValue={ElObjetoSelecto.flop.flopCheckFold ? ElObjetoSelecto.flop.flopCheckFold : ""}
-                  />
-                </div>
-                <div className="check-raise">
-                  <label>Check-raise</label>
-                  <textarea
-                    type="text"
-                    name="check-raise"
-                    className="check-raise"
-                    id="flopCheckRaise"
-                    defaultValue={ElObjetoSelecto.flop.flopCheckRaise ? ElObjetoSelecto.flop.flopCheckRaise : ""}
-                  />
-                </div>
-              </div>
-              <div className="bottom-decisions">
-                <div className="check-behind">
-                  <label>Check-behind</label><br />
-                  <textarea
-                    type="text"
-                    name="check-behind"
-                    className="check-behind"
-                    id="flopCheckBehind"
-                    defaultValue={ElObjetoSelecto.flop.flopCheckBehind ? ElObjetoSelecto.flop.flopCheckBehind : ""}
-                  />
-                </div>
-                <div className="bet">
-                  <label>Bet</label><br />
-                  <textarea
-                    type="text"
-                    name="bet"
-                    className="bet"
-                    id="flopBet"
-                    defaultValue={ElObjetoSelecto.flop.flopBet ? ElObjetoSelecto.flop.flopBet : ""}
-                  />
-                </div>
-              </div>
-            </div>
-
-            .
-
           </div>
         </div>
+        <div className="addProductItem">
+          <div className="notesOnDecisions">
+            <div className="top-decision">
+              <div className="check-call">
+                <label>Check-call</label>
+                <textarea
+                  type="text"
+                  name="check-call"
+                  className="check-call"
+                  id="flopCheckCall"
+                  defaultValue={ElObjetoSelecto.flop.flopCheckCall ? ElObjetoSelecto.flop.flopCheckCall : ""}
+                />
+              </div>
+              <div className="check-fold">
+                <label>Check-fold</label>
+                <textarea
+                  type="text"
+                  name="check-fold"
+                  className="check-fold"
+                  id="flopCheckFold"
+                  defaultValue={ElObjetoSelecto.flop.flopCheckFold ? ElObjetoSelecto.flop.flopCheckFold : ""}
+                />
+              </div>
+              <div className="check-raise">
+                <label>Check-raise</label>
+                <textarea
+                  type="text"
+                  name="check-raise"
+                  className="check-raise"
+                  id="flopCheckRaise"
+                  defaultValue={ElObjetoSelecto.flop.flopCheckRaise ? ElObjetoSelecto.flop.flopCheckRaise : ""}
+                />
+              </div>
+              <div className="check-behind">
+                <label>Check-behind</label><br />
+                <textarea
+                  type="text"
+                  name="check-behind"
+                  className="check-behind"
+                  id="flopCheckBehind"
+                  defaultValue={ElObjetoSelecto.flop.flopCheckBehind ? ElObjetoSelecto.flop.flopCheckBehind : ""}
+                />
+              </div>
+              <div className="bet">
+                <label>Bet</label><br />
+                <textarea
+                  type="text"
+                  name="bet"
+                  className="bet"
+                  id="flopBet"
+                  defaultValue={ElObjetoSelecto.flop.flopBet ? ElObjetoSelecto.flop.flopBet : ""}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <h2>Turn</h2>
         <div className='divider'>
@@ -560,6 +559,8 @@ function EditHand({ ElObjetoSelecto }) {
               <option value="BET">BET</option>
             </select>
 
+          </div>
+          <div className="addProductItem">
             <label>Notes</label>
             <textarea
               type="text"
@@ -568,65 +569,62 @@ function EditHand({ ElObjetoSelecto }) {
               className="notes"
               id="turn.notes"
             />
-
-            <div className="notesOnDecisions">
-              <div className="top-decision">
-                <div className="check-call">
-                  <label>Check-call</label>
-                  <textarea
-                    type="text"
-                    name="check-call"
-                    className="check-call"
-                    id="turnCheckCall"
-                    defaultValue={ElObjetoSelecto.turn.turnCheckCall ? ElObjetoSelecto.turn.turnCheckCall : ""}
-                  />
-                </div>
-                <div className="check-fold">
-                  <label>Check-fold</label>
-                  <textarea
-                    type="text"
-                    name="check-fold"
-                    className="check-fold"
-                    id="turnCheckFold"
-                    defaultValue={ElObjetoSelecto.turn.turnCheckFold ? ElObjetoSelecto.turn.turnCheckFold : ""}
-                  />
-                </div>
-                <div className="check-raise">
-                  <label>Check-raise</label>
-                  <textarea
-                    type="text"
-                    name="check-raise"
-                    className="check-raise"
-                    id="turnCheckRaise"
-                    defaultValue={ElObjetoSelecto.turn.turnCheckRaise ? ElObjetoSelecto.turn.turnCheckRaise : ""}
-                  />
-                </div>
+          </div>
+        </div>
+        <div className="addProductItem">
+          <div className="notesOnDecisions">
+            <div className="bottom-decisions">
+              <div className="check-call">
+                <label>Check-call</label>
+                <textarea
+                  type="text"
+                  name="check-call"
+                  className="check-call"
+                  id="turnCheckCall"
+                  defaultValue={ElObjetoSelecto.turn.turnCheckCall ? ElObjetoSelecto.turn.turnCheckCall : ""}
+                />
               </div>
-              <div className="bottom-decisions">
-                <div className="check-behind">
-                  <label>Check-behind</label><br />
-                  <textarea
-                    type="text"
-                    name="check-behind"
-                    className="check-behind"
-                    id="turnCheckBehind"
-                    defaultValue={ElObjetoSelecto.turn.turnCheckBehind ? ElObjetoSelecto.turn.turnCheckBehind : ""}
-                  />
-                </div>
-                <div className="bet">
-                  <label>Bet</label><br />
-                  <textarea
-                    type="text"
-                    name="bet"
-                    className="bet"
-                    id="turnBet"
-                    defaultValue={ElObjetoSelecto.turn.turnBet ? ElObjetoSelecto.turn.turnBet : ""}
-                  />
-                </div>
+              <div className="check-fold">
+                <label>Check-fold</label>
+                <textarea
+                  type="text"
+                  name="check-fold"
+                  className="check-fold"
+                  id="turnCheckFold"
+                  defaultValue={ElObjetoSelecto.turn.turnCheckFold ? ElObjetoSelecto.turn.turnCheckFold : ""}
+                />
+              </div>
+              <div className="check-raise">
+                <label>Check-raise</label>
+                <textarea
+                  type="text"
+                  name="check-raise"
+                  className="check-raise"
+                  id="turnCheckRaise"
+                  defaultValue={ElObjetoSelecto.turn.turnCheckRaise ? ElObjetoSelecto.turn.turnCheckRaise : ""}
+                />
+              </div><div className="check-behind">
+                <label>Check-behind</label><br />
+                <textarea
+                  type="text"
+                  name="check-behind"
+                  className="check-behind"
+                  id="turnCheckBehind"
+                  defaultValue={ElObjetoSelecto.turn.turnCheckBehind ? ElObjetoSelecto.turn.turnCheckBehind : ""}
+                />
+              </div>
+              <div className="bet">
+                <label>Bet</label><br />
+                <textarea
+                  type="text"
+                  name="bet"
+                  className="bet"
+                  id="turnBet"
+                  defaultValue={ElObjetoSelecto.turn.turnBet ? ElObjetoSelecto.turn.turnBet : ""}
+                />
               </div>
             </div>
           </div>
-
         </div>
 
         <h2>River</h2>
@@ -714,6 +712,11 @@ function EditHand({ ElObjetoSelecto }) {
               <option value="BET">BET</option>
             </select>
 
+
+
+
+          </div>
+          <div className="addProductItem">
             <label>Notes</label>
             <textarea
               type="text"
@@ -722,61 +725,60 @@ function EditHand({ ElObjetoSelecto }) {
               className="notes"
               id="river.notes"
             />
-
-            <div className="notesOnDecisions">
-              <div className="top-decision">
-                <div className="check-call">
-                  <label>Check-call</label>
-                  <textarea
-                    type="text"
-                    name="check-call"
-                    className="check-call"
-                    id="riverCheckCall"
-                    defaultValue={ElObjetoSelecto.river.riverCheckCall ? ElObjetoSelecto.river.riverCheckCall : ""}
-                  />
-                </div>
-                <div className="check-fold">
-                  <label>Check-fold</label>
-                  <textarea
-                    type="text"
-                    name="check-fold"
-                    className="check-fold"
-                    id="riverCheckFold"
-                    defaultValue={ElObjetoSelecto.river.riverCheckFold ? ElObjetoSelecto.river.riverCheckFold : ""}
-                  />
-                </div>
-                <div className="check-raise">
-                  <label>Check-raise</label>
-                  <textarea
-                    type="text"
-                    name="check-raise"
-                    className="check-raise"
-                    id="riverCheckRaise"
-                    defaultValue={ElObjetoSelecto.river.riverCheckRaise ? ElObjetoSelecto.river.riverCheckRaise : ""}
-                  />
-                </div>
+          </div>
+        </div>
+        <div className="addProductItem">
+          <div className="notesOnDecisions">
+            <div className="bottom-decisions">
+              <div className="check-call">
+                <label>Check-call</label>
+                <textarea
+                  type="text"
+                  name="check-call"
+                  className="check-call"
+                  id="riverCheckCall"
+                  defaultValue={ElObjetoSelecto.river.riverCheckCall ? ElObjetoSelecto.river.riverCheckCall : ""}
+                />
               </div>
-              <div className="bottom-decisions">
-                <div className="check-behind">
-                  <label>Check-behind</label><br />
-                  <textarea
-                    type="text"
-                    name="check-behind"
-                    className="check-behind"
-                    id="riverCheckBehind"
-                    defaultValue={ElObjetoSelecto.river.riverCheckBehind ? ElObjetoSelecto.river.riverCheckBehind : ""}
-                  />
-                </div>
-                <div className="bet">
-                  <label>Bet</label><br />
-                  <textarea
-                    type="text"
-                    name="bet"
-                    className="bet"
-                    id="riverBet"
-                    defaultValue={ElObjetoSelecto.river.riverBet ? ElObjetoSelecto.river.riverBet : ""}
-                  />
-                </div>
+              <div className="check-fold">
+                <label>Check-fold</label>
+                <textarea
+                  type="text"
+                  name="check-fold"
+                  className="check-fold"
+                  id="riverCheckFold"
+                  defaultValue={ElObjetoSelecto.river.riverCheckFold ? ElObjetoSelecto.river.riverCheckFold : ""}
+                />
+              </div>
+              <div className="check-raise">
+                <label>Check-raise</label>
+                <textarea
+                  type="text"
+                  name="check-raise"
+                  className="check-raise"
+                  id="riverCheckRaise"
+                  defaultValue={ElObjetoSelecto.river.riverCheckRaise ? ElObjetoSelecto.river.riverCheckRaise : ""}
+                />
+              </div>
+              <div className="check-behind">
+                <label>Check-behind</label><br />
+                <textarea
+                  type="text"
+                  name="check-behind"
+                  className="check-behind"
+                  id="riverCheckBehind"
+                  defaultValue={ElObjetoSelecto.river.riverCheckBehind ? ElObjetoSelecto.river.riverCheckBehind : ""}
+                />
+              </div>
+              <div className="bet">
+                <label>Bet</label><br />
+                <textarea
+                  type="text"
+                  name="bet"
+                  className="bet"
+                  id="riverBet"
+                  defaultValue={ElObjetoSelecto.river.riverBet ? ElObjetoSelecto.river.riverBet : ""}
+                />
               </div>
             </div>
           </div>

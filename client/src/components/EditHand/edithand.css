@@ -1,3 +1,7 @@
+h2{
+    padding-bottom: 3vh;
+}
+
 .top-decision{
     display: flex;
     align-items: center;
@@ -25,7 +29,6 @@ textarea{
 label{
     color: gray;
     font-weight: 600;
-    margin-top: 30px;
 }
 
 .addProductItem{
@@ -33,7 +36,10 @@ label{
 }
 
 .divider{
+    display: flex;
     margin-bottom: 3vh;
+    height:fit-content;
+    align-items: flex-start;
 }
 
 .visibleCards{
@@ -49,4 +55,9 @@ label{
     width:100%;
     padding: 10px;
     border:1px solid black;
+  }
+
+  .notesOnDecisions{
+      margin-bottom: 2vh;
+      margin-top:1vh
   }

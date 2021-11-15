@@ -1,3 +1,7 @@
+h5{
+    margin-bottom:-10px
+}
+
 .checkbox{
     display: flex;
     align-items: center;
@@ -100,4 +104,9 @@ hr.dashed {
 
 always-show{
     display:blocks !important
+}
+
+.fitHeightNotes{
+    height:10vh;
+    width:18vw;
 }
