@@ -26,8 +26,21 @@ h5{
 }
 
 .greyBackground{
-    background-color: lightgray;
-    border-color: black;
+    background-color: lightgray
+}
+
+.settings{
+    display:none
+}
+
+.alignCenter:hover .settings {
+    display: block;
+}
+
+.alignCenter{
+    display: flex;
+    align-content: center;
+    align-items: center;
 }
 
 .borderBlack{

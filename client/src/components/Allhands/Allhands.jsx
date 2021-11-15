@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import './allhands.css'
 import axios from '../../axios'
 import { useEffect } from "react";
+import { Settings } from "@material-ui/icons";
+
+import { Link } from "react-router-dom";
 
 
 
@@ -136,18 +139,21 @@ function Allhands({ setObjetoSelecto }) {
 
                     {handsData.map((objeto) => (
                         <tr >
+
                             <td
                                 className='greyBackground'
                                 onClick={(e) => {
                                     setObjetoSelecto(objeto)
+
                                 }}
                             >
-                                <div>
+                                <div className='alignCenter '>
                                     <span className={`${objeto.preflop.heroCards[0].color} cardStyling`}>{objeto.preflop.heroCards[0].carta}</span>
                                     <span className={`${objeto.preflop.heroCards[1].color} cardStyling`}>{objeto.preflop.heroCards[1].carta}</span>
-
+                                    <Link to="/edithand"><div className="settings"><Settings /></div></Link>
                                 </div>
                             </td>
+
                             <td >
                                 <div onClick={(e) => {
                                     setidClicked(objeto._id)
