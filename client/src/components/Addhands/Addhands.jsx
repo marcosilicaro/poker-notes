@@ -46,6 +46,11 @@ function Addhands() {
         "heroIniciativa": document.getElementById("flop.heroIniciativa").value,
         "boardType": document.getElementById("flop.boardType").value.toLowerCase(),
         "decision": document.getElementById("flop.decision").value,
+        "flopCheckCall": document.getElementById("flopCheckCall").value,
+        "flopCheckFold": document.getElementById("flopCheckFold").value,
+        "flopCheckRaise": document.getElementById("flopCheckRaise").value,
+        "flopCheckBehind": document.getElementById("flopCheckBehind").value,
+        "flopBet": document.getElementById("flopBet").value,
         "villainType": "",
         "notes": [
           document.getElementById("flop.notes").value
@@ -60,6 +65,11 @@ function Addhands() {
         "situation": document.getElementById("turnSituation").value,
         "boardType": document.getElementById("turn.boardType").value.toLowerCase(),
         "decision": document.getElementById("turn.decision").value,
+        "turnCheckCall": document.getElementById("turnCheckCall").value,
+        "turnCheckFold": document.getElementById("turnCheckFold").value,
+        "turnCheckRaise": document.getElementById("turnCheckRaise").value,
+        "turnCheckBehind": document.getElementById("turnCheckBehind").value,
+        "turnBet": document.getElementById("turnBet").value,
         "villainType": "",
         "notes": [
           document.getElementById("turn.notes").value
@@ -74,6 +84,11 @@ function Addhands() {
         "situation": document.getElementById("riverSituation").value,
         "boardType": document.getElementById("river.boardType").value.toLowerCase(),
         "decision": document.getElementById("river.decision").value,
+        "riverCheckCall": document.getElementById("riverCheckCall").value,
+        "riverCheckFold": document.getElementById("riverCheckFold").value,
+        "riverCheckRaise": document.getElementById("riverCheckRaise").value,
+        "riverCheckBehind": document.getElementById("riverCheckBehind").value,
+        "riverBet": document.getElementById("riverBet").value,
         "villainType": "",
         "notes": [
           document.getElementById("river.notes").value
@@ -90,51 +105,7 @@ function Addhands() {
       <form className="addProductForm">
 
         <h2>Preflop</h2><br />
-        <div className='divider'
-        >
-          <div className="addProductItem" >
-            <label>Posicion</label>
-            <select
-              name="heroPosition"
-              id="heroPosition"
-              defaultValue='-'
-              className={positionExist === '-' ? 'background-rojo' : 'background-negro'}
-              onChange={(e) => {
-                document.getElementById("heroPositionPija").value = e.currentTarget.value
-                document.getElementById("heroPositionPija2").value = e.currentTarget.value
-                document.getElementById("heroPositionPija3").value = e.currentTarget.value
-                setpositionExist('true')
-              }
-              }>
-              <option value="-">-</option>
-              <option value="OOP">OOP</option>
-              <option value="IP">IP</option>
-            </select>
-            <label>Table Position</label>
-            <select name="Table Position" id="heroExactPosition" defaultValue='-'  >
-              <option value="-">-</option>
-              <option value="SB">SB</option>
-              <option value="BB">BB</option>
-              <option value="UTG">UTG</option>
-              <option value="HJ">HJ</option>
-              <option value="CO">CO</option>
-              <option value="BTN">BTN</option>
-            </select>
-            <label>Iniciativa</label>
-            <select name="Iniciativa" id="preflop.heroIniciativa" defaultValue='-'  >
-              <option value="-">-</option>
-              <option value="SI">SIN INICIATIVA</option>
-              <option value="CI">CON INICIATIVA</option>
-            </select>
-            <label>Notes</label>
-            <textarea
-              type="text"
-              placeholder="Notas-preflop"
-              name="Notas-preflop"
-              className="notes"
-              id="preflopNotes"
-            />
-          </div>
+        <div className='divider'>
           <div className="addProductItem cartas-box">
             <label>Carta 1 PREFLOP</label>
             <select name="carta-1-preflop" id="carta-1-preflop" defaultValue='-'  >
@@ -184,6 +155,52 @@ function Addhands() {
               <option value="azul">DIAMANTES - AZUL</option>
               <option value="rojo">CORAZONES - ROJO</option>
             </select>
+          </div>
+          <div className="addProductItem" >
+            <label>Posicion</label>
+            <select
+              name="heroPosition"
+              id="heroPosition"
+              defaultValue='-'
+              className={positionExist === '-' ? 'background-rojo' : 'background-negro'}
+              onChange={(e) => {
+                document.getElementById("heroPositionPija").value = e.currentTarget.value
+                document.getElementById("heroPositionPija2").value = e.currentTarget.value
+                document.getElementById("heroPositionPija3").value = e.currentTarget.value
+                setpositionExist('true')
+              }
+              }>
+              <option value="-">-</option>
+              <option value="OOP">OOP</option>
+              <option value="IP">IP</option>
+            </select>
+            <label>Table Position</label>
+            <select name="Table Position" id="heroExactPosition" defaultValue='-'  >
+              <option value="-">-</option>
+              <option value="SB">SB</option>
+              <option value="BB">BB</option>
+              <option value="UTG">UTG</option>
+              <option value="HJ">HJ</option>
+              <option value="CO">CO</option>
+              <option value="BTN">BTN</option>
+            </select>
+            <label>Iniciativa</label>
+            <select name="Iniciativa" id="preflop.heroIniciativa" defaultValue='-'  >
+              <option value="-">-</option>
+              <option value="SI">SIN INICIATIVA</option>
+              <option value="CI">CON INICIATIVA</option>
+            </select>
+
+          </div>
+          <div className="addProductItem">
+            <label>Notes</label>
+            <textarea
+              type="text"
+              placeholder="Notas-preflop"
+              name="Notas-preflop"
+              className="notes"
+              id="preflopNotes"
+            />
           </div>
         </div>
 
@@ -307,6 +324,9 @@ function Addhands() {
               <option value="BET">BET</option>
             </select>
 
+
+          </div>
+          <div className="addProductItem">
             <label>Notes</label>
             <textarea
               type="text"
@@ -315,6 +335,62 @@ function Addhands() {
               className="notes"
               id="flop.notes"
             />
+          </div>
+        </div>
+        <div className="addProductItem">
+          <div className="notesOnDecisions">
+            <div className="top-decision">
+              <div className="check-call">
+                <label>Check-call</label>
+                <textarea
+                  type="text"
+                  name="check-call"
+                  className="check-call"
+                  id="flopCheckCall"
+                  defaultValue=''
+                />
+              </div>
+              <div className="check-fold">
+                <label>Check-fold</label>
+                <textarea
+                  type="text"
+                  name="check-fold"
+                  className="check-fold"
+                  id="flopCheckFold"
+                  defaultValue=''
+                />
+              </div>
+              <div className="check-raise">
+                <label>Check-raise</label>
+                <textarea
+                  type="text"
+                  name="check-raise"
+                  className="check-raise"
+                  id="flopCheckRaise"
+                  defaultValue=''
+                />
+              </div>
+              <div className="check-behind">
+                <label>Check-behind</label><br />
+                <textarea
+                  type="text"
+                  name="check-behind"
+                  className="check-behind"
+                  id="flopCheckBehind"
+                  defaultValue=''
+                />
+              </div>
+              <div className="bet">
+                <label>Bet</label><br />
+                <textarea
+                  type="text"
+                  name="bet"
+                  className="bet"
+                  id="flopBet"
+                  defaultValue=''
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -391,6 +467,9 @@ function Addhands() {
               <option value="BET">BET</option>
             </select>
 
+
+          </div>
+          <div className="addProductItem">
             <label>Notes</label>
             <textarea
               type="text"
@@ -399,6 +478,62 @@ function Addhands() {
               className="notes"
               id="turn.notes"
             />
+          </div>
+        </div>
+        <div className="addProductItem">
+          <div className="notesOnDecisions">
+            <div className="top-decision">
+              <div className="check-call">
+                <label>Check-call</label>
+                <textarea
+                  type="text"
+                  name="check-call"
+                  className="check-call"
+                  id="turnCheckCall"
+                  defaultValue=''
+                />
+              </div>
+              <div className="check-fold">
+                <label>Check-fold</label>
+                <textarea
+                  type="text"
+                  name="check-fold"
+                  className="check-fold"
+                  id="turnCheckFold"
+                  defaultValue=''
+                />
+              </div>
+              <div className="check-raise">
+                <label>Check-raise</label>
+                <textarea
+                  type="text"
+                  name="check-raise"
+                  className="check-raise"
+                  id="turnCheckRaise"
+                  defaultValue=''
+                />
+              </div>
+              <div className="check-behind">
+                <label>Check-behind</label><br />
+                <textarea
+                  type="text"
+                  name="check-behind"
+                  className="check-behind"
+                  id="turnCheckBehind"
+                  defaultValue=''
+                />
+              </div>
+              <div className="bet">
+                <label>Bet</label><br />
+                <textarea
+                  type="text"
+                  name="bet"
+                  className="bet"
+                  id="turnBet"
+                  defaultValue=''
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -478,6 +613,9 @@ function Addhands() {
               <option value="BET">BET</option>
             </select>
 
+
+          </div>
+          <div className="addProductItem">
             <label>Notes</label>
             <textarea
               type="text"
@@ -486,6 +624,63 @@ function Addhands() {
               className="notes"
               id="river.notes"
             />
+          </div>
+        </div>
+
+        <div className="addProductItem">
+          <div className="notesOnDecisions">
+            <div className="top-decision">
+              <div className="check-call">
+                <label>Check-call</label>
+                <textarea
+                  type="text"
+                  name="check-call"
+                  className="check-call"
+                  id="riverCheckCall"
+                  defaultValue=''
+                />
+              </div>
+              <div className="check-fold">
+                <label>Check-fold</label>
+                <textarea
+                  type="text"
+                  name="check-fold"
+                  className="check-fold"
+                  id="riverCheckFold"
+                  defaultValue=''
+                />
+              </div>
+              <div className="check-raise">
+                <label>Check-raise</label>
+                <textarea
+                  type="text"
+                  name="check-raise"
+                  className="check-raise"
+                  id="riverCheckRaise"
+                  defaultValue=''
+                />
+              </div>
+              <div className="check-behind">
+                <label>Check-behind</label><br />
+                <textarea
+                  type="text"
+                  name="check-behind"
+                  className="check-behind"
+                  id="riverCheckBehind"
+                  defaultValue=''
+                />
+              </div>
+              <div className="bet">
+                <label>Bet</label><br />
+                <textarea
+                  type="text"
+                  name="bet"
+                  className="bet"
+                  id="riverBet"
+                  defaultValue=''
+                />
+              </div>
+            </div>
           </div>
         </div>
 
