@@ -15,25 +15,25 @@ function App() {
 
   return (
     <Router>
-      
-      <Navbar/>
+
+      <Navbar />
       <div class='container'>
-        <Sidebar/>
+        <Sidebar />
         <div class='maincomponent'>
           <Switch>
             <Route path="/allhands">
               <Allhands setObjetoSelecto={setObjetoSelecto} />
             </Route>
             <Route path="/addhands">
-              <Addhands/>
+              <Addhands />
             </Route>
             <Route path="/edithand">
-              <EditHand ElObjetoSelecto={ElObjetoSelecto}/>
+              <EditHand ElObjetoSelecto={ElObjetoSelecto} />
             </Route>
           </Switch>
         </div>
       </div>
-      
+
     </Router>
   );
 }

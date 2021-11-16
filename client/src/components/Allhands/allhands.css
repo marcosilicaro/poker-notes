@@ -2,11 +2,16 @@ h5{
     margin-bottom:-10px
 }
 
-.checkbox{
+.checkbox-boardTypes{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
     width: auto;
+    align-items: flex-start;
+}
+
+.checkbox-boardTypes > div{
+    padding-right: 5vw;
 }
 
 .cardStyling{
@@ -120,6 +125,14 @@ always-show{
 }
 
 .fitHeightNotes{
-    height:10vh;
     width:18vw;
+    height:12vh
+}
+
+#situationFilter{
+    width: 18vw
+}
+
+.checkbox-boardTypes > div{
+    width: 13vw
 }

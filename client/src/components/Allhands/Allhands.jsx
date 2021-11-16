@@ -34,6 +34,7 @@ function Allhands({ setObjetoSelecto }) {
         axios.get("/").then((res) => {
             sethandsData(res.data)
         })
+        window.scrollTo(0, 0)
     }, [])
 
     const clickButton = () => {
@@ -53,10 +54,22 @@ function Allhands({ setObjetoSelecto }) {
 
     let uniqueSituations = [...new Set(situationList)];
 
+
+
+
+
     return (
         <div className='table-container' >
             <h2>Filters</h2>
-            <div className='checkbox checkbox-boardTypes'>
+            <button onClick={(e) => { clickButton() }}> SEND</button>
+            <button onClick={(e) => {
+                setPosicion('')
+                setBoardType('')
+                setIniciativa('')
+                setInstancia('')
+                setSituation('')
+            }}> RESET</button><br /><br />
+            <div className=' checkbox-boardTypes'>
                 <div>
                     <h4>Posicion</h4>
                     OOP  <input type="checkbox" name="OOP" onChange={(e) => {
@@ -105,27 +118,22 @@ function Allhands({ setObjetoSelecto }) {
                         setBoardType(e.currentTarget.name)
                     }} /><br /><br />
                 </div>
+
+                <div>
+                    <h4>Situation</h4>
+                    <input type="text" name="situationFilter" id="situationFilter" onChange={(e) => {
+                        setSituation(e.currentTarget.value)
+                    }} /><br /><br />
+                    {uniqueSituations.map((item) => (<p className='clickableSituations' onClick={(e) => {
+                        document.getElementById("situationFilter").value = e.currentTarget.innerHTML
+                        setSituation(e.currentTarget.innerHTML)
+                    }}>{item}</p>))}
+                </div>
             </div>
-            <h4>Situation</h4>
-            <div>
-                <input type="text" name="situationFilter" id="situationFilter" onChange={(e) => {
-                    setSituation(e.currentTarget.value)
-                }} /><br /><br />
-                {uniqueSituations.map((item) => (<p className='clickableSituations' onClick={(e) => {
-                    document.getElementById("situationFilter").value = e.currentTarget.innerHTML
-                    setSituation(e.currentTarget.innerHTML)
-                }}>{item}</p>))}
-            </div>
+
             <br />
 
-            <button onClick={(e) => { clickButton() }}> SEND</button>
-            <button onClick={(e) => {
-                setPosicion('')
-                setBoardType('')
-                setIniciativa('')
-                setInstancia('')
-                setSituation('')
-            }}> RESET</button><br /><br />
+
 
 
             <table className='table table-bordered'>

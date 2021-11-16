@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import axios from '../../axios'
 import './edithand.css'
+import { useEffect } from "react";
+
+
 
 function EditHand({ ElObjetoSelecto }) {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -247,7 +254,7 @@ function EditHand({ ElObjetoSelecto }) {
 
         </div>
 
-        <h2>Flop</h2>
+        <div className='divider'><h2>Flop</h2> <button onClick={handleSubmit}>UPDATE</button></div>
         <div className='divider'>
           <div className="addProductItem cartas-box">
             <label>Carta 1 FLOP</label>
@@ -473,8 +480,8 @@ function EditHand({ ElObjetoSelecto }) {
           </div>
         </div>
 
+        <div className="divider"><h2>Turn</h2> <button onClick={handleSubmit}>UPDATE</button></div>
 
-        <h2>Turn</h2>
         <div className='divider'>
           <div className="addProductItem cartas-box">
             <label>Carta 1 TURN</label>
@@ -627,7 +634,7 @@ function EditHand({ ElObjetoSelecto }) {
           </div>
         </div>
 
-        <h2>River</h2>
+        <div className="divider"><h2>River</h2> <button onClick={handleSubmit}>UPDATE</button></div>
         <div className='divider'>
           <div className="addProductItem cartas-box">
             <label>Carta 1 RIVER</label>
@@ -798,9 +805,8 @@ function EditHand({ ElObjetoSelecto }) {
         </div>
 
 
-        <button onClick={handleSubmit}>UPDATE</button>
-        <br /><br /><br /><br /><br />
-        <button onClick={handleErase}>ERASE</button>
+        <button onClick={handleErase}>ERASE</button><br /><br /><br /><br />
+
         <br /><br /><br />
       </form>
     </div>
