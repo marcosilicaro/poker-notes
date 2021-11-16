@@ -37,9 +37,7 @@ function Allhands({ setObjetoSelecto }) {
         })
         window.scrollTo(0, 0)
 
-        // prueba lodash
-        let imp = _.filter(handsData, ['flop.situation', 'vs 2nd barrel prueba2']);
-        console.log(imp)
+
 
 
 
@@ -63,7 +61,11 @@ function Allhands({ setObjetoSelecto }) {
     let uniqueSituations = [...new Set(situationList)];
 
 
-
+    // prueba lodash
+    let reemplazoDeCarta = 'carta'
+    let primerFiltrado = _.filter(handsData, ['turn.situation', 'vs 3rd barrel']);
+    let segundoFiltrado = _.filter(primerFiltrado, ['preflop.heroCards[0]' + reemplazoDeCarta, '3'] || ['preflop.heroCards[1].carta', 'A']);
+    console.log(segundoFiltrado)
 
 
     return (
