@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { Settings } from "@material-ui/icons";
 
 import { Link } from "react-router-dom";
+import _ from 'lodash';
 
 
 
@@ -35,6 +36,13 @@ function Allhands({ setObjetoSelecto }) {
             sethandsData(res.data)
         })
         window.scrollTo(0, 0)
+
+        // prueba lodash
+        let imp = _.filter(handsData, ['flop.situation', 'vs 2nd barrel prueba2']);
+        console.log(imp)
+
+
+
     }, [])
 
     const clickButton = () => {
