@@ -30,34 +30,32 @@ function Allhands({ setObjetoSelecto }) {
     const [riverTitleClicked, setriverTitleClicked] = useState(false)
 
 
-    // cada vez que se re-renderiza el componente (la app) se ejecuta get all
+    // cada vez que se re-renderiza el componente (la app) 
     useEffect(() => {
+        // se ejecuta get all
         axios.get("/").then((res) => {
             sethandsData(res.data)
         })
+        // scroll to top on refresh
         window.scrollTo(0, 0)
-
-
-
-
-
     }, [])
 
+    // get specific list of objects with filters
     const clickButton = () => {
         axios.get("/" + posicion + '-' + instancia + '-' + iniciativa + '-' + boardType + '-' + situation).then((res) => {
+            // el array filtrado se guarda en handsData que despues es utilizado en la tabla
             sethandsData(res.data)
             console.log(posicion + '-' + instancia + '-' + iniciativa + '-' + boardType + '-' + situation)
         })
     }
 
+    // lista de situaciones sacada de handsData
     let situationList = []
-
     handsData.forEach((hand) => {
         situationList.push(hand.flop.situation)
         situationList.push(hand.turn.situation)
         situationList.push(hand.river.situation)
     })
-
     let uniqueSituations = [...new Set(situationList)];
 
 
@@ -70,7 +68,9 @@ function Allhands({ setObjetoSelecto }) {
 
     return (
         <div className='table-container' >
+
             <h2>Filters</h2>
+            {/* Botones */}
             <button onClick={(e) => { clickButton() }}> SEND</button>
             <button onClick={(e) => {
                 setPosicion('')
@@ -79,7 +79,9 @@ function Allhands({ setObjetoSelecto }) {
                 setInstancia('')
                 setSituation('')
             }}> RESET</button><br /><br />
+            {/* Checkboxes de filtrado */}
             <div className=' checkbox-boardTypes'>
+                {/* Posicion */}
                 <div>
                     <h4>Posicion</h4>
                     OOP  <input type="checkbox" name="OOP" onChange={(e) => {
@@ -89,6 +91,7 @@ function Allhands({ setObjetoSelecto }) {
                         setPosicion(e.currentTarget.name)
                     }} /><br /><br />
                 </div>
+                {/* Instancia */}
                 <div>
                     <h4>Instancia</h4>
                     PREFLOP  <input type="checkbox" name="preflop" onChange={(e) => {
@@ -104,6 +107,7 @@ function Allhands({ setObjetoSelecto }) {
                         setInstancia(e.currentTarget.name)
                     }} /><br /><br />
                 </div>
+                {/* Iniciativa */}
                 <div>
                     <h4>Iniciativa</h4>
                     Sin iniciativa  <input type="checkbox" name="SI" onChange={(e) => {
@@ -113,6 +117,7 @@ function Allhands({ setObjetoSelecto }) {
                         setIniciativa(e.currentTarget.name)
                     }} /><br /><br />
                 </div>
+                {/* Board Type */}
                 <div>
                     <h4>Board Type</h4>
                     Seco  <input type="checkbox" name="seco" onChange={(e) => {
@@ -128,24 +133,25 @@ function Allhands({ setObjetoSelecto }) {
                         setBoardType(e.currentTarget.name)
                     }} /><br /><br />
                 </div>
-
+                {/* Situation */}
                 <div>
                     <h4>Situation</h4>
-                    <input type="text" name="situationFilter" id="situationFilter" onChange={(e) => {
-                        setSituation(e.currentTarget.value)
-                    }} /><br /><br />
+                    <input
+                        type="text"
+                        name="situationFilter"
+                        id="situationFilter"
+                        onChange={(e) => {
+                            setSituation(e.currentTarget.value)
+                        }}
+                    /><br /><br />
                     {uniqueSituations.map((item) => (<p className='clickableSituations' onClick={(e) => {
                         document.getElementById("situationFilter").value = e.currentTarget.innerHTML
                         setSituation(e.currentTarget.innerHTML)
                     }}>{item}</p>))}
                 </div>
             </div>
-
             <br />
-
-
-
-
+            {/* Tabla */}
             <table className='table table-bordered'>
                 <thead>
                     <th className='th-preflop' >Preflop</th>
@@ -154,10 +160,10 @@ function Allhands({ setObjetoSelecto }) {
                     <th className='th-river' onClick={(e) => { riverTitleClicked === false ? setriverTitleClicked(true) : setriverTitleClicked(false) }}>River</th>
                 </thead>
                 <tbody>
-
+                    {/* Mapeado de objetos */}
                     {handsData.map((objeto) => (
                         <tr >
-
+                            {/* Primera columna */}
                             <td
                                 className='greyBackground'
                                 onClick={(e) => {
@@ -171,7 +177,7 @@ function Allhands({ setObjetoSelecto }) {
                                     <Link to="/edithand"><div className="settings"><Settings /></div></Link>
                                 </div>
                             </td>
-
+                            {/* Segunda columna */}
                             <td >
                                 <div onClick={(e) => {
                                     setidClicked(objeto._id)
@@ -192,6 +198,7 @@ function Allhands({ setObjetoSelecto }) {
                                 </div>
 
                             </td>
+                            {/* Tercera columna */}
                             <td >
                                 <div onClick={(e) => {
                                     setidClicked(objeto._id)
@@ -209,6 +216,7 @@ function Allhands({ setObjetoSelecto }) {
                                 </div>
 
                             </td>
+                            {/* Cuarta columna */}
                             <td >
                                 <div onClick={(e) => {
                                     setidClicked(objeto._id)

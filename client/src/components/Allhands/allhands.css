@@ -12,6 +12,7 @@ h5{
 
 .checkbox-boardTypes > div{
     padding-right: 5vw;
+    min-width: fit-content;
 }
 
 .cardStyling{
