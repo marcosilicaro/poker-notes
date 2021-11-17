@@ -36,6 +36,7 @@ function Allhands({ setObjetoSelecto }) {
         axios.get("/").then((res) => {
             sethandsData(res.data)
         })
+
         // scroll to top on refresh
         window.scrollTo(0, 0)
     }, [])
@@ -60,10 +61,10 @@ function Allhands({ setObjetoSelecto }) {
 
 
     // prueba lodash
-    let reemplazoDeCarta = 'carta'
-    let primerFiltrado = _.filter(handsData, ['turn.situation', 'vs 3rd barrel']);
-    let segundoFiltrado = _.filter(primerFiltrado, ['preflop.heroCards[0]' + reemplazoDeCarta, '3'] || ['preflop.heroCards[1].carta', 'A']);
-    console.log(segundoFiltrado)
+    //let reemplazoDeCarta = 'carta'
+    //let primerFiltrado = _.filter(handsData, ['turn.situation', 'vs 3rd barrel']);
+    //let segundoFiltrado = _.filter(primerFiltrado, ['preflop.heroCards[0]' + reemplazoDeCarta, '3'] || ['preflop.heroCards[1].carta', 'A']);
+    //console.log(segundoFiltrado)
 
 
     return (
@@ -78,59 +79,60 @@ function Allhands({ setObjetoSelecto }) {
                 setIniciativa('')
                 setInstancia('')
                 setSituation('')
+                axios.get("/").then((res) => {
+                    sethandsData(res.data)
+                })
             }}> RESET</button><br /><br />
+            {posicion} - {instancia} - {iniciativa} - {boardType} - {situation}
             {/* Checkboxes de filtrado */}
             <div className=' checkbox-boardTypes'>
                 {/* Posicion */}
                 <div>
                     <h4>Posicion</h4>
-                    OOP  <input type="checkbox" name="OOP" onChange={(e) => {
-                        setPosicion(e.currentTarget.name)
+                    OOP  <input type="radio" name="posicion" value='OOP' onChange={(e) => {
+                        setPosicion(e.currentTarget.value)
                     }} /><br /><br />
-                    IP  <input type="checkbox" name="IP" onChange={(e) => {
-                        setPosicion(e.currentTarget.name)
+                    IP  <input type="radio" name="posicion" value='IP' onChange={(e) => {
+                        setPosicion(e.currentTarget.value)
                     }} /><br /><br />
                 </div>
                 {/* Instancia */}
                 <div>
                     <h4>Instancia</h4>
-                    PREFLOP  <input type="checkbox" name="preflop" onChange={(e) => {
-                        setInstancia(e.currentTarget.name)
+                    FLOP  <input type="radio" name='instancia' value="flop" onChange={(e) => {
+                        setInstancia(e.currentTarget.value)
                     }} /><br /><br />
-                    FLOP  <input type="checkbox" name="flop" onChange={(e) => {
-                        setInstancia(e.currentTarget.name)
+                    TURN  <input type="radio" name='instancia' value="turn" onChange={(e) => {
+                        setInstancia(e.currentTarget.value)
                     }} /><br /><br />
-                    TURN  <input type="checkbox" name="turn" onChange={(e) => {
-                        setInstancia(e.currentTarget.name)
-                    }} /><br /><br />
-                    RIVER  <input type="checkbox" name="river" onChange={(e) => {
-                        setInstancia(e.currentTarget.name)
+                    RIVER  <input type="radio" name='instancia' value="river" onChange={(e) => {
+                        setInstancia(e.currentTarget.value)
                     }} /><br /><br />
                 </div>
                 {/* Iniciativa */}
                 <div>
                     <h4>Iniciativa</h4>
-                    Sin iniciativa  <input type="checkbox" name="SI" onChange={(e) => {
-                        setIniciativa(e.currentTarget.name)
+                    Sin iniciativa  <input type="radio" value="SI" name='iniciativa' onChange={(e) => {
+                        setIniciativa(e.currentTarget.value)
                     }} /><br /><br />
-                    Con iniciativa  <input type="checkbox" name="CI" onChange={(e) => {
-                        setIniciativa(e.currentTarget.name)
+                    Con iniciativa  <input type="radio" value="CI" name='iniciativa' onChange={(e) => {
+                        setIniciativa(e.currentTarget.value)
                     }} /><br /><br />
                 </div>
                 {/* Board Type */}
                 <div>
                     <h4>Board Type</h4>
-                    Seco  <input type="checkbox" name="seco" onChange={(e) => {
-                        setBoardType(e.currentTarget.name)
+                    Seco  <input type="radio" name="boardType" value='seco' onChange={(e) => {
+                        setBoardType(e.currentTarget.value)
                     }} /><br /><br />
-                    Semi-mojado  <input type="checkbox" name="semi mojado" onChange={(e) => {
-                        setBoardType(e.currentTarget.name)
+                    Semi-mojado  <input type="radio" name="boardType" value='semi mojado' onChange={(e) => {
+                        setBoardType(e.currentTarget.value)
                     }} /><br /><br />
-                    Ofensivo  <input type="checkbox" name="ofensivo" onChange={(e) => {
-                        setBoardType(e.currentTarget.name)
+                    Ofensivo  <input type="radio" name="boardType" value='ofensivo' onChange={(e) => {
+                        setBoardType(e.currentTarget.value)
                     }} /><br /><br />
-                    Mojado  <input type="checkbox" name="mojado" onChange={(e) => {
-                        setBoardType(e.currentTarget.name)
+                    Mojado  <input type="radio" name="boardType" value='mojado' onChange={(e) => {
+                        setBoardType(e.currentTarget.value)
                     }} /><br /><br />
                 </div>
                 {/* Situation */}
@@ -241,7 +243,7 @@ function Allhands({ setObjetoSelecto }) {
                     }
                 </tbody>
             </table>
-            {posicion} - {instancia} - {iniciativa} - {boardType} - {situation}
+
         </div>
     )
 }
