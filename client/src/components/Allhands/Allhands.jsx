@@ -50,6 +50,135 @@ function Allhands({ setObjetoSelecto }) {
     }
 
 
+    // cuantos colores iguales tienen una instancia de una array
+    const howManyColors = (array, instancia, nroColores) => {
+        let handsEnColores = []
+        if (instancia === 'flop') {
+            array.forEach((hand) => {
+                let handEnColores = {}
+                let negroCounter = 0
+                let verdeCounter = 0
+                let azulCounter = 0
+                let rojoCounter = 0
+                // contas colores flop
+                if (hand.flop.boardCards[0].color === 'negro') { negroCounter = negroCounter + 1 }
+                if (hand.flop.boardCards[1].color === 'negro') { negroCounter = negroCounter + 1 }
+                if (hand.flop.boardCards[2].color === 'negro') { negroCounter = negroCounter + 1 }
+                if (hand.flop.boardCards[0].color === 'verde') { verdeCounter = verdeCounter + 1 }
+                if (hand.flop.boardCards[1].color === 'verde') { verdeCounter = verdeCounter + 1 }
+                if (hand.flop.boardCards[2].color === 'verde') { verdeCounter = verdeCounter + 1 }
+                if (hand.flop.boardCards[0].color === 'azul') { azulCounter = azulCounter + 1 }
+                if (hand.flop.boardCards[1].color === 'azul') { azulCounter = azulCounter + 1 }
+                if (hand.flop.boardCards[2].color === 'azul') { azulCounter = azulCounter + 1 }
+                if (hand.flop.boardCards[0].color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                if (hand.flop.boardCards[1].color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                if (hand.flop.boardCards[2].color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                // dividis la cuenta y la pusheas en una array
+                handEnColores.negroCounter = negroCounter
+                handEnColores.verdeCounter = verdeCounter
+                handEnColores.azulCounter = azulCounter
+                handEnColores.rojoCounter = rojoCounter
+                handEnColores.id = hand._id
+                handsEnColores.push(handEnColores)
+            }
+            )
+        } else if (instancia === 'turn') {
+            array.forEach((hand) => {
+                if (hand.turn.boardCards.color != '-') {
+                    let handEnColores = {}
+                    let negroCounter = 0
+                    let verdeCounter = 0
+                    let azulCounter = 0
+                    let rojoCounter = 0
+                    // contas colores flop
+                    if (hand.flop.boardCards[0].color === 'negro') { negroCounter = negroCounter + 1 }
+                    if (hand.flop.boardCards[1].color === 'negro') { negroCounter = negroCounter + 1 }
+                    if (hand.flop.boardCards[2].color === 'negro') { negroCounter = negroCounter + 1 }
+                    if (hand.flop.boardCards[0].color === 'verde') { verdeCounter = verdeCounter + 1 }
+                    if (hand.flop.boardCards[1].color === 'verde') { verdeCounter = verdeCounter + 1 }
+                    if (hand.flop.boardCards[2].color === 'verde') { verdeCounter = verdeCounter + 1 }
+                    if (hand.flop.boardCards[0].color === 'azul') { azulCounter = azulCounter + 1 }
+                    if (hand.flop.boardCards[1].color === 'azul') { azulCounter = azulCounter + 1 }
+                    if (hand.flop.boardCards[2].color === 'azul') { azulCounter = azulCounter + 1 }
+                    if (hand.flop.boardCards[0].color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                    if (hand.flop.boardCards[1].color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                    if (hand.flop.boardCards[2].color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                    // contas colores turn
+                    if (hand.turn.boardCards.color === 'negro') { negroCounter = negroCounter + 1 }
+                    if (hand.turn.boardCards.color === 'verde') { verdeCounter = verdeCounter + 1 }
+                    if (hand.turn.boardCards.color === 'azul') { azulCounter = azulCounter + 1 }
+                    if (hand.turn.boardCards.color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                    // dividis la cuenta y la pusheas en una array
+                    handEnColores.negroCounter = negroCounter
+                    handEnColores.verdeCounter = verdeCounter
+                    handEnColores.azulCounter = azulCounter
+                    handEnColores.rojoCounter = rojoCounter
+                    handEnColores.id = hand._id
+                    handsEnColores.push(handEnColores)
+                }
+            }
+            )
+        } else if (instancia === 'river') {
+            array.forEach((hand) => {
+                if (hand.river.boardCards.color != '-') {
+                    let handEnColores = {}
+                    let negroCounter = 0
+                    let verdeCounter = 0
+                    let azulCounter = 0
+                    let rojoCounter = 0
+                    // contas colores flop
+                    if (hand.flop.boardCards[0].color === 'negro') { negroCounter = negroCounter + 1 }
+                    if (hand.flop.boardCards[1].color === 'negro') { negroCounter = negroCounter + 1 }
+                    if (hand.flop.boardCards[2].color === 'negro') { negroCounter = negroCounter + 1 }
+                    if (hand.flop.boardCards[0].color === 'verde') { verdeCounter = verdeCounter + 1 }
+                    if (hand.flop.boardCards[1].color === 'verde') { verdeCounter = verdeCounter + 1 }
+                    if (hand.flop.boardCards[2].color === 'verde') { verdeCounter = verdeCounter + 1 }
+                    if (hand.flop.boardCards[0].color === 'azul') { azulCounter = azulCounter + 1 }
+                    if (hand.flop.boardCards[1].color === 'azul') { azulCounter = azulCounter + 1 }
+                    if (hand.flop.boardCards[2].color === 'azul') { azulCounter = azulCounter + 1 }
+                    if (hand.flop.boardCards[0].color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                    if (hand.flop.boardCards[1].color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                    if (hand.flop.boardCards[2].color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                    // contas colores turn
+                    if (hand.turn.boardCards.color === 'negro') { negroCounter = negroCounter + 1 }
+                    if (hand.turn.boardCards.color === 'verde') { verdeCounter = verdeCounter + 1 }
+                    if (hand.turn.boardCards.color === 'azul') { azulCounter = azulCounter + 1 }
+                    if (hand.turn.boardCards.color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                    // contas colores river
+                    if (hand.river.boardCards.color === 'negro') { negroCounter = negroCounter + 1 }
+                    if (hand.river.boardCards.color === 'verde') { verdeCounter = verdeCounter + 1 }
+                    if (hand.river.boardCards.color === 'azul') { azulCounter = azulCounter + 1 }
+                    if (hand.river.boardCards.color === 'rojo') { rojoCounter = rojoCounter + 1 }
+                    // dividis la cuenta y la pusheas en una array
+                    handEnColores.negroCounter = negroCounter
+                    handEnColores.verdeCounter = verdeCounter
+                    handEnColores.azulCounter = azulCounter
+                    handEnColores.rojoCounter = rojoCounter
+                    handEnColores.id = hand._id
+                    handsEnColores.push(handEnColores)
+                }
+            }
+            )
+        }
+        let handsEnColoresAzul = _.filter(handsEnColores, ['azulCounter', nroColores])
+        let handsEnColoresVerde = _.filter(handsEnColores, ['verdeCounter', nroColores])
+        let handsEnColoresNegro = _.filter(handsEnColores, ['negroCounter', nroColores])
+        let handsEnColoresRojo = _.filter(handsEnColores, ['rojoCounter', nroColores])
+
+        let handsEnColoresFiltradas = handsEnColoresAzul.concat(handsEnColoresVerde).concat(handsEnColoresNegro).concat(handsEnColoresRojo)
+        handsEnColoresFiltradas = [...new Set(handsEnColoresFiltradas)]
+        let handsFiltradas = []
+        handsEnColoresFiltradas.forEach(hand => {
+            handsData.forEach(eachHand => {
+                if (hand.id === eachHand._id) {
+                    handsFiltradas.push(eachHand)
+                }
+            })
+        })
+        sethandsData(handsFiltradas)
+    }
+
+
     // lista de situaciones sacada de handsData
     let situationListforFlop = []
     let situationListforTurn = []
@@ -91,25 +220,25 @@ function Allhands({ setObjetoSelecto }) {
                 {/* Posicion */}
                 <div>
                     <h4>Posicion</h4>
-                    OOP  <input type="radio" name="posicion" value='OOP' onChange={(e) => {
+                    OOP  <input type="radio" name="posicion" value='OOP' onClick={(e) => {
                         setPosicion(e.currentTarget.value)
                     }} /><br /><br />
-                    IP  <input type="radio" name="posicion" value='IP' onChange={(e) => {
+                    IP  <input type="radio" name="posicion" value='IP' onClick={(e) => {
                         setPosicion(e.currentTarget.value)
                     }} /><br /><br />
                 </div>
                 {/* Instancia */}
                 <div>
                     <h4>Instancia</h4>
-                    FLOP  <input type="radio" name='instancia' value="flop" onChange={(e) => {
+                    FLOP  <input type="radio" name='instancia' value="flop" onClick={(e) => {
                         setInstancia(e.currentTarget.value)
                         setuniquesituationList([...new Set(situationListforFlop)])
                     }} /><br /><br />
-                    TURN  <input type="radio" name='instancia' value="turn" onChange={(e) => {
+                    TURN  <input type="radio" name='instancia' value="turn" onClick={(e) => {
                         setInstancia(e.currentTarget.value)
                         setuniquesituationList([...new Set(situationListforTurn)])
                     }} /><br /><br />
-                    RIVER  <input type="radio" name='instancia' value="river" onChange={(e) => {
+                    RIVER  <input type="radio" name='instancia' value="river" onClick={(e) => {
                         setInstancia(e.currentTarget.value)
                         setuniquesituationList([...new Set(situationListforRiver)])
                     }} /><br /><br />
@@ -117,26 +246,26 @@ function Allhands({ setObjetoSelecto }) {
                 {/* Iniciativa */}
                 <div>
                     <h4>Iniciativa</h4>
-                    Sin iniciativa  <input type="radio" value="SI" name='iniciativa' onChange={(e) => {
+                    Sin iniciativa  <input type="radio" value="SI" name='iniciativa' onClick={(e) => {
                         setIniciativa(e.currentTarget.value)
                     }} /><br /><br />
-                    Con iniciativa  <input type="radio" value="CI" name='iniciativa' onChange={(e) => {
+                    Con iniciativa  <input type="radio" value="CI" name='iniciativa' onClick={(e) => {
                         setIniciativa(e.currentTarget.value)
                     }} /><br /><br />
                 </div>
                 {/* Board Type */}
                 <div>
                     <h4>Board Type</h4>
-                    Seco  <input type="radio" name="boardType" value='seco' onChange={(e) => {
+                    Seco  <input type="radio" name="boardType" value='seco' onClick={(e) => {
                         setBoardType(e.currentTarget.value)
                     }} /><br /><br />
-                    Semi-mojado  <input type="radio" name="boardType" value='semi mojado' onChange={(e) => {
+                    Semi-mojado  <input type="radio" name="boardType" value='semi mojado' onClick={(e) => {
                         setBoardType(e.currentTarget.value)
                     }} /><br /><br />
-                    Ofensivo  <input type="radio" name="boardType" value='ofensivo' onChange={(e) => {
+                    Ofensivo  <input type="radio" name="boardType" value='ofensivo' onClick={(e) => {
                         setBoardType(e.currentTarget.value)
                     }} /><br /><br />
-                    Mojado  <input type="radio" name="boardType" value='mojado' onChange={(e) => {
+                    Mojado  <input type="radio" name="boardType" value='mojado' onClick={(e) => {
                         setBoardType(e.currentTarget.value)
                     }} /><br /><br />
                 </div>
@@ -159,14 +288,14 @@ function Allhands({ setObjetoSelecto }) {
                 </div>
             </div>
             <div className=' checkbox-boardTypes'>
-                {/* Posicion */}
+                {/* Colores */}
                 <div>
-                    <h4>C. seguidas</h4>
-                    OOP  <input type="radio" name="posicion" value='OOP' onChange={(e) => {
-                        setPosicion(e.currentTarget.value)
+                    <h4>Colores</h4>
+                    2 colores  <input type="radio" name="colores" value='2colores' onClick={(e) => {
+                        howManyColors(handsData, instancia, 2)
                     }} /><br /><br />
-                    IP  <input type="radio" name="posicion" value='IP' onChange={(e) => {
-                        setPosicion(e.currentTarget.value)
+                    3 colores  <input type="radio" name="colores" value='3colores' onClick={(e) => {
+                        howManyColors(handsData, instancia, 3)
                     }} /><br /><br />
                 </div>
             </div>
