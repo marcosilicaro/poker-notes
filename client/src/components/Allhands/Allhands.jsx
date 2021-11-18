@@ -46,18 +46,20 @@ function Allhands({ setObjetoSelecto }) {
         axios.get("/" + posicion + '-' + instancia + '-' + iniciativa + '-' + boardType + '-' + situation).then((res) => {
             // el array filtrado se guarda en handsData que despues es utilizado en la tabla
             sethandsData(res.data)
-            console.log(posicion + '-' + instancia + '-' + iniciativa + '-' + boardType + '-' + situation)
         })
     }
 
+
     // lista de situaciones sacada de handsData
-    let situationList = []
+    let situationListforFlop = []
+    let situationListforTurn = []
+    let situationListforRiver = []
     handsData.forEach((hand) => {
-        situationList.push(hand.flop.situation)
-        situationList.push(hand.turn.situation)
-        situationList.push(hand.river.situation)
+        if (hand.flop.situation != '-') { situationListforFlop.push(hand.flop.situation) }
+        if (hand.turn.situation != '-') { situationListforTurn.push(hand.turn.situation) }
+        if (hand.river.situation != '-') { situationListforRiver.push(hand.river.situation) }
     })
-    let uniqueSituations = [...new Set(situationList)];
+    const [uniquesituationList, setuniquesituationList] = useState([])
 
 
     // prueba lodash
@@ -101,12 +103,15 @@ function Allhands({ setObjetoSelecto }) {
                     <h4>Instancia</h4>
                     FLOP  <input type="radio" name='instancia' value="flop" onChange={(e) => {
                         setInstancia(e.currentTarget.value)
+                        setuniquesituationList([...new Set(situationListforFlop)])
                     }} /><br /><br />
                     TURN  <input type="radio" name='instancia' value="turn" onChange={(e) => {
                         setInstancia(e.currentTarget.value)
+                        setuniquesituationList([...new Set(situationListforTurn)])
                     }} /><br /><br />
                     RIVER  <input type="radio" name='instancia' value="river" onChange={(e) => {
                         setInstancia(e.currentTarget.value)
+                        setuniquesituationList([...new Set(situationListforRiver)])
                     }} /><br /><br />
                 </div>
                 {/* Iniciativa */}
@@ -138,18 +143,31 @@ function Allhands({ setObjetoSelecto }) {
                 {/* Situation */}
                 <div>
                     <h4>Situation</h4>
-                    <input
-                        type="text"
-                        name="situationFilter"
-                        id="situationFilter"
-                        onChange={(e) => {
-                            setSituation(e.currentTarget.value)
-                        }}
-                    /><br /><br />
-                    {uniqueSituations.map((item) => (<p className='clickableSituations' onClick={(e) => {
-                        document.getElementById("situationFilter").value = e.currentTarget.innerHTML
-                        setSituation(e.currentTarget.innerHTML)
-                    }}>{item}</p>))}
+                    {uniquesituationList.map((item) => (
+                        <div>
+                            {item}{' '}
+                            <input
+                                type="radio"
+                                name='situation'
+                                value={item}
+                                onClick={(e) => {
+                                    setSituation(e.currentTarget.value)
+                                }} />
+                        </div>
+                    ))
+                    }
+                </div>
+            </div>
+            <div className=' checkbox-boardTypes'>
+                {/* Posicion */}
+                <div>
+                    <h4>C. seguidas</h4>
+                    OOP  <input type="radio" name="posicion" value='OOP' onChange={(e) => {
+                        setPosicion(e.currentTarget.value)
+                    }} /><br /><br />
+                    IP  <input type="radio" name="posicion" value='IP' onChange={(e) => {
+                        setPosicion(e.currentTarget.value)
+                    }} /><br /><br />
                 </div>
             </div>
             <br />
