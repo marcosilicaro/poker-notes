@@ -161,9 +161,25 @@ function Allhands({ setObjetoSelecto }) {
             )
         }
         let handsEnColoresAzul = _.filter(handsEnColores, ['azulCounter', nroColores])
+        handsEnColoresAzul = _.filter(handsEnColoresAzul, ({ verdeCounter }) => verdeCounter <= nroColores)
+        handsEnColoresAzul = _.filter(handsEnColoresAzul, ({ negroCounter }) => negroCounter <= nroColores)
+        handsEnColoresAzul = _.filter(handsEnColoresAzul, ({ rojoCounter }) => rojoCounter <= nroColores)
+
         let handsEnColoresVerde = _.filter(handsEnColores, ['verdeCounter', nroColores])
+        handsEnColoresVerde = _.filter(handsEnColoresVerde, ({ azulCounter }) => azulCounter <= nroColores)
+        handsEnColoresVerde = _.filter(handsEnColoresVerde, ({ negroCounter }) => negroCounter <= nroColores)
+        handsEnColoresVerde = _.filter(handsEnColoresVerde, ({ rojoCounter }) => rojoCounter <= nroColores)
+
         let handsEnColoresNegro = _.filter(handsEnColores, ['negroCounter', nroColores])
+        handsEnColoresNegro = _.filter(handsEnColoresNegro, ({ azulCounter }) => azulCounter <= nroColores)
+        handsEnColoresNegro = _.filter(handsEnColoresNegro, ({ verdeCounter }) => verdeCounter <= nroColores)
+        handsEnColoresNegro = _.filter(handsEnColoresNegro, ({ rojoCounter }) => rojoCounter <= nroColores)
+
         let handsEnColoresRojo = _.filter(handsEnColores, ['rojoCounter', nroColores])
+        handsEnColoresRojo = _.filter(handsEnColoresRojo, ({ azulCounter }) => azulCounter <= nroColores)
+        handsEnColoresRojo = _.filter(handsEnColoresRojo, ({ negroCounter }) => negroCounter <= nroColores)
+        handsEnColoresRojo = _.filter(handsEnColoresRojo, ({ verdeCounter }) => verdeCounter <= nroColores)
+
 
         let handsEnColoresFiltradas = handsEnColoresAzul.concat(handsEnColoresVerde).concat(handsEnColoresNegro).concat(handsEnColoresRojo)
         handsEnColoresFiltradas = [...new Set(handsEnColoresFiltradas)]
@@ -296,6 +312,9 @@ function Allhands({ setObjetoSelecto }) {
                     }} /><br /><br />
                     3 colores  <input type="radio" name="colores" value='3colores' onClick={(e) => {
                         howManyColors(handsData, instancia, 3)
+                    }} /><br /><br />
+                    4 colores  <input type="radio" name="colores" value='4colores' onClick={(e) => {
+                        howManyColors(handsData, instancia, 4)
                     }} /><br /><br />
                 </div>
             </div>
