@@ -307,6 +307,9 @@ function Allhands({ setObjetoSelecto }) {
                 {/* Colores */}
                 <div>
                     <h4>Colores</h4>
+                    1 colores  <input type="radio" name="colores" value='1colores' onClick={(e) => {
+                        howManyColors(handsData, instancia, 1)
+                    }} /><br /><br />
                     2 colores  <input type="radio" name="colores" value='2colores' onClick={(e) => {
                         howManyColors(handsData, instancia, 2)
                     }} /><br /><br />
