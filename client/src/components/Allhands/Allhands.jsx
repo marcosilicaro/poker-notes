@@ -195,7 +195,7 @@ function Allhands({ setObjetoSelecto }) {
         sethandsData(handsFiltradas)
     }
 
-    //
+    // filtradoPorRepeticion
     const filtradoPorRepeticion = (array, instancia, nroRepeticiones) => {
         let handsEnNumeros = []
         if (instancia === 'flop') {
@@ -471,6 +471,114 @@ function Allhands({ setObjetoSelecto }) {
         sethandsData(handsFiltradas)
     }
 
+    //
+    const filtradoPorConexion = (array, nroConexion) => {
+        let arraySoloBoardCards = []
+
+        if (instancia === 'flop') {
+            array.forEach(hand => {
+                console.log('flop clickeado')
+                let eachHand = {}
+                let cartas = []
+                cartas.push(hand.flop.boardCards[0].carta === 'A' ? '1' : hand.flop.boardCards[0].carta === 'K' ? '13' : hand.flop.boardCards[0].carta === 'Q' ? '12' : hand.flop.boardCards[0].carta === 'J' ? '11' : hand.flop.boardCards[0].carta)
+                cartas.push(hand.flop.boardCards[1].carta === 'A' ? '1' : hand.flop.boardCards[1].carta === 'K' ? '13' : hand.flop.boardCards[1].carta === 'Q' ? '12' : hand.flop.boardCards[1].carta === 'J' ? '11' : hand.flop.boardCards[1].carta)
+                cartas.push(hand.flop.boardCards[2].carta === 'A' ? '1' : hand.flop.boardCards[2].carta === 'K' ? '13' : hand.flop.boardCards[2].carta === 'Q' ? '12' : hand.flop.boardCards[2].carta === 'J' ? '11' : hand.flop.boardCards[2].carta)
+                for (let i = 0; i < cartas.length; i++) {
+                    if (cartas[i] === 'T') { cartas[i] = 10 }
+                    cartas[i] = Number(cartas[i])
+                }
+                eachHand.cartas = cartas.sort(function (a, b) {
+                    return a - b;
+                });
+                eachHand.cartas = [...new Set(eachHand.cartas)]
+                eachHand.id = hand._id
+                arraySoloBoardCards.push(eachHand)
+                eachHand.dosConectadas = 0
+                eachHand.tresConectadas = 0
+                for (let i = 0; i < cartas.length; i++) {
+                    if (cartas[i + 1] - cartas[i] === 1) {
+                        if (cartas[i + 2] - cartas[i + 1] === 1) {
+                            eachHand.tresConectadas = eachHand.tresConectadas + 1
+                            i++
+                        } else {
+                            eachHand.dosConectadas = eachHand.dosConectadas + 1
+                        }
+                    }
+                }
+            })
+        } else if (instancia === 'turn') {
+            array.forEach(hand => {
+                console.log('turn clickeado')
+                let eachHand = {}
+                let cartas = []
+                cartas.push(hand.flop.boardCards[0].carta === 'A' ? '1' : hand.flop.boardCards[0].carta === 'K' ? '13' : hand.flop.boardCards[0].carta === 'Q' ? '12' : hand.flop.boardCards[0].carta === 'J' ? '11' : hand.flop.boardCards[0].carta)
+                cartas.push(hand.flop.boardCards[1].carta === 'A' ? '1' : hand.flop.boardCards[1].carta === 'K' ? '13' : hand.flop.boardCards[1].carta === 'Q' ? '12' : hand.flop.boardCards[1].carta === 'J' ? '11' : hand.flop.boardCards[1].carta)
+                cartas.push(hand.flop.boardCards[2].carta === 'A' ? '1' : hand.flop.boardCards[2].carta === 'K' ? '13' : hand.flop.boardCards[2].carta === 'Q' ? '12' : hand.flop.boardCards[2].carta === 'J' ? '11' : hand.flop.boardCards[2].carta)
+                cartas.push(hand.turn.boardCards.carta === 'A' ? '1' : hand.turn.boardCards.carta === 'K' ? '13' : hand.turn.boardCards.carta === 'Q' ? '12' : hand.turn.boardCards.carta === 'J' ? '11' : hand.turn.boardCards.carta)
+
+                eachHand.id = hand._id
+                for (let i = 0; i < cartas.length; i++) {
+                    if (cartas[i] === 'T') { cartas[i] = 10 }
+                    cartas[i] = Number(cartas[i])
+                }
+                eachHand.cartas = cartas.sort(function (a, b) {
+                    return a - b;
+                });
+                eachHand.cartas = [...new Set(eachHand.cartas)]
+                arraySoloBoardCards.push(eachHand)
+                eachHand.dosConectadas = 0
+                eachHand.tresConectadas = 0
+                for (let i = 0; i < cartas.length; i++) {
+                    if (cartas[i + 1] - cartas[i] === 1) {
+                        if (cartas[i + 2] - cartas[i + 1] === 1) {
+                            eachHand.tresConectadas = eachHand.tresConectadas + 1
+                            i++
+                        } else {
+                            eachHand.dosConectadas = eachHand.dosConectadas + 1
+                        }
+                    }
+                }
+            })
+        } else if (instancia === 'river') {
+            array.forEach(hand => {
+                console.log('river clickeado')
+                let eachHand = {}
+                let cartas = []
+                cartas.push(hand.flop.boardCards[0].carta === 'A' ? '1' : hand.flop.boardCards[0].carta === 'K' ? '13' : hand.flop.boardCards[0].carta === 'Q' ? '12' : hand.flop.boardCards[0].carta === 'J' ? '11' : hand.flop.boardCards[0].carta)
+                cartas.push(hand.flop.boardCards[1].carta === 'A' ? '1' : hand.flop.boardCards[1].carta === 'K' ? '13' : hand.flop.boardCards[1].carta === 'Q' ? '12' : hand.flop.boardCards[1].carta === 'J' ? '11' : hand.flop.boardCards[1].carta)
+                cartas.push(hand.flop.boardCards[2].carta === 'A' ? '1' : hand.flop.boardCards[2].carta === 'K' ? '13' : hand.flop.boardCards[2].carta === 'Q' ? '12' : hand.flop.boardCards[2].carta === 'J' ? '11' : hand.flop.boardCards[2].carta)
+                cartas.push(hand.turn.boardCards.carta === 'A' ? '1' : hand.turn.boardCards.carta === 'K' ? '13' : hand.turn.boardCards.carta === 'Q' ? '12' : hand.turn.boardCards.carta === 'J' ? '11' : hand.turn.boardCards.carta)
+                cartas.push(hand.river.boardCards.carta === 'A' ? '1' : hand.river.boardCards.carta === 'K' ? '13' : hand.river.boardCards.carta === 'Q' ? '12' : hand.river.boardCards.carta === 'J' ? '11' : hand.river.boardCards.carta)
+                for (let i = 0; i < cartas.length; i++) {
+                    if (cartas[i] === 'T') { cartas[i] = 10 }
+                    cartas[i] = Number(cartas[i])
+                }
+                eachHand.cartas = cartas.sort(function (a, b) {
+                    return a - b;
+                });
+
+                eachHand.cartas = [...new Set(eachHand.cartas)]
+                eachHand.id = hand._id
+                arraySoloBoardCards.push(eachHand)
+                eachHand.dosConectadas = 0
+                eachHand.tresConectadas = 0
+                for (let i = 0; i < eachHand.cartas.length; i++) {
+                    if (eachHand.cartas[i + 1] - eachHand.cartas[i] === 1) {
+                        if (eachHand.cartas[i + 2] - eachHand.cartas[i + 1] === 1) {
+                            eachHand.tresConectadas = eachHand.tresConectadas + 1
+                            i++
+                        } else {
+                            eachHand.dosConectadas = eachHand.dosConectadas + 1
+                            i++
+                        }
+                    }
+                }
+            })
+
+        }
+        console.log(arraySoloBoardCards)
+    }
+
 
     // lista de situaciones sacada de handsData
     let situationListforFlop = []
@@ -597,7 +705,7 @@ function Allhands({ setObjetoSelecto }) {
                         howManyColors(handsData, instancia, 4)
                     }} /><br /><br />
                 </div>
-                {/* Conexion */}
+                {/* Repeticion */}
                 <div>
                     <h4>Repeticiones</h4>
                     Doblado  <input type="radio" name="colores" value='2colores' onClick={(e) => {
@@ -605,6 +713,13 @@ function Allhands({ setObjetoSelecto }) {
                     }} /><br /><br />
                     Triplicado  <input type="radio" name="colores" value='3colores' onClick={(e) => {
                         filtradoPorRepeticion(handsData, instancia, 3)
+                    }} /><br /><br />
+                </div>
+                {/* Conexion */}
+                <div>
+                    <h4>Conexiones</h4>
+                    2 cartas conectadas  <input type="radio" name="colores" value='2colores' onClick={(e) => {
+                        filtradoPorConexion(handsData, 2)
                     }} /><br /><br />
                 </div>
             </div>
