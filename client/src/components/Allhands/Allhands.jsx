@@ -183,6 +183,7 @@ function Allhands({ setObjetoSelecto }) {
 
         let handsEnColoresFiltradas = handsEnColoresAzul.concat(handsEnColoresVerde).concat(handsEnColoresNegro).concat(handsEnColoresRojo)
         handsEnColoresFiltradas = [...new Set(handsEnColoresFiltradas)]
+
         let handsFiltradas = []
         handsEnColoresFiltradas.forEach(hand => {
             handsData.forEach(eachHand => {
@@ -191,6 +192,282 @@ function Allhands({ setObjetoSelecto }) {
                 }
             })
         })
+        sethandsData(handsFiltradas)
+    }
+
+    //
+    const filtradoPorRepeticion = (array, instancia, nroRepeticiones) => {
+        let handsEnNumeros = []
+        if (instancia === 'flop') {
+            array.forEach((hand) => {
+
+
+                let handEnNumeros = {}
+
+
+                let asCounter = 0
+                let dosCounter = 0
+                let tresCounter = 0
+                let cuatroCounter = 0
+                let cincoCounter = 0
+                let seisCounter = 0
+                let sieteCounter = 0
+                let ochoCounter = 0
+                let nueveCounter = 0
+                let diezCounter = 0
+                let jotaCounter = 0
+                let cuCounter = 0
+                let kaCounter = 0
+
+
+                // contas colores flop
+                for (let i = 0; i < 3; i++) {
+                    if (hand.flop.boardCards[i].carta === 'A') { asCounter = asCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === '2') { dosCounter = dosCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === '3') { tresCounter = tresCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === '4') { cuatroCounter = cuatroCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === '5') { cincoCounter = cincoCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === '6') { seisCounter = seisCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === '7') { sieteCounter = sieteCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === '8') { ochoCounter = ochoCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === '9') { nueveCounter = nueveCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === 'T') { diezCounter = diezCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === 'J') { jotaCounter = jotaCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === 'Q') { cuCounter = cuCounter + 1 }
+                    if (hand.flop.boardCards[i].carta === 'K') { kaCounter = kaCounter + 1 }
+                }
+
+
+                // dividis la cuenta y la pusheas en una array
+                handEnNumeros.asCounter = asCounter
+                handEnNumeros.dosCounter = dosCounter
+                handEnNumeros.tresCounter = tresCounter
+                handEnNumeros.cuatroCounter = cuatroCounter
+                handEnNumeros.cincoCounter = cincoCounter
+                handEnNumeros.seisCounter = seisCounter
+                handEnNumeros.sieteCounter = sieteCounter
+                handEnNumeros.ochoCounter = ochoCounter
+                handEnNumeros.nueveCounter = nueveCounter
+                handEnNumeros.diezCounter = diezCounter
+                handEnNumeros.jotaCounter = jotaCounter
+                handEnNumeros.cuCounter = cuCounter
+                handEnNumeros.kaCounter = kaCounter
+
+
+                handEnNumeros.id = hand._id
+                handsEnNumeros.push(handEnNumeros)
+            }
+            )
+        } else if (instancia === 'turn') {
+            // para cada una de las hands en la array
+            array.forEach((hand) => {
+                // si la hand tiene cartas en el turn
+                if (hand.turn.boardCards.carta != '-') {
+
+                    let handEnNumeros = {}
+
+
+                    let asCounter = 0
+                    let dosCounter = 0
+                    let tresCounter = 0
+                    let cuatroCounter = 0
+                    let cincoCounter = 0
+                    let seisCounter = 0
+                    let sieteCounter = 0
+                    let ochoCounter = 0
+                    let nueveCounter = 0
+                    let diezCounter = 0
+                    let jotaCounter = 0
+                    let cuCounter = 0
+                    let kaCounter = 0
+
+                    // contador de repetidores en el flop
+                    for (let i = 0; i < 3; i++) {
+                        if (hand.flop.boardCards[i].carta === 'A') { asCounter = asCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '2') { dosCounter = dosCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '3') { tresCounter = tresCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '4') { cuatroCounter = cuatroCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '5') { cincoCounter = cincoCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '6') { seisCounter = seisCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '7') { sieteCounter = sieteCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '8') { ochoCounter = ochoCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '9') { nueveCounter = nueveCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === 'T') { diezCounter = diezCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === 'J') { jotaCounter = jotaCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === 'Q') { cuCounter = cuCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === 'K') { kaCounter = kaCounter + 1 }
+                    }
+
+                    // contador de repetidores en el turn
+                    if (hand.turn.boardCards.carta === 'A') { asCounter = asCounter + 1 }
+                    if (hand.turn.boardCards.carta === '2') { dosCounter = dosCounter + 1 }
+                    if (hand.turn.boardCards.carta === '3') { tresCounter = tresCounter + 1 }
+                    if (hand.turn.boardCards.carta === '4') { cuatroCounter = cuatroCounter + 1 }
+                    if (hand.turn.boardCards.carta === '5') { cincoCounter = cincoCounter + 1 }
+                    if (hand.turn.boardCards.carta === '6') { seisCounter = seisCounter + 1 }
+                    if (hand.turn.boardCards.carta === '7') { sieteCounter = sieteCounter + 1 }
+                    if (hand.turn.boardCards.carta === '8') { ochoCounter = ochoCounter + 1 }
+                    if (hand.turn.boardCards.carta === '9') { nueveCounter = nueveCounter + 1 }
+                    if (hand.turn.boardCards.carta === 'T') { diezCounter = diezCounter + 1 }
+                    if (hand.turn.boardCards.carta === 'J') { jotaCounter = jotaCounter + 1 }
+                    if (hand.turn.boardCards.carta === 'Q') { cuCounter = cuCounter + 1 }
+                    if (hand.turn.boardCards.carta === 'K') { kaCounter = kaCounter + 1 }
+
+
+
+                    // dentro del objeto handEnNumeros creas propiedades con el contador de repeticion
+                    handEnNumeros.asCounter = asCounter
+                    handEnNumeros.dosCounter = dosCounter
+                    handEnNumeros.tresCounter = tresCounter
+                    handEnNumeros.cuatroCounter = cuatroCounter
+                    handEnNumeros.cincoCounter = cincoCounter
+                    handEnNumeros.seisCounter = seisCounter
+                    handEnNumeros.sieteCounter = sieteCounter
+                    handEnNumeros.ochoCounter = ochoCounter
+                    handEnNumeros.nueveCounter = nueveCounter
+                    handEnNumeros.diezCounter = diezCounter
+                    handEnNumeros.jotaCounter = jotaCounter
+                    handEnNumeros.cuCounter = cuCounter
+                    handEnNumeros.kaCounter = kaCounter
+
+                    // dentro del objeto handEnNumeros creas id
+                    handEnNumeros.id = hand._id
+
+                    // mandas el objeto handEnNumeros a la array handsEnNumeros
+                    handsEnNumeros.push(handEnNumeros)
+                }
+            }
+            )
+        } else if (instancia === 'river') {
+            // para cada una de las hands en la array
+            array.forEach((hand) => {
+                // si la hand tiene cartas en el river
+                if (hand.river.boardCards.carta != '-') {
+
+                    let handEnNumeros = {}
+
+
+                    let asCounter = 0
+                    let dosCounter = 0
+                    let tresCounter = 0
+                    let cuatroCounter = 0
+                    let cincoCounter = 0
+                    let seisCounter = 0
+                    let sieteCounter = 0
+                    let ochoCounter = 0
+                    let nueveCounter = 0
+                    let diezCounter = 0
+                    let jotaCounter = 0
+                    let cuCounter = 0
+                    let kaCounter = 0
+
+                    // contador de repetidores en el flop
+                    for (let i = 0; i < 3; i++) {
+                        if (hand.flop.boardCards[i].carta === 'A') { asCounter = asCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '2') { dosCounter = dosCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '3') { tresCounter = tresCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '4') { cuatroCounter = cuatroCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '5') { cincoCounter = cincoCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '6') { seisCounter = seisCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '7') { sieteCounter = sieteCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '8') { ochoCounter = ochoCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === '9') { nueveCounter = nueveCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === 'T') { diezCounter = diezCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === 'J') { jotaCounter = jotaCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === 'Q') { cuCounter = cuCounter + 1 }
+                        if (hand.flop.boardCards[i].carta === 'K') { kaCounter = kaCounter + 1 }
+                    }
+
+                    // contador de repetidores en el turn
+                    if (hand.turn.boardCards.carta === 'A') { asCounter = asCounter + 1 }
+                    if (hand.turn.boardCards.carta === '2') { dosCounter = dosCounter + 1 }
+                    if (hand.turn.boardCards.carta === '3') { tresCounter = tresCounter + 1 }
+                    if (hand.turn.boardCards.carta === '4') { cuatroCounter = cuatroCounter + 1 }
+                    if (hand.turn.boardCards.carta === '5') { cincoCounter = cincoCounter + 1 }
+                    if (hand.turn.boardCards.carta === '6') { seisCounter = seisCounter + 1 }
+                    if (hand.turn.boardCards.carta === '7') { sieteCounter = sieteCounter + 1 }
+                    if (hand.turn.boardCards.carta === '8') { ochoCounter = ochoCounter + 1 }
+                    if (hand.turn.boardCards.carta === '9') { nueveCounter = nueveCounter + 1 }
+                    if (hand.turn.boardCards.carta === 'T') { diezCounter = diezCounter + 1 }
+                    if (hand.turn.boardCards.carta === 'J') { jotaCounter = jotaCounter + 1 }
+                    if (hand.turn.boardCards.carta === 'Q') { cuCounter = cuCounter + 1 }
+                    if (hand.turn.boardCards.carta === 'K') { kaCounter = kaCounter + 1 }
+
+                    // contador de repetidores en el river
+                    if (hand.river.boardCards.carta === 'A') { asCounter = asCounter + 1 }
+                    if (hand.river.boardCards.carta === '2') { dosCounter = dosCounter + 1 }
+                    if (hand.river.boardCards.carta === '3') { tresCounter = tresCounter + 1 }
+                    if (hand.river.boardCards.carta === '4') { cuatroCounter = cuatroCounter + 1 }
+                    if (hand.river.boardCards.carta === '5') { cincoCounter = cincoCounter + 1 }
+                    if (hand.river.boardCards.carta === '6') { seisCounter = seisCounter + 1 }
+                    if (hand.river.boardCards.carta === '7') { sieteCounter = sieteCounter + 1 }
+                    if (hand.river.boardCards.carta === '8') { ochoCounter = ochoCounter + 1 }
+                    if (hand.river.boardCards.carta === '9') { nueveCounter = nueveCounter + 1 }
+                    if (hand.river.boardCards.carta === 'T') { diezCounter = diezCounter + 1 }
+                    if (hand.river.boardCards.carta === 'J') { jotaCounter = jotaCounter + 1 }
+                    if (hand.river.boardCards.carta === 'Q') { cuCounter = cuCounter + 1 }
+                    if (hand.river.boardCards.carta === 'K') { kaCounter = kaCounter + 1 }
+
+
+
+                    // dentro del objeto handEnNumeros creas propiedades con el contador de repeticion
+                    handEnNumeros.asCounter = asCounter
+                    handEnNumeros.dosCounter = dosCounter
+                    handEnNumeros.tresCounter = tresCounter
+                    handEnNumeros.cuatroCounter = cuatroCounter
+                    handEnNumeros.cincoCounter = cincoCounter
+                    handEnNumeros.seisCounter = seisCounter
+                    handEnNumeros.sieteCounter = sieteCounter
+                    handEnNumeros.ochoCounter = ochoCounter
+                    handEnNumeros.nueveCounter = nueveCounter
+                    handEnNumeros.diezCounter = diezCounter
+                    handEnNumeros.jotaCounter = jotaCounter
+                    handEnNumeros.cuCounter = cuCounter
+                    handEnNumeros.kaCounter = kaCounter
+
+                    // dentro del objeto handEnNumeros creas id
+                    handEnNumeros.id = hand._id
+
+                    // mandas el objeto handEnNumeros a la array handsEnNumeros
+                    handsEnNumeros.push(handEnNumeros)
+                }
+            }
+            )
+        }
+
+
+        // creas variables con hands filtradas dependiendo del numero de repeticion de los contadores
+        // si el nroRepeticiones es 2
+        // se van a crear 13 variables que van a tener aquellas handsEnNumeros con la cantidad de Repeticiones definidas
+        let handsFilteredByAs = _.filter(handsEnNumeros, ['asCounter', nroRepeticiones])
+        let handsFilteredByDos = _.filter(handsEnNumeros, ['dosCounter', nroRepeticiones])
+        let handsFilteredByTres = _.filter(handsEnNumeros, ['tresCounter', nroRepeticiones])
+        let handsFilteredByCuatro = _.filter(handsEnNumeros, ['cuatroCounter', nroRepeticiones])
+        let handsFilteredByCinco = _.filter(handsEnNumeros, ['cincoCounter', nroRepeticiones])
+        let handsFilteredBySeis = _.filter(handsEnNumeros, ['seisCounter', nroRepeticiones])
+        let handsFilteredBySiete = _.filter(handsEnNumeros, ['sieteCounter', nroRepeticiones])
+        let handsFilteredByOcho = _.filter(handsEnNumeros, ['ochoCounter', nroRepeticiones])
+        let handsFilteredByNueve = _.filter(handsEnNumeros, ['nueveCounter', nroRepeticiones])
+        let handsFilteredByDiez = _.filter(handsEnNumeros, ['diezCounter', nroRepeticiones])
+        let handsFilteredByJota = _.filter(handsEnNumeros, ['jotaCounter', nroRepeticiones])
+        let handsFilteredByCu = _.filter(handsEnNumeros, ['cuCounter', nroRepeticiones])
+        let handsFilteredByKa = _.filter(handsEnNumeros, ['kaCounter', nroRepeticiones])
+
+        // concatenas todas las hands que tengan las repeticiones declaradas y las filtras por duplicados
+        let handsFilteredByRepetitions = handsFilteredByAs.concat(handsFilteredByDos).concat(handsFilteredByTres).concat(handsFilteredByCuatro).concat(handsFilteredByCinco).concat(handsFilteredBySeis).concat(handsFilteredBySiete).concat(handsFilteredByOcho).concat(handsFilteredByNueve).concat(handsFilteredByDiez).concat(handsFilteredByJota).concat(handsFilteredByCu).concat(handsFilteredByKa)
+        handsFilteredByRepetitions = [...new Set(handsFilteredByRepetitions)]
+
+        // transformas hands en numeros en hands reales mediante id
+        let handsFiltradas = []
+        handsFilteredByRepetitions.forEach(hand => {
+            handsData.forEach(eachHand => {
+                if (hand.id === eachHand._id) {
+                    handsFiltradas.push(eachHand)
+                }
+            })
+        })
+
+
         sethandsData(handsFiltradas)
     }
 
@@ -318,6 +595,16 @@ function Allhands({ setObjetoSelecto }) {
                     }} /><br /><br />
                     4 colores  <input type="radio" name="colores" value='4colores' onClick={(e) => {
                         howManyColors(handsData, instancia, 4)
+                    }} /><br /><br />
+                </div>
+                {/* Conexion */}
+                <div>
+                    <h4>Repeticiones</h4>
+                    Doblado  <input type="radio" name="colores" value='2colores' onClick={(e) => {
+                        filtradoPorRepeticion(handsData, instancia, 2)
+                    }} /><br /><br />
+                    Triplicado  <input type="radio" name="colores" value='3colores' onClick={(e) => {
+                        filtradoPorRepeticion(handsData, instancia, 3)
                     }} /><br /><br />
                 </div>
             </div>
