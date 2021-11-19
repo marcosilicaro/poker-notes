@@ -495,13 +495,27 @@ function Allhands({ setObjetoSelecto }) {
                 arraySoloBoardCards.push(eachHand)
                 eachHand.dosConectadas = 0
                 eachHand.tresConectadas = 0
-                for (let i = 0; i < cartas.length; i++) {
-                    if (cartas[i + 1] - cartas[i] === 1) {
-                        if (cartas[i + 2] - cartas[i + 1] === 1) {
-                            eachHand.tresConectadas = eachHand.tresConectadas + 1
-                            i++
+                eachHand.cuatroConectadas = 0
+                for (let i = 0; i < eachHand.cartas.length; i++) {
+                    if (eachHand.cartas[i + 1] - eachHand.cartas[i] === 1) {
+                        if (eachHand.cartas[i + 2] - eachHand.cartas[i + 1] === 1) {
+                            if (eachHand.cartas[i + 3] - eachHand.cartas[i + 2] === 1) {
+                                eachHand.cuatroConectadas = eachHand.cuatroConectadas + 1
+                                eachHand.dosConectadas = 0
+                                i++
+                            } else if (eachHand.cartas[i + 1] - eachHand.cartas[i] === 1 && eachHand.cartas[i + 2] - eachHand.cartas[i + 1] === 1 && eachHand.cartas[i + 3] - eachHand.cartas[i + 2] !== 1) {
+                                eachHand.tresConectadas = eachHand.tresConectadas + 1
+                                i++
+                            }
                         } else {
-                            eachHand.dosConectadas = eachHand.dosConectadas + 1
+                            if (eachHand.cuatroConectadas === 1) {
+                                eachHand.dosConectadas = 0
+
+                            } else {
+                                eachHand.dosConectadas = eachHand.dosConectadas + 1
+                                i++
+                            }
+
                         }
                     }
                 }
@@ -528,13 +542,27 @@ function Allhands({ setObjetoSelecto }) {
                 arraySoloBoardCards.push(eachHand)
                 eachHand.dosConectadas = 0
                 eachHand.tresConectadas = 0
-                for (let i = 0; i < cartas.length; i++) {
-                    if (cartas[i + 1] - cartas[i] === 1) {
-                        if (cartas[i + 2] - cartas[i + 1] === 1) {
-                            eachHand.tresConectadas = eachHand.tresConectadas + 1
-                            i++
+                eachHand.cuatroConectadas = 0
+                for (let i = 0; i < eachHand.cartas.length; i++) {
+                    if (eachHand.cartas[i + 1] - eachHand.cartas[i] === 1) {
+                        if (eachHand.cartas[i + 2] - eachHand.cartas[i + 1] === 1) {
+                            if (eachHand.cartas[i + 3] - eachHand.cartas[i + 2] === 1) {
+                                eachHand.cuatroConectadas = eachHand.cuatroConectadas + 1
+                                eachHand.dosConectadas = 0
+                                i++
+                            } else if (eachHand.cartas[i + 1] - eachHand.cartas[i] === 1 && eachHand.cartas[i + 2] - eachHand.cartas[i + 1] === 1 && eachHand.cartas[i + 3] - eachHand.cartas[i + 2] !== 1) {
+                                eachHand.tresConectadas = eachHand.tresConectadas + 1
+                                i++
+                            }
                         } else {
-                            eachHand.dosConectadas = eachHand.dosConectadas + 1
+                            if (eachHand.cuatroConectadas === 1) {
+                                eachHand.dosConectadas = 0
+
+                            } else {
+                                eachHand.dosConectadas = eachHand.dosConectadas + 1
+                                i++
+                            }
+
                         }
                     }
                 }
@@ -562,14 +590,27 @@ function Allhands({ setObjetoSelecto }) {
                 arraySoloBoardCards.push(eachHand)
                 eachHand.dosConectadas = 0
                 eachHand.tresConectadas = 0
+                eachHand.cuatroConectadas = 0
                 for (let i = 0; i < eachHand.cartas.length; i++) {
                     if (eachHand.cartas[i + 1] - eachHand.cartas[i] === 1) {
                         if (eachHand.cartas[i + 2] - eachHand.cartas[i + 1] === 1) {
-                            eachHand.tresConectadas = eachHand.tresConectadas + 1
-                            i++
+                            if (eachHand.cartas[i + 3] - eachHand.cartas[i + 2] === 1) {
+                                eachHand.cuatroConectadas = eachHand.cuatroConectadas + 1
+                                eachHand.dosConectadas = 0
+                                i++
+                            } else if (eachHand.cartas[i + 1] - eachHand.cartas[i] === 1 && eachHand.cartas[i + 2] - eachHand.cartas[i + 1] === 1 && eachHand.cartas[i + 3] - eachHand.cartas[i + 2] !== 1) {
+                                eachHand.tresConectadas = eachHand.tresConectadas + 1
+                                i++
+                            }
                         } else {
-                            eachHand.dosConectadas = eachHand.dosConectadas + 1
-                            i++
+                            if (eachHand.cuatroConectadas === 1) {
+                                eachHand.dosConectadas = 0
+
+                            } else {
+                                eachHand.dosConectadas = eachHand.dosConectadas + 1
+                                i++
+                            }
+
                         }
                     }
                 }
