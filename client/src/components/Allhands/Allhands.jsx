@@ -472,7 +472,7 @@ function Allhands({ setObjetoSelecto }) {
     }
 
     //
-    const filtradoPorConexion = (array, nroConexion) => {
+    const filtradoPorConexion = (array, cartasConectadas) => {
         let arraySoloBoardCards = []
 
         if (instancia === 'flop') {
@@ -617,7 +617,23 @@ function Allhands({ setObjetoSelecto }) {
             })
 
         }
-        console.log(arraySoloBoardCards)
+
+        if (cartasConectadas === 2) { arraySoloBoardCards = _.filter(arraySoloBoardCards, ['dosConectadas', 2]).concat(_.filter(arraySoloBoardCards, ['dosConectadas', 1])) }
+        if (cartasConectadas === 3) { arraySoloBoardCards = _.filter(arraySoloBoardCards, ['tresConectadas', 1]) }
+        if (cartasConectadas === 4) { arraySoloBoardCards = _.filter(arraySoloBoardCards, ['cuatroConectadas', 1]) }
+
+        // transformas hands en numeros en hands reales mediante id
+        let handsFiltradas = []
+        arraySoloBoardCards.forEach(hand => {
+            handsData.forEach(eachHand => {
+                if (hand.id === eachHand._id) {
+                    handsFiltradas.push(eachHand)
+                }
+            })
+        })
+
+
+        sethandsData(handsFiltradas)
     }
 
 
@@ -761,6 +777,12 @@ function Allhands({ setObjetoSelecto }) {
                     <h4>Conexiones</h4>
                     2 cartas conectadas  <input type="radio" name="colores" value='2colores' onClick={(e) => {
                         filtradoPorConexion(handsData, 2)
+                    }} /><br /><br />
+                    3 cartas conectadas  <input type="radio" name="colores" value='3colores' onClick={(e) => {
+                        filtradoPorConexion(handsData, 3)
+                    }} /><br /><br />
+                    4 cartas conectadas  <input type="radio" name="colores" value='4colores' onClick={(e) => {
+                        filtradoPorConexion(handsData, 4)
                     }} /><br /><br />
                 </div>
             </div>
