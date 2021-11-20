@@ -29,6 +29,33 @@ function Allhands({ setObjetoSelecto }) {
     const [turnTitleClicked, setturnTitleClicked] = useState(false)
     const [riverTitleClicked, setriverTitleClicked] = useState(false)
 
+    //
+    const orderBoardCards = (flopBoardCards) => {
+        let orderderCards = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']
+        let cartasOrdenadas = []
+
+        for (let i = 0; i < orderderCards.length; i++) {
+            for (let a = 0; a < flopBoardCards.length; a++) {
+                if (orderderCards[i] === flopBoardCards[a].carta) {
+                    cartasOrdenadas.push(flopBoardCards[a])
+                }
+            }
+        }
+
+
+        return (
+            <div>
+                <span className={`${cartasOrdenadas[0].color}  cardStyling`}>{cartasOrdenadas[0].carta}</span>
+                <span className={`${cartasOrdenadas[1].color}  cardStyling`}>{cartasOrdenadas[1].carta}</span>
+                <span className={`${cartasOrdenadas[2].color}  cardStyling`}>{cartasOrdenadas[2].carta}</span>
+                {cartasOrdenadas[3] != null ? <span className={`${cartasOrdenadas[3].color}  cardStyling`}>{cartasOrdenadas[3].carta}</span> : <div></div>}
+                {cartasOrdenadas[4] != null ? <span className={`${cartasOrdenadas[4].color}  cardStyling`}>{cartasOrdenadas[4].carta}</span> : <div></div>}
+            </div>
+
+        )
+    }
+
+
 
     // cada vez que se re-renderiza el componente (la app) 
     useEffect(() => {
@@ -621,6 +648,12 @@ function Allhands({ setObjetoSelecto }) {
         if (cartasConectadas === 2) { arraySoloBoardCards = _.filter(arraySoloBoardCards, ['dosConectadas', 2]).concat(_.filter(arraySoloBoardCards, ['dosConectadas', 1])) }
         if (cartasConectadas === 3) { arraySoloBoardCards = _.filter(arraySoloBoardCards, ['tresConectadas', 1]) }
         if (cartasConectadas === 4) { arraySoloBoardCards = _.filter(arraySoloBoardCards, ['cuatroConectadas', 1]) }
+        if (cartasConectadas === 0) {
+            arraySoloBoardCards = _.filter(arraySoloBoardCards, ['cuatroConectadas', 0])
+            arraySoloBoardCards = _.filter(arraySoloBoardCards, ['tresConectadas', 0])
+            arraySoloBoardCards = _.filter(arraySoloBoardCards, ['dosConectadas', 0])
+
+        }
 
         // transformas hands en numeros en hands reales mediante id
         let handsFiltradas = []
@@ -775,6 +808,9 @@ function Allhands({ setObjetoSelecto }) {
                 {/* Conexion */}
                 <div>
                     <h4>Conexiones</h4>
+                    0 cartas conectadas  <input type="radio" name="colores" value='2colores' onClick={(e) => {
+                        filtradoPorConexion(handsData, 0)
+                    }} /><br /><br />
                     2 cartas conectadas  <input type="radio" name="colores" value='2colores' onClick={(e) => {
                         filtradoPorConexion(handsData, 2)
                     }} /><br /><br />
@@ -791,15 +827,16 @@ function Allhands({ setObjetoSelecto }) {
             <table className='table table-bordered'>
                 <thead>
                     <th className='th-preflop' >Preflop</th>
-                    <th className='th-flop' onClick={(e) => { flopTitleClicked === false ? setflopTitleClicked(true) : setflopTitleClicked(false) }}>Flop</th>
-                    <th className='th-turn' onClick={(e) => { turnTitleClicked === false ? setturnTitleClicked(true) : setturnTitleClicked(false) }}>Turn</th>
-                    <th className='th-river' onClick={(e) => { riverTitleClicked === false ? setriverTitleClicked(true) : setriverTitleClicked(false) }}>River</th>
+                    <th className={`${instancia === 'flop' ? 'preflopNotes-active' : 'preflopNotes'}`} onClick={(e) => { flopTitleClicked === false ? setflopTitleClicked(true) : setflopTitleClicked(false) }}>Flop</th>
+                    <th className={`${instancia === 'turn' ? 'preflopNotes-active' : 'preflopNotes'}`} onClick={(e) => { turnTitleClicked === false ? setturnTitleClicked(true) : setturnTitleClicked(false) }}>Turn</th>
+                    <th className={`${instancia === 'river' ? 'preflopNotes-active' : 'preflopNotes'}`} onClick={(e) => { riverTitleClicked === false ? setriverTitleClicked(true) : setriverTitleClicked(false) }}>River</th>
                 </thead>
                 <tbody>
                     {/* Mapeado de objetos */}
                     {handsData.map((objeto) => (
+
                         <tr >
-                            {/* Primera columna */}
+                            {/* Preflop */}
                             <td
                                 className='greyBackground'
                                 onClick={(e) => {
@@ -813,17 +850,14 @@ function Allhands({ setObjetoSelecto }) {
                                     <Link to="/edithand"><div className="settings"><Settings /></div></Link>
                                 </div>
                             </td>
-                            {/* Segunda columna */}
-                            <td >
+                            {/* Flop */}
+                            <td className={instancia === 'flop' ? 'preflopNotes-active' : 'preflopNotes'}>
                                 <div onClick={(e) => {
                                     setidClicked(objeto._id)
                                     showFlopNotes === true ? setShowFlopNotes(false) : setShowFlopNotes(true)
                                 }}>
-                                    <span className={`${objeto.flop.boardCards[0].color}  cardStyling`}>{objeto.flop.boardCards[0].carta}</span>
-                                    <span className={`${objeto.flop.boardCards[1].color}  cardStyling`}>{objeto.flop.boardCards[1].carta}</span>
-                                    <span className={`${objeto.flop.boardCards[2].color}  cardStyling`}>{objeto.flop.boardCards[2].carta}</span>
+                                    {instancia === 'flop' ? orderBoardCards(objeto.flop.boardCards) : <div></div>}
                                     <div id='flop-notes' className={showFlopNotes === true && idClicked === objeto._id || flopTitleClicked === true ? 'preflopNotes-active' : 'preflopNotes'} >
-
                                         {objeto.flop.notes[0] === '' ? '' : <div><h5>Notes</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.flop.notes[0]}></textarea></div>}
                                         {objeto.flop.flopCheckCall === '' ? '' : <div><h5>CHECK/CALL</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.flop.flopCheckCall}></textarea></div>}
                                         {objeto.flop.flopCheckFold === '' ? '' : <div><h5>CHECK/FOLD</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.flop.flopCheckFold}></textarea></div>}
@@ -834,13 +868,15 @@ function Allhands({ setObjetoSelecto }) {
                                 </div>
 
                             </td>
-                            {/* Tercera columna */}
-                            <td >
+                            {/* Turn */}
+                            <td className={instancia === 'turn' ? 'preflopNotes-active' : 'preflopNotes'}>
                                 <div onClick={(e) => {
                                     setidClicked(objeto._id)
                                     showTurnNotes === true ? setShowTurnNotes(false) : setShowTurnNotes(true)
                                 }}>
-                                    <span className={`${objeto.turn.boardCards.color}  cardStyling`}>{objeto.turn.boardCards.carta}</span>
+
+
+                                    {orderBoardCards(objeto.flop.boardCards.concat(objeto.turn.boardCards))}
                                     <div id='turn-notes' className={showTurnNotes === true && idClicked === objeto._id || turnTitleClicked === true ? 'preflopNotes-active' : 'preflopNotes'} >
                                         {objeto.turn.notes[0] === '' ? '' : <div><h5>Notes</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.turn.notes[0]}></textarea></div>}
                                         {objeto.turn.turnCheckCall === '' ? '' : <div><h5>CHECK/CALL</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.turn.turnCheckCall}></textarea></div>}
@@ -852,13 +888,13 @@ function Allhands({ setObjetoSelecto }) {
                                 </div>
 
                             </td>
-                            {/* Cuarta columna */}
-                            <td >
+                            {/* River */}
+                            <td className={instancia === 'river' ? 'preflopNotes-active' : 'preflopNotes'}>
                                 <div onClick={(e) => {
                                     setidClicked(objeto._id)
                                     showRiverNotes === true ? setShowRiverNotes(false) : setShowRiverNotes(true)
                                 }}>
-                                    <span className={`${objeto.river.boardCards.color}  cardStyling`}>{objeto.river.boardCards.carta}</span>
+                                    {orderBoardCards(objeto.flop.boardCards.concat(objeto.turn.boardCards).concat(objeto.river.boardCards))}
                                     <div id='river-notes' className={showRiverNotes === true && idClicked === objeto._id || riverTitleClicked === true ? 'preflopNotes-active' : 'preflopNotes'} >
 
                                         {objeto.river.notes[0] === '' ? '' : <div><h5>Notes</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.river.notes[0]}></textarea></div>}
