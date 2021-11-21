@@ -1,8 +1,12 @@
 import './addhands.css'
 import axios from '../../axios'
 import { useState } from 'react';
+import { useEffect } from "react";
 
 function Addhands() {
+
+  
+
 
   const [positionExist, setpositionExist] = useState('-')
 
@@ -96,7 +100,10 @@ function Addhands() {
       }
     });
     alert('mano subida')
+
+    window.scrollTo(0, 0)
     window.location.reload()
+    
   };
 
   return (
