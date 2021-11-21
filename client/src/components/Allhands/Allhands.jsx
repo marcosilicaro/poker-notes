@@ -76,6 +76,10 @@ function Allhands({ setObjetoSelecto }) {
         })
     }
 
+    // agarra el texto de text input y los saca en p elements
+    const linesToP=(array)=>{
+        return array.toString()
+    }
 
     // cuantos colores iguales tienen una instancia de una array
     const howManyColors = (array, instancia, nroColores) => {
@@ -852,57 +856,183 @@ function Allhands({ setObjetoSelecto }) {
                             </td>
                             {/* Flop */}
                             <td className={instancia === 'flop' ? 'preflopNotes-active' : 'preflopNotes'}>
-                                <div onClick={(e) => {
+                                <div className='checkbox-boardTypes' onClick={(e) => {
                                     setidClicked(objeto._id)
                                     showFlopNotes === true ? setShowFlopNotes(false) : setShowFlopNotes(true)
                                 }}>
                                     {instancia === 'flop' ? orderBoardCards(objeto.flop.boardCards) : <div></div>}
-                                    <div id='flop-notes' className={showFlopNotes === true && idClicked === objeto._id || flopTitleClicked === true ? 'preflopNotes-active' : 'preflopNotes'} >
-                                        {objeto.flop.notes[0] === '' ? '' : <div><h5>Notes</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.flop.notes[0]}></textarea></div>}
-                                        {objeto.flop.flopCheckCall === '' ? '' : <div><h5>CHECK/CALL</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.flop.flopCheckCall}></textarea></div>}
-                                        {objeto.flop.flopCheckFold === '' ? '' : <div><h5>CHECK/FOLD</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.flop.flopCheckFold}></textarea></div>}
-                                        {objeto.flop.flopCheckRaise === '' ? '' : <div><h5>CHECK/RAISE</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.flop.flopCheckRaise}></textarea></div>}
-                                        {objeto.flop.flopCheckBehind === '' ? '' : <div><h5>CHECK/BEHIND</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.flop.flopCheckBehind}></textarea></div>}
-                                        {objeto.flop.flopBet === '' ? '' : <div ><h5>BET</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.flop.flopBet}></textarea></div>}<br />
+                                    <div id='flop-notes' className={showFlopNotes === true && idClicked === objeto._id || flopTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes'} >
+                                        {objeto.flop.notes[0] === '' ? '' : <div><strong>Notes</strong>{objeto.flop.notes.map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.flop.flopCheckCall === '' ? '' : <div><strong>CHECK/CALL</strong>: {objeto.flop.flopCheckCall.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.flop.flopCheckFold === '' ? '' : <div><strong>CHECK/FOLD:</strong>{objeto.flop.flopCheckFold.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.flop.flopCheckRaise === '' ? '' : <div><strong>CHECK/RAISE:</strong>{objeto.flop.flopCheckRaise.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.flop.flopCheckBehind === '' ? '' : <div><strong>CHECK/BEHIND:</strong>{objeto.flop.flopCheckBehind.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.flop.flopBet === '' ? '' : <div ><strong>BET:</strong>{objeto.flop.flopBet.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}<br />
                                     </div>
                                 </div>
 
                             </td>
                             {/* Turn */}
-                            <td className={instancia === 'turn' ? 'preflopNotes-active' : 'preflopNotes'}>
-                                <div onClick={(e) => {
+                            <td className={instancia === 'turn' ? 'preflopNotes-active ' : 'preflopNotes'}>
+                                <div className='checkbox-boardTypes' onClick={(e) => {
                                     setidClicked(objeto._id)
                                     showTurnNotes === true ? setShowTurnNotes(false) : setShowTurnNotes(true)
                                 }}>
 
 
                                     {orderBoardCards(objeto.flop.boardCards.concat(objeto.turn.boardCards))}
-                                    <div id='turn-notes' className={showTurnNotes === true && idClicked === objeto._id || turnTitleClicked === true ? 'preflopNotes-active' : 'preflopNotes'} >
-                                        {objeto.turn.notes[0] === '' ? '' : <div><h5>Notes</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.turn.notes[0]}></textarea></div>}
-                                        {objeto.turn.turnCheckCall === '' ? '' : <div><h5>CHECK/CALL</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.turn.turnCheckCall}></textarea></div>}
-                                        {objeto.turn.turnCheckFold === '' ? '' : <div><h5>CHECK/FOLD</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.turn.turnCheckFold}></textarea></div>}
-                                        {objeto.turn.turnCheckRaise === '' ? '' : <div><h5>CHECK/RAISE</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.turn.turnCheckRaise}></textarea></div>}
-                                        {objeto.turn.turnCheckBehind === '' ? '' : <div><h5>CHECK/BEHIND</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.turn.turnCheckBehind}></textarea></div>}
-                                        {objeto.turn.turnBet === '' ? '' : <div ><h5>BET</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.turn.turnBet}></textarea></div>}<br />
+                                    <div id='turn-notes' className={showTurnNotes === true && idClicked === objeto._id || turnTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes'} >
+                                        {objeto.turn.notes[0] === '' ? '' : <div><strong>Notes</strong>{objeto.turn.notes.map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.turn.turnCheckCall === '' ? '' : <div><strong>CHECK/CALL</strong>{objeto.turn.turnCheckCall.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.turn.turnCheckFold === '' ? '' : <div><strong>CHECK/FOLD</strong>{objeto.turn.turnCheckFold.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.turn.turnCheckRaise === '' ? '' : <div><strong>CHECK/RAISE</strong>{objeto.turn.turnCheckRaise.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.turn.turnCheckBehind === '' ? '' : <div><strong>CHECK/BEHIND</strong>{objeto.turn.turnCheckBehind.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.turn.turnBet === '' ? '' : <div ><strong>BET</strong>{objeto.turn.turnBet.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}<br />
                                     </div>
                                 </div>
 
                             </td>
                             {/* River */}
                             <td className={instancia === 'river' ? 'preflopNotes-active' : 'preflopNotes'}>
-                                <div onClick={(e) => {
+                                <div className='checkbox-boardTypes'  onClick={(e) => {
                                     setidClicked(objeto._id)
                                     showRiverNotes === true ? setShowRiverNotes(false) : setShowRiverNotes(true)
                                 }}>
                                     {orderBoardCards(objeto.flop.boardCards.concat(objeto.turn.boardCards).concat(objeto.river.boardCards))}
-                                    <div id='river-notes' className={showRiverNotes === true && idClicked === objeto._id || riverTitleClicked === true ? 'preflopNotes-active' : 'preflopNotes'} >
+                                    <div id='river-notes' className={showRiverNotes === true && idClicked === objeto._id || riverTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes'} >
 
-                                        {objeto.river.notes[0] === '' ? '' : <div><h5>Notes</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.river.notes[0]}></textarea></div>}
-                                        {objeto.river.riverCheckCall === '' ? '' : <div><h5>CHECK/CALL</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.river.riverCheckCall}></textarea></div>}
-                                        {objeto.river.riverCheckFold === '' ? '' : <div><h5>CHECK/FOLD</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.river.riverCheckFold}></textarea></div>}
-                                        {objeto.river.riverCheckRaise === '' ? '' : <div><h5>CHECK/RAISE</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.river.riverCheckRaise}></textarea></div>}
-                                        {objeto.river.riverCheckBehind === '' ? '' : <div><h5>CHECK/BEHIND</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.river.riverCheckBehind}></textarea></div>}
-                                        {objeto.river.riverBet === '' ? '' : <div ><h5>BET</h5><textarea type="text" className='borderBlack fitHeightNotes' defaultValue={objeto.river.riverBet}></textarea></div>}
+                                        {objeto.river.notes[0] === '' ? '' : <div ><strong>Notes</strong>{objeto.river.notes.map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.river.riverCheckCall === '' ? '' : <div><strong>CHECK/CALL</strong>{objeto.river.riverCheckCall.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.river.riverCheckFold === '' ? '' : <div><strong>CHECK/FOLD</strong>{objeto.river.riverCheckFold.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.river.riverCheckRaise === '' ? '' : <div><strong>CHECK/RAISE</strong>{objeto.river.riverCheckRaise.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.river.riverCheckBehind === '' ? '' : <div><strong>CHECK/BEHIND</strong>{objeto.river.riverCheckBehind.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
+                                        {objeto.river.riverBet === '' ? '' : <div ><strong>BET</strong>{objeto.river.riverBet.split("\n").map(item => 
+                                        {
+                                            return (
+                                                <tr>
+                                                    <td>{ item }</td>
+                                                </tr>
+                                            );
+                                        })}</div>}
                                     </div>
                                 </div>
 

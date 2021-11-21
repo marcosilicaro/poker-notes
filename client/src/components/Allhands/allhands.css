@@ -6,12 +6,28 @@ h5{
     display: flex;
     align-items: center;
     justify-content: start;
-    width: auto;
+    width: 90% !important;
     align-items: flex-start;
+    
+}
+
+#river-notes > div{
+    padding-right:10px;
+    min-width: 15vw
+}
+
+#turn-notes > div{
+    padding-right:10px;
+    min-width: 15vw
+}
+
+#flop-notes > div{
+    padding-right:10px;
+    min-width: 15vw
 }
 
 .checkbox-boardTypes > div{
-    padding-right: 5vw;
+    padding-right: 1vw;
     min-width: fit-content;
 }
 
@@ -29,6 +45,10 @@ h5{
 
 #flopDiv{
     min-width: 80px
+}
+
+.fullWidth{
+    width: 100% !important;
 }
 
 .greyBackground{
@@ -62,7 +82,13 @@ h5{
 
 .preflopNotes-active{
     display:block;
+    max-width: 100%!important;
 }
+
+.table-notes{
+    display: flex;
+}
+
 
 .flopNotes{
     display:none;
@@ -132,8 +158,4 @@ always-show{
 
 #situationFilter{
     width: 18vw
-}
-
-.checkbox-boardTypes > div{
-    width: 13vw
 }
