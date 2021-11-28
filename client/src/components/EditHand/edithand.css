@@ -14,6 +14,9 @@ textarea{
 
 .top-decision textarea{
     margin-right: 10px;
+    
+    width:16vw !important;
+    height:20vh !important
 }
 
 .bottom-decisions textarea{

@@ -541,6 +541,7 @@ function EditHand({ ElObjetoSelecto }) {
               <optgroup label="IP-Con Iniciativa">
               </optgroup>
               <optgroup label="IP-Sin Iniciativa">
+                <option value="vs bet de V despues de su check behind en flop">vs bet de V despues de su check behind en flop</option>
               </optgroup>
               <optgroup label="OOP-Con Iniciativa">
               </optgroup>

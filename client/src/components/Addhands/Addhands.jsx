@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 function Addhands() {
 
-  
+
 
 
   const [positionExist, setpositionExist] = useState('-')
@@ -103,7 +103,7 @@ function Addhands() {
 
     window.scrollTo(0, 0)
     window.location.reload()
-    
+
   };
 
   return (
@@ -304,8 +304,12 @@ function Addhands() {
             <select name="Situation" id="flopSituation" defaultValue='-'  >
               <option value="-">-</option>
               <optgroup label="IP-Con Iniciativa">
+                <option value="H OR preflop">H OR preflop</option>
+                <option value="H OR preflop -> vs re-raise">H OR preflop -> vs re-raise</option>
               </optgroup>
               <optgroup label="IP-Sin Iniciativa">
+
+                <option value="vs check behind">vs check behind</option>
               </optgroup>
               <optgroup label="OOP-Con Iniciativa">
               </optgroup>
@@ -446,14 +450,20 @@ function Addhands() {
             <select name="Situation" id="turnSituation" defaultValue='-'  >
               <option value="-">-</option>
               <optgroup label="IP-Con Iniciativa">
+                <option value="H probe bet en flop">H probe bet en flop</option>
+                <option value="h cbet en flop">h cbet en flop</option>
               </optgroup>
               <optgroup label="IP-Sin Iniciativa">
+                <option value="vs check behind">vs check behind</option>
+                <option value="vs cbet de V dps d checkraise en flop">vs cbet de V dps d checkraise en flop</option>
+                <option value="vs bet de V despues de su check behind en flop">vs bet de V despues de su check behind en flop</option>
               </optgroup>
               <optgroup label="OOP-Con Iniciativa">
                 <option value="H checkraise en flop">H checkraise en flop</option>
               </optgroup>
               <optgroup label="OOP-Sin Iniciativa">
                 <option value="vs 3rd barrel">vs 3rd barrel</option>
+                <option value="vs V check behind en flop">vs V check behind en flop</option>
               </optgroup>
             </select>
             <label>Board Type</label>
@@ -588,14 +598,18 @@ function Addhands() {
             <label>Situacion</label>
             <select name="Situation" id="riverSituation" defaultValue='-'  >
               <option value="-">-</option>
-              <option value="-">-</option>
               <optgroup label="IP-Con Iniciativa">
+                <option value="vs check de V ante check behind de H en turn">vs check de V ante check behind de H en turn   </option>
               </optgroup>
               <optgroup label="IP-Sin Iniciativa">
+                <option value="vs check behind">vs check behind   </option>
+                <option value="vs cbet de V dps de retomar iniciativa en turn">vs cbet de V dps de retomar iniciativa en turn</option>
               </optgroup>
               <optgroup label="OOP-Con Iniciativa">
                 <option value="h cbet en turn">h cbet en turn</option>
-                <option value="h cbet en turn">h check behind en turn</option>
+                <option value="check behind en turn">h check behind en turn</option>
+                <option value="h probe bet en turn">h probe bet en turn</option>
+                <option value="h checkraise en turn">h checkraise en turn</option>
               </optgroup>
               <optgroup label="OOP-Sin Iniciativa">
                 <option value="vs 4th barrel">vs 4th barrel</option>
@@ -691,6 +705,7 @@ function Addhands() {
           </div>
         </div>
 
+
         <button onClick={handleSubmit}>SEND</button>
         <br /><br /><br /><br />
       </form>
@@ -699,3 +714,5 @@ function Addhands() {
 }
 
 export default Addhands
+
+

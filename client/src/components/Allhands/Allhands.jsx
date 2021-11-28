@@ -55,8 +55,6 @@ function Allhands({ setObjetoSelecto }) {
         )
     }
 
-
-
     // cada vez que se re-renderiza el componente (la app) 
     useEffect(() => {
         // se ejecuta get all
@@ -74,11 +72,6 @@ function Allhands({ setObjetoSelecto }) {
             // el array filtrado se guarda en handsData que despues es utilizado en la tabla
             sethandsData(res.data)
         })
-    }
-
-    // agarra el texto de text input y los saca en p elements
-    const linesToP=(array)=>{
-        return array.toString()
     }
 
     // cuantos colores iguales tienen una instancia de una array
@@ -673,7 +666,6 @@ function Allhands({ setObjetoSelecto }) {
         sethandsData(handsFiltradas)
     }
 
-
     // lista de situaciones sacada de handsData
     let situationListforFlop = []
     let situationListforTurn = []
@@ -691,8 +683,6 @@ function Allhands({ setObjetoSelecto }) {
     //let primerFiltrado = _.filter(handsData, ['turn.situation', 'vs 3rd barrel']);
     //let segundoFiltrado = _.filter(primerFiltrado, ['preflop.heroCards[0]' + reemplazoDeCarta, '3'] || ['preflop.heroCards[1].carta', 'A']);
     //console.log(segundoFiltrado)
-
-
     return (
         <div className='table-container' >
 
@@ -802,26 +792,26 @@ function Allhands({ setObjetoSelecto }) {
                 {/* Repeticion */}
                 <div>
                     <h4>Repeticiones</h4>
-                    Doblado  <input type="radio" name="colores" value='2colores' onClick={(e) => {
+                    Doblado  <input type="radio" name="repeticion" value='2colores' onClick={(e) => {
                         filtradoPorRepeticion(handsData, instancia, 2)
                     }} /><br /><br />
-                    Triplicado  <input type="radio" name="colores" value='3colores' onClick={(e) => {
+                    Triplicado  <input type="radio" name="repeticion" value='3colores' onClick={(e) => {
                         filtradoPorRepeticion(handsData, instancia, 3)
                     }} /><br /><br />
                 </div>
                 {/* Conexion */}
                 <div>
                     <h4>Conexiones</h4>
-                    0 cartas conectadas  <input type="radio" name="colores" value='2colores' onClick={(e) => {
+                    0 cartas conectadas  <input type="radio" name="conexion" value='2colores' onClick={(e) => {
                         filtradoPorConexion(handsData, 0)
                     }} /><br /><br />
-                    2 cartas conectadas  <input type="radio" name="colores" value='2colores' onClick={(e) => {
+                    2 cartas conectadas  <input type="radio" name="conexion" value='2colores' onClick={(e) => {
                         filtradoPorConexion(handsData, 2)
                     }} /><br /><br />
-                    3 cartas conectadas  <input type="radio" name="colores" value='3colores' onClick={(e) => {
+                    3 cartas conectadas  <input type="radio" name="conexion" value='3colores' onClick={(e) => {
                         filtradoPorConexion(handsData, 3)
                     }} /><br /><br />
-                    4 cartas conectadas  <input type="radio" name="colores" value='4colores' onClick={(e) => {
+                    4 cartas conectadas  <input type="radio" name="conexion" value='4colores' onClick={(e) => {
                         filtradoPorConexion(handsData, 4)
                     }} /><br /><br />
                 </div>
@@ -862,51 +852,45 @@ function Allhands({ setObjetoSelecto }) {
                                 }}>
                                     {instancia === 'flop' ? orderBoardCards(objeto.flop.boardCards) : <div></div>}
                                     <div id='flop-notes' className={showFlopNotes === true && idClicked === objeto._id || flopTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes'} >
-                                        {objeto.flop.notes[0] === '' ? '' : <div><strong>Notes</strong>{objeto.flop.notes.map(item => 
-                                        {
+                                        {objeto.flop.notes[0] === '' ? '' : <div><strong>Notes</strong>{objeto.flop.notes[0].split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.flop.flopCheckCall === '' ? '' : <div><strong>CHECK/CALL</strong>: {objeto.flop.flopCheckCall.split("\n").map(item => 
-                                        {
+                                        {objeto.flop.flopCheckCall === '' ? '' : <div><strong>CHECK/CALL</strong>: {objeto.flop.flopCheckCall.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.flop.flopCheckFold === '' ? '' : <div><strong>CHECK/FOLD:</strong>{objeto.flop.flopCheckFold.split("\n").map(item => 
-                                        {
+                                        {objeto.flop.flopCheckFold === '' ? '' : <div><strong>CHECK/FOLD:</strong>{objeto.flop.flopCheckFold.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.flop.flopCheckRaise === '' ? '' : <div><strong>CHECK/RAISE:</strong>{objeto.flop.flopCheckRaise.split("\n").map(item => 
-                                        {
+                                        {objeto.flop.flopCheckRaise === '' ? '' : <div><strong>CHECK/RAISE:</strong>{objeto.flop.flopCheckRaise.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.flop.flopCheckBehind === '' ? '' : <div><strong>CHECK/BEHIND:</strong>{objeto.flop.flopCheckBehind.split("\n").map(item => 
-                                        {
+                                        {objeto.flop.flopCheckBehind === '' ? '' : <div><strong>CHECK/BEHIND:</strong>{objeto.flop.flopCheckBehind.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.flop.flopBet === '' ? '' : <div ><strong>BET:</strong>{objeto.flop.flopBet.split("\n").map(item => 
-                                        {
+                                        {objeto.flop.flopBet === '' ? '' : <div ><strong>BET:</strong>{objeto.flop.flopBet.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}<br />
@@ -924,51 +908,45 @@ function Allhands({ setObjetoSelecto }) {
 
                                     {orderBoardCards(objeto.flop.boardCards.concat(objeto.turn.boardCards))}
                                     <div id='turn-notes' className={showTurnNotes === true && idClicked === objeto._id || turnTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes'} >
-                                        {objeto.turn.notes[0] === '' ? '' : <div><strong>Notes</strong>{objeto.turn.notes.map(item => 
-                                        {
+                                        {objeto.turn.notes[0] === '' ? '' : <div><strong>Notes</strong>{objeto.turn.notes[0].split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.turn.turnCheckCall === '' ? '' : <div><strong>CHECK/CALL</strong>{objeto.turn.turnCheckCall.split("\n").map(item => 
-                                        {
+                                        {objeto.turn.turnCheckCall === '' ? '' : <div><strong>CHECK/CALL</strong>{objeto.turn.turnCheckCall.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.turn.turnCheckFold === '' ? '' : <div><strong>CHECK/FOLD</strong>{objeto.turn.turnCheckFold.split("\n").map(item => 
-                                        {
+                                        {objeto.turn.turnCheckFold === '' ? '' : <div><strong>CHECK/FOLD</strong>{objeto.turn.turnCheckFold.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.turn.turnCheckRaise === '' ? '' : <div><strong>CHECK/RAISE</strong>{objeto.turn.turnCheckRaise.split("\n").map(item => 
-                                        {
+                                        {objeto.turn.turnCheckRaise === '' ? '' : <div><strong>CHECK/RAISE</strong>{objeto.turn.turnCheckRaise.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.turn.turnCheckBehind === '' ? '' : <div><strong>CHECK/BEHIND</strong>{objeto.turn.turnCheckBehind.split("\n").map(item => 
-                                        {
+                                        {objeto.turn.turnCheckBehind === '' ? '' : <div><strong>CHECK/BEHIND</strong>{objeto.turn.turnCheckBehind.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.turn.turnBet === '' ? '' : <div ><strong>BET</strong>{objeto.turn.turnBet.split("\n").map(item => 
-                                        {
+                                        {objeto.turn.turnBet === '' ? '' : <div ><strong>BET</strong>{objeto.turn.turnBet.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}<br />
@@ -978,58 +956,52 @@ function Allhands({ setObjetoSelecto }) {
                             </td>
                             {/* River */}
                             <td className={instancia === 'river' ? 'preflopNotes-active' : 'preflopNotes'}>
-                                <div className='checkbox-boardTypes'  onClick={(e) => {
+                                <div className='checkbox-boardTypes' onClick={(e) => {
                                     setidClicked(objeto._id)
                                     showRiverNotes === true ? setShowRiverNotes(false) : setShowRiverNotes(true)
                                 }}>
                                     {orderBoardCards(objeto.flop.boardCards.concat(objeto.turn.boardCards).concat(objeto.river.boardCards))}
                                     <div id='river-notes' className={showRiverNotes === true && idClicked === objeto._id || riverTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes'} >
 
-                                        {objeto.river.notes[0] === '' ? '' : <div ><strong>Notes</strong>{objeto.river.notes.map(item => 
-                                        {
+                                        {objeto.river.notes[0] === '' ? '' : <div ><strong>Notes</strong>{objeto.river.notes[0].split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.river.riverCheckCall === '' ? '' : <div><strong>CHECK/CALL</strong>{objeto.river.riverCheckCall.split("\n").map(item => 
-                                        {
+                                        {objeto.river.riverCheckCall === '' ? '' : <div><strong>CHECK/CALL</strong>{objeto.river.riverCheckCall.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.river.riverCheckFold === '' ? '' : <div><strong>CHECK/FOLD</strong>{objeto.river.riverCheckFold.split("\n").map(item => 
-                                        {
+                                        {objeto.river.riverCheckFold === '' ? '' : <div><strong>CHECK/FOLD</strong>{objeto.river.riverCheckFold.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.river.riverCheckRaise === '' ? '' : <div><strong>CHECK/RAISE</strong>{objeto.river.riverCheckRaise.split("\n").map(item => 
-                                        {
+                                        {objeto.river.riverCheckRaise === '' ? '' : <div><strong>CHECK/RAISE</strong>{objeto.river.riverCheckRaise.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.river.riverCheckBehind === '' ? '' : <div><strong>CHECK/BEHIND</strong>{objeto.river.riverCheckBehind.split("\n").map(item => 
-                                        {
+                                        {objeto.river.riverCheckBehind === '' ? '' : <div><strong>CHECK/BEHIND</strong>{objeto.river.riverCheckBehind.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
-                                        {objeto.river.riverBet === '' ? '' : <div ><strong>BET</strong>{objeto.river.riverBet.split("\n").map(item => 
-                                        {
+                                        {objeto.river.riverBet === '' ? '' : <div ><strong>BET</strong>{objeto.river.riverBet.split("\n").map(item => {
                                             return (
                                                 <tr>
-                                                    <td>{ item }</td>
+                                                    <td>{item}</td>
                                                 </tr>
                                             );
                                         })}</div>}
