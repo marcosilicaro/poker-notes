@@ -455,6 +455,7 @@ function Addhands() {
               </optgroup>
               <optgroup label="IP-Sin Iniciativa">
                 <option value="vs check behind">vs check behind</option>
+                <option value="vs cbet V dps de retomar iniciativa en flop">vs cbet V dps de retomar iniciativa en flop</option>
                 <option value="vs cbet de V dps d checkraise en flop">vs cbet de V dps d checkraise en flop</option>
                 <option value="vs bet de V despues de su check behind en flop">vs bet de V despues de su check behind en flop</option>
               </optgroup>
@@ -603,6 +604,7 @@ function Addhands() {
               </optgroup>
               <optgroup label="IP-Sin Iniciativa">
                 <option value="vs check behind">vs check behind   </option>
+                <option value="vs cbet de V">vs cbet de V</option>
                 <option value="vs cbet de V dps de retomar iniciativa en turn">vs cbet de V dps de retomar iniciativa en turn</option>
               </optgroup>
               <optgroup label="OOP-Con Iniciativa">
