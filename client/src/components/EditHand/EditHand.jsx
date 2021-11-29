@@ -693,6 +693,8 @@ function EditHand({ ElObjetoSelecto }) {
             <select name="Situation" id="riverSituation" defaultValue='-'  >
               <option value={ElObjetoSelecto.river.situation}>{ElObjetoSelecto.river.situation}</option>
               <optgroup label="IP-Con Iniciativa">
+                <option value="vs check de V ante check behind de H en turn">vs check de V ante check behind de H en turn</option>
+                <option value="h probe bet en turn">h probe bet en turn</option>
               </optgroup>
               <optgroup label="IP-Sin Iniciativa">
               </optgroup>

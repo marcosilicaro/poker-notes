@@ -685,6 +685,8 @@ function Allhands({ setObjetoSelecto }) {
 
     const [uniquesituationList, setuniquesituationList] = useState([])
 
+    //highlight text
+
 
     // prueba lodash
     //let reemplazoDeCarta = 'carta'
@@ -693,7 +695,7 @@ function Allhands({ setObjetoSelecto }) {
     //console.log(segundoFiltrado)
 
     return (
-        <div className='table-container' >
+        <div className='table-container'>
 
             <h2>Filters</h2>
             <div className="urlInfo">
@@ -751,8 +753,7 @@ function Allhands({ setObjetoSelecto }) {
                     >
                         OOP
                     </Button>
-                    <br />
-                    <br />
+                    <br /><br />
                     <Button
                         variant={posicion === 'IP' ? "contained" : "outlined"}
                         name="posicion"
@@ -812,9 +813,6 @@ function Allhands({ setObjetoSelecto }) {
                         value='SI'
                         onClick={(e) => {
                             setIniciativa(e.currentTarget.value)
-                            setuniquesituationList(_.filter(uniquesituationList, function (situation) {
-                                return (situation.charAt(0) != 'H' && situation.charAt(0) != 'h');
-                            }))
                         }}
                     >
                         Sin iniciativa
@@ -826,9 +824,6 @@ function Allhands({ setObjetoSelecto }) {
                         value='CI'
                         onClick={(e) => {
                             setIniciativa(e.currentTarget.value)
-                            setuniquesituationList(_.filter(uniquesituationList, function (situation) {
-                                return (situation.charAt(0) != 'v' && situation.charAt(0) != 'V');
-                            }))
                         }}
                     >
                         Con iniciativa
@@ -884,16 +879,39 @@ function Allhands({ setObjetoSelecto }) {
                 {/* Situation */}
                 <div>
                     <h4>Situation</h4>
+                    <Button
+                        variant="outlined"
+                        onClick={(e) => {
+                            setuniquesituationList(_.filter(uniquesituationList, function (situation) {
+                                return (situation.charAt(0) != 'v' && situation.charAt(0) != 'V');
+                            }))
+                        }}
+                    >
+                        h
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        onClick={(e) => {
+                            setuniquesituationList(_.filter(uniquesituationList, function (situation) {
+                                return (situation.charAt(0) != 'h' && situation.charAt(0) != 'H');
+                            }))
+                        }}
+                    >
+                        vs
+                    </Button>
+                    <br /><br />
                     {uniquesituationList.map((item) => (
-                        <div>
-                            {item}{' '}
-                            <input
-                                type="radio"
-                                name='situation'
+                        <div className='situationButton'>
+                            <Button
+                                variant={situation === item ? "contained" : "outlined"}
                                 value={item}
+                                size="small"
                                 onClick={(e) => {
                                     setSituation(e.currentTarget.value)
-                                }} />
+                                }}
+                            >
+                                {item}
+                            </Button>
                         </div>
                     ))
                     }
@@ -1027,12 +1045,34 @@ function Allhands({ setObjetoSelecto }) {
                         4 cartas conectadas
                     </Button>
                 </div>
+                <div className="listaDeManosBuenas">
+                    <h4>Manos Hechas</h4>
+                    <p>flush</p>
+                    <p>straight</p>
+                    <p>trio</p>
+                    <p>set</p>
+                    <p>top pair</p>
+                    <p>second pair</p>
+                    <p>third pair</p>
+                    <p>fourth pair</p>
+                </div>
+                <div className="listDeManosMalas">
+                    <h4>Proyectos</h4>
+                    <p>combo draw</p>
+                    <p>p9 + p8</p>
+                    <p>p9</p>
+                    <p>p8</p>
+                    <p>gutshot</p>
+                    <p>bk fl + bk st</p>
+                    <p>bk</p>
+                    <p>high card</p>
+                </div>
             </div>
             <br /><br />
 
             <br />
             {/* Tabla */}
-            <table className='table table-bordered'>
+            <table className='table table-bordered' id='wholeTable'>
                 <thead>
                     <th className='th-preflop' >Preflop</th>
                     <th className={`${instancia === 'flop' ? 'preflopNotes-active' : 'preflopNotes'}`} onClick={(e) => { flopTitleClicked === false ? setflopTitleClicked(true) : setflopTitleClicked(false) }}>Flop</th>

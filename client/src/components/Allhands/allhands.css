@@ -13,9 +13,23 @@ button:focus {outline:0;}
     
 }
 
-.urlInfo{
+
+.situationButton{
+    margin-bottom:0.5vh;
+}
+
+.urlInfo {
     display: flex;
     align-items: center;
+}
+
+.listaDeManosBuenas p{
+    margin-bottom: 0;
+    margin-left: 2vw;
+}
+
+.listDeManosMalas p{
+    margin-bottom: 0;
 }
 
 .urlInfo h4{
