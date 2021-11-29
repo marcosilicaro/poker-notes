@@ -1,7 +1,8 @@
 import './addhands.css'
 import axios from '../../axios'
 import { useState } from 'react';
-import { useEffect } from "react";
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+
 
 function Addhands() {
 
@@ -110,9 +111,10 @@ function Addhands() {
     <div className="newProduct">
       <h1 className="addProductTitle">New Hand</h1>
       <form className="addProductForm">
-
+        {/* PREFLOP SECTION */}
         <h2>Preflop</h2><br />
         <div className='divider'>
+          {/* CARTAS PREFLOP */}
           <div className="addProductItem cartas-box">
             <label>Carta 1 PREFLOP</label>
             <select name="carta-1-preflop" id="carta-1-preflop" defaultValue='-'  >
@@ -163,6 +165,7 @@ function Addhands() {
               <option value="rojo">CORAZONES - ROJO</option>
             </select>
           </div>
+          {/* POS - TABLE POS - INI */}
           <div className="addProductItem" >
             <label>Posicion</label>
             <select
@@ -199,20 +202,23 @@ function Addhands() {
             </select>
 
           </div>
+          {/* NOTES */}
           <div className="addProductItem">
             <label>Notes</label>
-            <textarea
-              type="text"
+            <TextareaAutosize
+              aria-label="empty textarea"
               placeholder="Notas-preflop"
               name="Notas-preflop"
-              className="notes"
               id="preflopNotes"
+              style={{ width: 400 }}
             />
           </div>
         </div>
-
+        {/* FLOP SECTION */}
         <h2>Flop</h2>
+        {/* PRIMERA LINEA */}
         <div className='divider'>
+          {/* CARTAS FLOP */}
           <div className="addProductItem cartas-box">
             <label>Carta 1 FLOP</label>
             <select name="carta-1-flop" id="carta-1-flop"  >
@@ -287,6 +293,7 @@ function Addhands() {
               <option value="rojo">CORAZONES - ROJO</option>
             </select>
           </div>
+          {/* POS - INI - SIT - BOARD - DECI */}
           <div className="addProductItem">
             <label>Posicion</label>
             <select name="heroPosition" id="heroPositionPija" defaultValue='-' className={positionExist === '-' ? 'background-rojo' : 'background-negro'}>
@@ -337,17 +344,19 @@ function Addhands() {
 
 
           </div>
+          {/* NOTES */}
           <div className="addProductItem">
             <label>Notes</label>
-            <textarea
-              type="text"
-              placeholder="Notas-preflop"
-              name="Notas-preflop"
-              className="notes"
+            <TextareaAutosize
+              aria-label="empty textarea"
+              placeholder="Notas-flop"
+              name="Notas-flop"
               id="flop.notes"
+              style={{ width: 400 }}
             />
           </div>
         </div>
+        {/* SEGUNDA LINEA */}
         <div className="addProductItem">
           <div className="notesOnDecisions">
             <div className="top-decision">
@@ -404,9 +413,11 @@ function Addhands() {
             </div>
           </div>
         </div>
-
+        {/* TURN SECTION */}
         <h2>Turn</h2>
+        {/* PRIMERA LINEA */}
         <div className='divider'>
+          {/* CARTAS TURN */}
           <div className="addProductItem cartas-box">
             <label>Carta 1 TURN</label>
             <select name="carta-1-turn" id="carta-1-turn" defaultValue='-'  >
@@ -433,6 +444,7 @@ function Addhands() {
               <option value="rojo">CORAZONES - ROJO</option>
             </select>
           </div>
+          {/* POS - INI - SIT - BOARD - DEC */}
           <div className="addProductItem">
             <label>Posicion</label>
             <select name="heroPosition" id="heroPositionPija2" defaultValue='-' className={positionExist === '-' ? 'background-rojo' : 'background-negro'}>
@@ -487,19 +499,21 @@ function Addhands() {
 
 
           </div>
+          {/* NOTES */}
           <div className="addProductItem">
             <label>Notes</label>
-            <textarea
-              type="text"
-              placeholder="Notas-preflop"
-              name="Notas-preflop"
-              className="notes"
+            <TextareaAutosize
+              aria-label="empty textarea"
+              placeholder="Notas-flop"
+              name="Notas-flop"
               id="turn.notes"
+              style={{ width: 400 }}
             />
           </div>
         </div>
+        {/* SEGUNDA LINEA */}
         <div className="addProductItem">
-          <div className="notesOnDecisions">
+          <div className="top-decision">
             <div className="top-decision">
               <div className="check-call">
                 <label>Check-call</label>
@@ -554,9 +568,11 @@ function Addhands() {
             </div>
           </div>
         </div>
-
+        {/* RIVER SECTION */}
         <h2>River</h2>
+        {/* PRIMERA LINEA */}
         <div className='divider'>
+          {/* CARTAS RIVER */}
           <div className="addProductItem cartas-box">
             <label>Carta 1 RIVER</label>
             <select name="carta-1-river" id="carta-1-river" defaultValue='-'  >
@@ -583,6 +599,7 @@ function Addhands() {
               <option value="rojo">CORAZONES - ROJO</option>
             </select>
           </div>
+          {/* POS.. */}
           <div className="addProductItem">
             <label>Posicion</label>
             <select name="heroPosition" id="heroPositionPija3" defaultValue='-' className={positionExist === '-' ? 'background-rojo' : 'background-negro'}>
@@ -638,18 +655,19 @@ function Addhands() {
 
 
           </div>
+          {/* NOTES */}
           <div className="addProductItem">
             <label>Notes</label>
-            <textarea
-              type="text"
+            <TextareaAutosize
+              aria-label="empty textarea"
               placeholder="Notas"
               name="Notas"
-              className="notes"
               id="river.notes"
+              style={{ width: 400 }}
             />
           </div>
         </div>
-
+        {/* SEGUNDA LINEA */}
         <div className="addProductItem">
           <div className="notesOnDecisions">
             <div className="top-decision">
@@ -706,8 +724,7 @@ function Addhands() {
             </div>
           </div>
         </div>
-
-
+        {/* BOTON SUBMIT */}
         <button onClick={handleSubmit}>SEND</button>
         <br /><br /><br /><br />
       </form>

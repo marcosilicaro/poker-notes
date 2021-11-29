@@ -4,6 +4,8 @@ import './allhands.css'
 import axios from '../../axios'
 import { useEffect } from "react";
 import { Settings } from "@material-ui/icons";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 import { Link } from "react-router-dom";
 import _ from 'lodash';
@@ -19,6 +21,11 @@ function Allhands({ setObjetoSelecto }) {
     const [instancia, setInstancia] = useState('')
     const [boardType, setBoardType] = useState('')
     const [situation, setSituation] = useState('')
+
+    const [colores, setcolores] = useState('')
+    const [repeticiones, setrepeticiones] = useState('')
+    const [conexiones, setconexiones] = useState('')
+
 
     const [showFlopNotes, setShowFlopNotes] = useState(false)
     const [showTurnNotes, setShowTurnNotes] = useState(false)
@@ -675,6 +682,7 @@ function Allhands({ setObjetoSelecto }) {
         if (hand.turn.situation != '-') { situationListforTurn.push(hand.turn.situation) }
         if (hand.river.situation != '-') { situationListforRiver.push(hand.river.situation) }
     })
+
     const [uniquesituationList, setuniquesituationList] = useState([])
 
 
@@ -683,76 +691,195 @@ function Allhands({ setObjetoSelecto }) {
     //let primerFiltrado = _.filter(handsData, ['turn.situation', 'vs 3rd barrel']);
     //let segundoFiltrado = _.filter(primerFiltrado, ['preflop.heroCards[0]' + reemplazoDeCarta, '3'] || ['preflop.heroCards[1].carta', 'A']);
     //console.log(segundoFiltrado)
+
     return (
         <div className='table-container' >
 
             <h2>Filters</h2>
+            <div className="urlInfo">
+                <h4>
+                    Url Info:
+                </h4>
+                <span>
+                    {posicion} + {instancia} + {iniciativa} + {boardType} + {situation}
+                </span>
+            </div>
             {/* Botones */}
-            <button onClick={(e) => { clickButton() }}> SEND</button>
-            <button onClick={(e) => {
-                setPosicion('')
-                setBoardType('')
-                setIniciativa('')
-                setInstancia('')
-                setSituation('')
-                axios.get("/").then((res) => {
-                    sethandsData(res.data)
-                })
-            }}> RESET</button><br /><br />
-            {posicion} - {instancia} - {iniciativa} - {boardType} - {situation}
+            <div className="sendResetButtons">
+                <Button
+                    variant="contained"
+                    onClick={(e) => { clickButton() }}
+                    color="success"
+                >
+                    Send
+                </Button>
+                <Button
+                    variant="outlined"
+                    onClick={(e) => {
+                        setPosicion('')
+                        setBoardType('')
+                        setIniciativa('')
+                        setInstancia('')
+                        setSituation('')
+                        setcolores('')
+                        setrepeticiones('')
+                        setconexiones('')
+                        setuniquesituationList([])
+                        axios.get("/").then((res) => {
+                            sethandsData(res.data)
+                        })
+                    }}
+                    color="success"
+                >
+                    Reset
+                </Button>
+            </div>
+            <br />
             {/* Checkboxes de filtrado */}
+            {/* Primera linea */}
             <div className=' checkbox-boardTypes'>
                 {/* Posicion */}
                 <div>
                     <h4>Posicion</h4>
-                    OOP  <input type="radio" name="posicion" value='OOP' onClick={(e) => {
-                        setPosicion(e.currentTarget.value)
-                    }} /><br /><br />
-                    IP  <input type="radio" name="posicion" value='IP' onClick={(e) => {
-                        setPosicion(e.currentTarget.value)
-                    }} /><br /><br />
+                    <Button
+                        variant={posicion === 'OOP' ? "contained" : "outlined"}
+                        name="posicion"
+                        value='OOP'
+                        onClick={(e) => {
+                            setPosicion(e.currentTarget.value)
+                        }}
+                    >
+                        OOP
+                    </Button>
+                    <br />
+                    <br />
+                    <Button
+                        variant={posicion === 'IP' ? "contained" : "outlined"}
+                        name="posicion"
+                        value='IP'
+                        onClick={(e) => {
+                            setPosicion(e.currentTarget.value)
+                        }}
+                    >
+                        IP
+                    </Button>
                 </div>
                 {/* Instancia */}
                 <div>
                     <h4>Instancia</h4>
-                    FLOP  <input type="radio" name='instancia' value="flop" onClick={(e) => {
-                        setInstancia(e.currentTarget.value)
-                        setuniquesituationList([...new Set(situationListforFlop)])
-                    }} /><br /><br />
-                    TURN  <input type="radio" name='instancia' value="turn" onClick={(e) => {
-                        setInstancia(e.currentTarget.value)
-                        setuniquesituationList([...new Set(situationListforTurn)])
-                    }} /><br /><br />
-                    RIVER  <input type="radio" name='instancia' value="river" onClick={(e) => {
-                        setInstancia(e.currentTarget.value)
-                        setuniquesituationList([...new Set(situationListforRiver)])
-                    }} /><br /><br />
+                    <Button
+                        variant={instancia === 'flop' ? "contained" : "outlined"}
+                        name="instancia"
+                        value='flop'
+                        onClick={(e) => {
+                            setInstancia(e.currentTarget.value)
+                            setuniquesituationList([...new Set(situationListforFlop)])
+                        }}
+                    >
+                        FLOP
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={instancia === 'turn' ? "contained" : "outlined"}
+                        name="instancia"
+                        value='turn'
+                        onClick={(e) => {
+                            setInstancia(e.currentTarget.value)
+                            setuniquesituationList([...new Set(situationListforTurn)])
+                        }}
+                    >
+                        TURN
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={instancia === 'river' ? "contained" : "outlined"}
+                        name="instancia"
+                        value='river'
+                        onClick={(e) => {
+                            setInstancia(e.currentTarget.value)
+                            setuniquesituationList([...new Set(situationListforRiver)])
+                        }}
+                    >
+                        RIVER
+                    </Button>
                 </div>
                 {/* Iniciativa */}
                 <div>
                     <h4>Iniciativa</h4>
-                    Sin iniciativa  <input type="radio" value="SI" name='iniciativa' onClick={(e) => {
-                        setIniciativa(e.currentTarget.value)
-                    }} /><br /><br />
-                    Con iniciativa  <input type="radio" value="CI" name='iniciativa' onClick={(e) => {
-                        setIniciativa(e.currentTarget.value)
-                    }} /><br /><br />
+                    <Button
+                        variant={iniciativa === 'SI' ? "contained" : "outlined"}
+                        name="iniciativa"
+                        value='SI'
+                        onClick={(e) => {
+                            setIniciativa(e.currentTarget.value)
+                            setuniquesituationList(_.filter(uniquesituationList, function (situation) {
+                                return (situation.charAt(0) != 'H' && situation.charAt(0) != 'h');
+                            }))
+                        }}
+                    >
+                        Sin iniciativa
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={iniciativa === 'CI' ? "contained" : "outlined"}
+                        name="iniciativa"
+                        value='CI'
+                        onClick={(e) => {
+                            setIniciativa(e.currentTarget.value)
+                            setuniquesituationList(_.filter(uniquesituationList, function (situation) {
+                                return (situation.charAt(0) != 'v' && situation.charAt(0) != 'V');
+                            }))
+                        }}
+                    >
+                        Con iniciativa
+                    </Button>
                 </div>
                 {/* Board Type */}
                 <div>
                     <h4>Board Type</h4>
-                    Seco  <input type="radio" name="boardType" value='seco' onClick={(e) => {
-                        setBoardType(e.currentTarget.value)
-                    }} /><br /><br />
-                    Semi-mojado  <input type="radio" name="boardType" value='semi mojado' onClick={(e) => {
-                        setBoardType(e.currentTarget.value)
-                    }} /><br /><br />
-                    Ofensivo  <input type="radio" name="boardType" value='ofensivo' onClick={(e) => {
-                        setBoardType(e.currentTarget.value)
-                    }} /><br /><br />
-                    Mojado  <input type="radio" name="boardType" value='mojado' onClick={(e) => {
-                        setBoardType(e.currentTarget.value)
-                    }} /><br /><br />
+                    <Button
+                        variant={boardType === 'seco' ? "contained" : "outlined"}
+                        name="boardType"
+                        value='seco'
+                        onClick={(e) => {
+                            setBoardType(e.currentTarget.value)
+                        }}
+                    >
+                        Seco
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={boardType === 'semi mojado' ? "contained" : "outlined"}
+                        name="boardType"
+                        value='semi mojado'
+                        onClick={(e) => {
+                            setBoardType(e.currentTarget.value)
+                        }}
+                    >
+                        Semi-mojado
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={boardType === 'ofensivo' ? "contained" : "outlined"}
+                        name="boardType"
+                        value='ofensivo'
+                        onClick={(e) => {
+                            setBoardType(e.currentTarget.value)
+                        }}
+                    >
+                        Ofensivo
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={boardType === 'mojado' ? "contained" : "outlined"}
+                        name="boardType"
+                        value='mojado'
+                        onClick={(e) => {
+                            setBoardType(e.currentTarget.value)
+                        }}
+                    >
+                        Mojado
+                    </Button>
                 </div>
                 {/* Situation */}
                 <div>
@@ -772,50 +899,137 @@ function Allhands({ setObjetoSelecto }) {
                     }
                 </div>
             </div>
+            <br />
+            {/* Segunda linea */}
             <div className=' checkbox-boardTypes'>
                 {/* Colores */}
                 <div>
                     <h4>Colores</h4>
-                    1 colores  <input type="radio" name="colores" value='1colores' onClick={(e) => {
-                        howManyColors(handsData, instancia, 1)
-                    }} /><br /><br />
-                    2 colores  <input type="radio" name="colores" value='2colores' onClick={(e) => {
-                        howManyColors(handsData, instancia, 2)
-                    }} /><br /><br />
-                    3 colores  <input type="radio" name="colores" value='3colores' onClick={(e) => {
-                        howManyColors(handsData, instancia, 3)
-                    }} /><br /><br />
-                    4 colores  <input type="radio" name="colores" value='4colores' onClick={(e) => {
-                        howManyColors(handsData, instancia, 4)
-                    }} /><br /><br />
+                    <Button
+                        variant={colores === '1' ? "contained" : "outlined"}
+                        name="colores"
+                        value='1colores'
+                        onClick={(e) => {
+                            howManyColors(handsData, instancia, 1)
+                            setcolores('1')
+                        }}
+                    >
+                        Rainbow
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={colores === '2' ? "contained" : "outlined"}
+                        name="colores"
+                        value='2colores'
+                        onClick={(e) => {
+                            howManyColors(handsData, instancia, 2)
+                            setcolores('2')
+                        }}
+                    >
+                        2 colores
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={colores === '3' ? "contained" : "outlined"}
+                        name="colores"
+                        value='3colores'
+                        onClick={(e) => {
+                            howManyColors(handsData, instancia, 3)
+                            setcolores('3')
+                        }}
+                    >
+                        3 colores
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={colores === '4' ? "contained" : "outlined"}
+                        name="colores"
+                        value='4colores'
+                        onClick={(e) => {
+                            howManyColors(handsData, instancia, 4)
+                            setcolores('4')
+                        }}
+                    >
+                        4 colores
+                    </Button>
                 </div>
                 {/* Repeticion */}
                 <div>
                     <h4>Repeticiones</h4>
-                    Doblado  <input type="radio" name="repeticion" value='2colores' onClick={(e) => {
-                        filtradoPorRepeticion(handsData, instancia, 2)
-                    }} /><br /><br />
-                    Triplicado  <input type="radio" name="repeticion" value='3colores' onClick={(e) => {
-                        filtradoPorRepeticion(handsData, instancia, 3)
-                    }} /><br /><br />
+                    <Button
+                        variant={repeticiones === '2' ? "contained" : "outlined"}
+                        name="repeticion"
+                        value='2colores'
+                        onClick={(e) => {
+                            filtradoPorRepeticion(handsData, instancia, 2)
+                            setrepeticiones('2')
+                        }}
+                    >
+                        2 repetidas
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={repeticiones === '3' ? "contained" : "outlined"}
+                        name="repeticion"
+                        value='3colores'
+                        onClick={(e) => {
+                            filtradoPorRepeticion(handsData, instancia, 3)
+                            setrepeticiones('3')
+                        }}
+                    >
+                        3 repetidas
+                    </Button>
                 </div>
                 {/* Conexion */}
                 <div>
                     <h4>Conexiones</h4>
-                    0 cartas conectadas  <input type="radio" name="conexion" value='2colores' onClick={(e) => {
-                        filtradoPorConexion(handsData, 0)
-                    }} /><br /><br />
-                    2 cartas conectadas  <input type="radio" name="conexion" value='2colores' onClick={(e) => {
-                        filtradoPorConexion(handsData, 2)
-                    }} /><br /><br />
-                    3 cartas conectadas  <input type="radio" name="conexion" value='3colores' onClick={(e) => {
-                        filtradoPorConexion(handsData, 3)
-                    }} /><br /><br />
-                    4 cartas conectadas  <input type="radio" name="conexion" value='4colores' onClick={(e) => {
-                        filtradoPorConexion(handsData, 4)
-                    }} /><br /><br />
+                    <Button
+                        variant={conexiones === '0' ? "contained" : "outlined"}
+                        name="conexion"
+                        value='3colores'
+                        onClick={(e) => {
+                            filtradoPorConexion(handsData, 0)
+                            setconexiones('0')
+                        }}
+                    >
+                        0 cartas conectadas
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={conexiones === '2' ? "contained" : "outlined"}
+                        name="conexion"
+                        onClick={(e) => {
+                            filtradoPorConexion(handsData, 2)
+                            setconexiones('2')
+                        }}
+                    >
+                        2 cartas conectadas
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={conexiones === '3' ? "contained" : "outlined"}
+                        name="conexion"
+                        onClick={(e) => {
+                            filtradoPorConexion(handsData, 3)
+                            setconexiones('3')
+                        }}
+                    >
+                        3 cartas conectadas
+                    </Button><br /><br />
+                    <Button
+                        variant={conexiones === '4' ? "contained" : "outlined"}
+                        name="conexion"
+                        onClick={(e) => {
+                            filtradoPorConexion(handsData, 4)
+                            setconexiones('4')
+                        }}
+                    >
+                        4 cartas conectadas
+                    </Button>
                 </div>
             </div>
+            <br /><br />
+
             <br />
             {/* Tabla */}
             <table className='table table-bordered'>

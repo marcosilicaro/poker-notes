@@ -2,6 +2,8 @@ h5{
     margin-bottom:-10px
 }
 
+button:focus {outline:0;}
+
 .checkbox-boardTypes{
     display: flex;
     align-items: center;
@@ -9,6 +11,15 @@ h5{
     width: 90% !important;
     align-items: flex-start;
     
+}
+
+.urlInfo{
+    display: flex;
+    align-items: center;
+}
+
+.urlInfo h4{
+    margin-right: 10px;
 }
 
 #river-notes > div{

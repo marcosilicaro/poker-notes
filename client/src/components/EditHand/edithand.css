@@ -12,6 +12,14 @@ textarea{
     height:10vh
 }
 
+.sendResetButtons button{
+    margin-right:10px !important
+}
+
+.urlInfo{
+    margin: 2vh 0 2vh 0
+}
+
 .top-decision textarea{
     margin-right: 10px;
     
