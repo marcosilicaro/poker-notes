@@ -200,7 +200,6 @@ function Addhands() {
               <option value="SI">SIN INICIATIVA</option>
               <option value="CI">CON INICIATIVA</option>
             </select>
-
           </div>
           {/* NOTES */}
           <div className="addProductItem">
@@ -311,11 +310,11 @@ function Addhands() {
             <select name="Situation" id="flopSituation" defaultValue='-'  >
               <option value="-">-</option>
               <optgroup label="IP-Con Iniciativa">
-                <option value="H OR preflop">H OR preflop</option>
-                <option value="H OR preflop -> vs re-raise">H OR preflop -> vs re-raise</option>
+                <option value="H OR preflop">H or preflop</option>
+                
               </optgroup>
               <optgroup label="IP-Sin Iniciativa">
-
+              <option value="H OR preflop -> vs re-raise">vs V reraise flop</option>
                 <option value="vs check behind">vs check behind</option>
               </optgroup>
               <optgroup label="OOP-Con Iniciativa">
