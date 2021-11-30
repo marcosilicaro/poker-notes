@@ -1046,7 +1046,7 @@ function Allhands({ setObjetoSelecto }) {
                     </Button>
                 </div>
                 <div className="listaDeManosBuenas">
-                    <h4>Manos Hechas</h4>
+                    <h4>Manos</h4>
                     <p>flush</p>
                     <p>straight</p>
                     <p>trio</p>
