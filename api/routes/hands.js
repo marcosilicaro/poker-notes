@@ -93,8 +93,8 @@ router.get("/:parameter", async (req, res) => {
     try {
       const hand = await Hand.find({
         'preflop.heroPosition': heroPosition,
-        'flop.heroIniciativa': heroIniciativa,
-        'flop.boardType': boardType,
+        //'flop.heroIniciativa': heroIniciativa,
+        //'flop.boardType': boardType,
         'flop.situation': situation
       });
       res.status(200).json(hand);
@@ -107,8 +107,8 @@ router.get("/:parameter", async (req, res) => {
     try {
       const hand = await Hand.find({
         'preflop.heroPosition': heroPosition,
-        'turn.heroIniciativa': heroIniciativa,
-        'turn.boardType': boardType,
+        //'turn.heroIniciativa': heroIniciativa,
+        //'turn.boardType': boardType,
         'turn.situation': situation
       });
       res.status(200).json(hand);
@@ -121,8 +121,8 @@ router.get("/:parameter", async (req, res) => {
     try {
       const hand = await Hand.find({
         'preflop.heroPosition': heroPosition,
-        'river.heroIniciativa': heroIniciativa,
-        'river.boardType': boardType,
+        //'river.heroIniciativa': heroIniciativa,
+        //'river.boardType': boardType,
         'river.situation': situation
       });
       res.status(200).json(hand);

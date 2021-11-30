@@ -4,7 +4,6 @@ import './allhands.css'
 import axios from '../../axios'
 import { useEffect } from "react";
 import { Settings } from "@material-ui/icons";
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 import { Link } from "react-router-dom";
@@ -805,8 +804,8 @@ function Allhands({ setObjetoSelecto }) {
                     </Button>
                 </div>
                 {/* Iniciativa */}
-                <div>
-                    <h4>Iniciativa</h4>
+                <div className='settings'>
+                    <h4 >Iniciativa</h4>
                     <Button
                         variant={iniciativa === 'SI' ? "contained" : "outlined"}
                         name="iniciativa"
@@ -830,7 +829,7 @@ function Allhands({ setObjetoSelecto }) {
                     </Button>
                 </div>
                 {/* Board Type */}
-                <div>
+                <div className='settings'>
                     <h4>Board Type</h4>
                     <Button
                         variant={boardType === 'seco' ? "contained" : "outlined"}
