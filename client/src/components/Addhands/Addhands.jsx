@@ -2,6 +2,7 @@ import './addhands.css'
 import axios from '../../axios'
 import { useState } from 'react';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import Selector from '../Selector/Selector';
 
 
 function Addhands() {
@@ -113,8 +114,11 @@ function Addhands() {
       <form className="addProductForm">
         {/* PREFLOP SECTION */}
         <h2>Preflop</h2><br />
+        <Selector />
+        <br /><br />
         <div className='divider'>
           {/* CARTAS PREFLOP */}
+
           <div className="addProductItem cartas-box">
             <label>Carta 1 PREFLOP</label>
             <select name="carta-1-preflop" id="carta-1-preflop" defaultValue='-'  >
@@ -310,11 +314,11 @@ function Addhands() {
             <select name="Situation" id="flopSituation" defaultValue='-'  >
               <option value="-">-</option>
               <optgroup label="IP-Con Iniciativa">
-                <option value="H OR preflop">H or preflop</option>
-                
+                <option value="H or preflop">H or preflop</option>
+
               </optgroup>
               <optgroup label="IP-Sin Iniciativa">
-              <option value="H OR preflop -> vs re-raise">vs V reraise flop</option>
+                <option value="H OR preflop -> vs re-raise">vs V reraise flop</option>
                 <option value="vs check behind">vs check behind</option>
               </optgroup>
               <optgroup label="OOP-Con Iniciativa">
@@ -472,6 +476,7 @@ function Addhands() {
               </optgroup>
               <optgroup label="OOP-Con Iniciativa">
                 <option value="H checkraise en flop">H checkraise en flop</option>
+                <option value="H check behind en flop -> V check en flop">H check behind en flop -> V check en flop</option>
               </optgroup>
               <optgroup label="OOP-Sin Iniciativa">
                 <option value="vs 3rd barrel">vs 3rd barrel</option>
