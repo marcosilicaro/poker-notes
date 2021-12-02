@@ -131,7 +131,7 @@ function Selector({
             console.log('carta turn reseteadas')
 
         } else if (instancia === 'river') {
-            setturnCarta({ carta: '', color: '' })
+            setriverCarta({ carta: '', color: '' })
             document.getElementById("selectedRiver").classList.remove('addBorder')
             document.getElementById("selectedRiver").removeAttribute('id')
 
@@ -143,51 +143,45 @@ function Selector({
     return (
         <div className='selector-container'>
 
-            <Button
-                variant="contained"
-                color="success"
-                onClick={e => resetCards()}
-            >
-                Reset
-            </Button>
+
             <div className="picas">
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>A</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>2</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>3</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>4</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>5</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>6</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>7</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>8</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>9</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>T</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>J</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>Q</div>
-                <div className="negro" onClick={e => {
+                <div className="picas" onClick={e => {
                     eventToParent(e)
                 }}>K</div>
             </div>
@@ -314,6 +308,15 @@ function Selector({
                     eventToParent(e)
                 }}>K</div>
             </div>
+            <br />
+            <Button
+                variant="contained"
+                color="success"
+                onClick={e => resetCards()}
+            >
+                Reset
+
+            </Button>
             <br />
         </div>
     )

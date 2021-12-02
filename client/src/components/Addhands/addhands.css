@@ -1,8 +1,21 @@
 .featured {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
+
+
+.item> button{
+  margin-bottom: 10px;
+}
+
+.item{
+  margin-right:50px;  
+}
+
+.situation > button{
+  width:17vw !important
+}
   
   .featuredItem {
     flex: 1;
