@@ -1,0 +1,58 @@
+.selector-container{
+    display: grid;
+    width: 100%;
+    justify-content: center;
+}
+
+.selector-container > button{
+    width:20px;
+}
+
+.picas, .treboles, .diamantes, .corazones{
+    display: flex;
+    width: 100%;
+    font-weight: 1000;
+    font-size: 35px;
+    
+}
+
+.picas > div{
+    margin-right:50px;
+    cursor: pointer;
+}
+
+.treboles > div{
+    margin-right:50px;
+    cursor: pointer;
+}
+
+.diamantes > div{
+    margin-right:50px;
+    cursor: pointer;
+}
+
+.corazones > div{
+    margin-right:50px;
+    cursor: pointer;
+}
+
+.treboles{
+    color:green
+}
+
+.diamantes{
+    color:blue
+}
+
+.corazones{
+    color:red
+}
+
+.carta{
+    margin-right:50px;
+    cursor: pointer;
+}
+
+.addBorder{
+    border:3px solid gray
+}

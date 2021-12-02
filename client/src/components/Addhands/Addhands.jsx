@@ -7,10 +7,19 @@ import Selector from '../Selector/Selector';
 
 function Addhands() {
 
-
-
-
   const [positionExist, setpositionExist] = useState('-')
+
+  const [preflopCarta1, setpreflopCarta1] = useState({ carta: '', color: '' })
+  const [preflopCarta2, setpreflopCarta2] = useState({ carta: '', color: '' })
+
+  const [flopCarta1, setflopCarta1] = useState({ carta: '', color: '' })
+  const [flopCarta2, setflopCarta2] = useState({ carta: '', color: '' })
+  const [flopCarta3, setflopCarta3] = useState({ carta: '', color: '' })
+
+  const [turnCarta, setturnCarta] = useState({ carta: '', color: '' })
+
+  const [riverCarta, setriverCarta] = useState({ carta: '', color: '' })
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,12 +27,12 @@ function Addhands() {
       "preflop": {
         "heroCards": [
           {
-            "carta": document.getElementById("carta-1-preflop").value,
-            "color": document.getElementById("colorCarta-1-preflop").value
+            "carta": preflopCarta1.carta,
+            "color": preflopCarta1.color
           },
           {
-            "carta": document.getElementById("carta-2-preflop").value,
-            "color": document.getElementById("colorCarta-2-preflop").value
+            "carta": preflopCarta2.carta,
+            "color": preflopCarta2.color
           }
         ],
         "heroIniciativa": document.getElementById("preflop.heroIniciativa").value,
@@ -37,16 +46,16 @@ function Addhands() {
         "situation": document.getElementById("flopSituation").value,
         "boardCards": [
           {
-            "carta": document.getElementById("carta-1-flop").value,
-            "color": document.getElementById("colorCarta-1-flop").value
+            "carta": flopCarta1.carta,
+            "color": flopCarta1.color
           },
           {
-            "carta": document.getElementById("carta-2-flop").value,
-            "color": document.getElementById("colorCarta-2-flop").value
+            "carta": flopCarta2.carta,
+            "color": flopCarta2.color
           },
           {
-            "carta": document.getElementById("carta-3-flop").value,
-            "color": document.getElementById("colorCarta-3-flop").value
+            "carta": flopCarta3.carta,
+            "color": flopCarta3.color
           }
         ],
         "heroIniciativa": document.getElementById("flop.heroIniciativa").value,
@@ -64,8 +73,8 @@ function Addhands() {
       },
       "turn": {
         "boardCards": {
-          "carta": document.getElementById("carta-1-turn").value,
-          "color": document.getElementById("colorCarta-1-turn").value
+          "carta": turnCarta.carta,
+          "color": turnCarta.color
         },
         "heroIniciativa": document.getElementById("turn.heroIniciativa").value,
         "situation": document.getElementById("turnSituation").value,
@@ -83,8 +92,8 @@ function Addhands() {
       },
       "river": {
         "boardCards": {
-          "carta": document.getElementById("carta-1-river").value,
-          "color": document.getElementById("colorCarta-1-river").value
+          "carta": riverCarta.carta,
+          "color": riverCarta.color,
         },
         "heroIniciativa": document.getElementById("river.heroIniciativa").value,
         "situation": document.getElementById("riverSituation").value,
@@ -114,7 +123,13 @@ function Addhands() {
       <form className="addProductForm">
         {/* PREFLOP SECTION */}
         <h2>Preflop</h2><br />
-        <Selector />
+        <Selector
+          setpreflopCarta1={setpreflopCarta1}
+          preflopCarta1={preflopCarta1}
+          setpreflopCarta2={setpreflopCarta2}
+          preflopCarta2={preflopCarta2}
+          instancia='preflop'
+        />
         <br /><br />
         <div className='divider'>
           {/* CARTAS PREFLOP */}
@@ -220,6 +235,15 @@ function Addhands() {
         {/* FLOP SECTION */}
         <h2>Flop</h2>
         {/* PRIMERA LINEA */}
+        <Selector
+          setflopCarta1={setflopCarta1}
+          flopCarta1={flopCarta1}
+          setflopCarta2={setflopCarta2}
+          flopCarta2={flopCarta2}
+          setflopCarta3={setflopCarta3}
+          flopCarta3={flopCarta3}
+          instancia='flop'
+        />
         <div className='divider'>
           {/* CARTAS FLOP */}
           <div className="addProductItem cartas-box">
@@ -419,6 +443,11 @@ function Addhands() {
         {/* TURN SECTION */}
         <h2>Turn</h2>
         {/* PRIMERA LINEA */}
+        <Selector
+          turnCarta={turnCarta}
+          setturnCarta={setturnCarta}
+          instancia='turn'
+        />
         <div className='divider'>
           {/* CARTAS TURN */}
           <div className="addProductItem cartas-box">
@@ -575,6 +604,11 @@ function Addhands() {
         {/* RIVER SECTION */}
         <h2>River</h2>
         {/* PRIMERA LINEA */}
+        <Selector
+          riverCarta={riverCarta}
+          setriverCarta={setriverCarta}
+          instancia='river'
+        />
         <div className='divider'>
           {/* CARTAS RIVER */}
           <div className="addProductItem cartas-box">
