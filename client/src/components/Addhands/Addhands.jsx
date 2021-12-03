@@ -38,6 +38,8 @@ function Addhands() {
   const [situacionRiver, setsituacionRiver] = useState('')
   const [boardTypeRiver, setBoardTypeRiver] = useState('')
 
+  const [author, setauthor] = useState('david diaz')
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,6 +58,7 @@ function Addhands() {
         "heroIniciativa": iniciativaPreflop,
         "heroPosition": posicion,
         "heroExactPosition": heroPosicion,
+        "author": author,
         "notes": [
           document.getElementById("preflopNotes").value
         ]
@@ -133,6 +136,14 @@ function Addhands() {
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Hand</h1>
+      <Button
+        variant={author === 'david diaz' ? 'contained' : 'outlined'}
+        onClick={(e) => {
+          setauthor('david diaz')
+        }}
+      >
+        Manos david diaz
+      </Button>
       <form className="addProductForm">
         {/* PREFLOP SECTION */}
         <h2>Preflop</h2>
@@ -333,7 +344,7 @@ function Addhands() {
               vs check behind
             </Button>
           </div>
-          <div className="item">
+          <div className="item displayNone">
             <h6>Board Type</h6>
             <Button
               variant={boardTypeFlop === 'seco' ? 'contained' : 'outlined'}
@@ -505,6 +516,15 @@ function Addhands() {
             </Button>
             <Button
               name="Situation"
+              variant={situacionTurn === 'H check behind en el flop' ? 'contained' : 'outlined'}
+              onClick={(e) => {
+                setsituacionTurn('H check behind en el flop')
+              }}
+            >
+              H check behind en el flops
+            </Button>
+            <Button
+              name="Situation"
               variant={situacionTurn === 'H check behind en flop -> V check en flop' ? 'contained' : 'outlined'}
               onClick={(e) => {
                 setsituacionTurn('H check behind en flop -> V check en flop')
@@ -562,6 +582,15 @@ function Addhands() {
             </Button>
             <Button
               name="Situation"
+              variant={situacionTurn === 'vs probe bet de V dps de CB de H en flop' ? 'contained' : 'outlined'}
+              onClick={(e) => {
+                setsituacionTurn('vs probe bet de V dps de CB de H en flop')
+              }}
+            >
+              vs probe bet de V dps de CB de H en flop
+            </Button>
+            <Button
+              name="Situation"
               variant={situacionTurn === 'vs V check behind en flop' ? 'contained' : 'outlined'}
               onClick={(e) => {
                 setsituacionTurn('vs V check behind en flop')
@@ -570,7 +599,7 @@ function Addhands() {
               vs V check behind en flop
             </Button>
           </div>
-          <div className="item">
+          <div className="item displayNone">
             <h6>Board Type</h6>
             <Button
               variant={boardTypeTurn === 'seco' ? 'contained' : 'outlined'}
@@ -800,6 +829,15 @@ function Addhands() {
             </Button>
             <Button
               name="Situation"
+              variant={situacionRiver === 'vs V probe bet' ? 'contained' : 'outlined'}
+              onClick={(e) => {
+                setsituacionRiver('vs V probe bet')
+              }}
+            >
+              vs V probe bet
+            </Button>
+            <Button
+              name="Situation"
               variant={situacionRiver === 'vs check behind de V en turn' ? 'contained' : 'outlined'}
               onClick={(e) => {
                 setsituacionRiver('vs check behind de V en turn')
@@ -808,7 +846,7 @@ function Addhands() {
               vs check behind de V en turn
             </Button>
           </div>
-          <div className="item">
+          <div className="item displayNone">
             <h6>Board Type</h6>
             <Button
               variant={boardTypeRiver === 'seco' ? 'contained' : 'outlined'}
@@ -920,7 +958,7 @@ function Addhands() {
         <button onClick={handleSubmit}>SEND</button>
         <br /><br /><br /><br />
       </form>
-    </div>
+    </div >
   )
 }
 

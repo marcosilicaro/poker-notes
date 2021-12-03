@@ -35,6 +35,72 @@ function Allhands({ setObjetoSelecto }) {
     const [turnTitleClicked, setturnTitleClicked] = useState(false)
     const [riverTitleClicked, setriverTitleClicked] = useState(false)
 
+    const [buttonCounter, setbuttonCounter] = useState(0)
+
+    // filter by author
+    const filterByAuthor = (autor) => {
+        const arrayFilteredByAuthor = []
+        handsData.forEach(hand => {
+            if (autor === 'zeros') {
+                if (!hand.preflop.author || hand.preflop.author === '') {
+                    arrayFilteredByAuthor.push(hand)
+                }
+            } else {
+                if (hand.preflop.author === autor) {
+                    arrayFilteredByAuthor.push(hand)
+                }
+            }
+
+        }
+        )
+        sethandsData(arrayFilteredByAuthor)
+    }
+
+    //
+    const filterHandsByCards = (cardsToHave, type) => {
+        let handsDataFiltered = []
+        handsData.forEach(hand => {
+            let countcardsToHave = 0
+            for (let i = 0; i < cardsToHave.length; i++) {
+                // en flop
+                for (let a = 0; a < 3; a++) {
+                    if (cardsToHave[i] === hand.flop.boardCards[a].carta) {
+                        countcardsToHave = countcardsToHave + 1
+                    }
+                }
+
+                // en turn
+                if (instancia === 'turn') {
+                    if (cardsToHave[i] === hand.turn.boardCards.carta) {
+                        countcardsToHave = countcardsToHave + 1
+                    }
+                }
+
+                // en river
+                if (instancia === 'river') {
+                    if (cardsToHave[i] === hand.turn.boardCards.carta) {
+                        countcardsToHave = countcardsToHave + 1
+                    }
+                    if (cardsToHave[i] === hand.river.boardCards.carta) {
+                        countcardsToHave = countcardsToHave + 1
+                    }
+                }
+            }
+            if (type === 'have') {
+                if (countcardsToHave > 0) {
+                    handsDataFiltered.push(hand)
+                }
+            }
+            if (type === 'notHave') {
+                if (countcardsToHave === 0) {
+                    handsDataFiltered.push(hand)
+                }
+            }
+
+        })
+        sethandsData(handsDataFiltered)
+    }
+
     //
     const orderBoardCards = (flopBoardCards) => {
         let orderderCards = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']
@@ -692,6 +758,7 @@ function Allhands({ setObjetoSelecto }) {
     //let primerFiltrado = _.filter(handsData, ['turn.situation', 'vs 3rd barrel']);
     //let segundoFiltrado = _.filter(primerFiltrado, ['preflop.heroCards[0]' + reemplazoDeCarta, '3'] || ['preflop.heroCards[1].carta', 'A']);
     //console.log(segundoFiltrado)
+    //_.filter(handsData, [instancia + '.situation', 'vs 3rd barrel'])
 
     return (
         <div className='table-container'>
@@ -709,7 +776,10 @@ function Allhands({ setObjetoSelecto }) {
             <div className="sendResetButtons">
                 <Button
                     variant="contained"
-                    onClick={(e) => { clickButton() }}
+                    onClick={(e) => {
+                        clickButton()
+                        setbuttonCounter(0)
+                    }}
                     color="success"
                 >
                     Send
@@ -726,6 +796,7 @@ function Allhands({ setObjetoSelecto }) {
                         setrepeticiones('')
                         setconexiones('')
                         setuniquesituationList([])
+                        setbuttonCounter(0)
                         axios.get("/").then((res) => {
                             sethandsData(res.data)
                         })
@@ -915,6 +986,29 @@ function Allhands({ setObjetoSelecto }) {
                     ))
                     }
                 </div>
+                {/* Author */}
+                <div>
+                    <h4>Author</h4>
+                    <Button
+                        variant={'outlined'}
+                        onClick={(e) => {
+                            filterByAuthor('zeros')
+
+                        }}
+                    >
+                        Manos zeros
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={'outlined'}
+                        onClick={(e) => {
+                            filterByAuthor('david diaz')
+
+                        }}
+                    >
+                        Manos DD
+                    </Button>
+                </div>
             </div>
             <br />
             {/* Segunda linea */}
@@ -1042,6 +1136,60 @@ function Allhands({ setObjetoSelecto }) {
                         }}
                     >
                         4 cartas conectadas
+                    </Button>
+                </div>
+                {/* Board Type */}
+                <div>
+                    <h4>Board highest card</h4>
+                    <Button
+                        variant={"outlined"}
+                        onClick={(e) => {
+                            filterHandsByCards(['A', 'K'], 'have')
+                        }}
+                    >
+                        A, K
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={"outlined"}
+                        onClick={(e) => {
+                            setbuttonCounter(buttonCounter + 1)
+                            if (buttonCounter === 0) {
+                                filterHandsByCards(['A', 'K'], 'notHave')
+                            }
+                            if (buttonCounter > 0) {
+                                filterHandsByCards(['Q', 'J', 'T'], 'have')
+                            }
+                        }}
+                    >
+                        Q, J, T
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={"outlined"}
+                        onClick={(e) => {
+                            setbuttonCounter(buttonCounter + 1)
+                            if (buttonCounter === 0) {
+                                filterHandsByCards(['A', 'K', 'Q', 'J', 'T'], 'notHave')
+                            }
+                            if (buttonCounter > 0) {
+                                filterHandsByCards(['9', '8', '7'], 'have')
+                            }
+                        }}
+                    >
+                        9, 8, 7
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={"outlined"}
+                        onClick={(e) => {
+                            setbuttonCounter(buttonCounter + 1)
+                            if (buttonCounter === 0) {
+                                filterHandsByCards(['A', 'K', 'Q', 'J', 'T', '9', '8', '7'], 'notHave')
+                            }
+                        }}
+                    >
+                        6-
                     </Button>
                 </div>
                 <div className="listaDeManosBuenas">

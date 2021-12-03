@@ -156,3 +156,7 @@
 .background-negro{
   background-color:default
 }
+
+.displayNone{
+  display: none
+}
