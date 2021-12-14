@@ -14,6 +14,8 @@ import _ from 'lodash';
 function Allhands({ setObjetoSelecto }) {
 
     const [handsData, sethandsData] = useState([])
+    const [originalHandsData, setoriginalHandsData] = useState([])
+    const [situaciones, setSituaciones] = useState(['ninguna situacion'])
 
     const [posicion, setPosicion] = useState('')
     const [iniciativa, setIniciativa] = useState('')
@@ -36,6 +38,33 @@ function Allhands({ setObjetoSelecto }) {
     const [riverTitleClicked, setriverTitleClicked] = useState(false)
 
     const [buttonCounter, setbuttonCounter] = useState(0)
+
+
+    // set situations
+    const setSituations = (hands, instance) => {
+        let listaSituations = []
+        if (instance === 'flop') {
+            hands.forEach(hand => {
+                if (hand.flop.situation != '-' && hand.flop.situation != '') {
+                    listaSituations.push(hand.flop.situation)
+                }
+
+            })
+        } else if (instance === 'turn') {
+            hands.forEach(hand => {
+                if (hand.turn.situation != '-' && hand.turn.situation != '') {
+                    listaSituations.push(hand.turn.situation)
+                }
+            })
+        } else if (instance === 'river') {
+            hands.forEach(hand => {
+                if (hand.river.situation != '-' && hand.river.situation != '') {
+                    listaSituations.push(hand.river.situation)
+                }
+            })
+        }
+        setSituaciones([...new Set(listaSituations)])
+    }
 
     // filter by author
     const filterByAuthor = (autor) => {
@@ -132,14 +161,19 @@ function Allhands({ setObjetoSelecto }) {
         // se ejecuta get all
         axios.get("/").then((res) => {
             sethandsData(res.data)
+            setoriginalHandsData(res.data)
         })
 
         // scroll to top on refresh
         window.scrollTo(0, 0)
+
+        document.getElementById("flopButton").click();
+
+
     }, [])
 
     // get specific list of objects with filters
-    const clickButton = () => {
+    const clickButton = (e) => {
         axios.get("/" + posicion + '-' + instancia + '-' + iniciativa + '-' + boardType + '-' + situation).then((res) => {
             // el array filtrado se guarda en handsData que despues es utilizado en la tabla
             sethandsData(res.data)
@@ -750,8 +784,26 @@ function Allhands({ setObjetoSelecto }) {
 
     const [uniquesituationList, setuniquesituationList] = useState([])
 
-    //highlight text
 
+
+    // submit on enter press
+    //document.getElementById('root').addEventListener("keyup", function (e) {
+    //    e.preventDefault();
+    //    if (e.code === "KeyI") {
+    //
+    //        document.getElementById("sendButton").click();
+    //
+    //    }
+    //});
+
+    //document.getElementById('root').addEventListener("keyup", function (e) {
+    //    e.preventDefault();
+    //    if (e.code === "KeyO") {
+    //
+    //        sethandsData(_.filter(handsData, ['turn.situation', 'vs 3rd barrel']))
+    //
+    //    }
+    //});
 
     // prueba lodash
     //let reemplazoDeCarta = 'carta'
@@ -775,9 +827,10 @@ function Allhands({ setObjetoSelecto }) {
             {/* Botones */}
             <div className="sendResetButtons">
                 <Button
+                    id='sendButton'
                     variant="contained"
                     onClick={(e) => {
-                        clickButton()
+                        clickButton(e)
                         setbuttonCounter(0)
                     }}
                     color="success"
@@ -790,16 +843,14 @@ function Allhands({ setObjetoSelecto }) {
                         setPosicion('')
                         setBoardType('')
                         setIniciativa('')
-                        setInstancia('')
+                        setInstancia('flop')
                         setSituation('')
                         setcolores('')
                         setrepeticiones('')
                         setconexiones('')
                         setuniquesituationList([])
                         setbuttonCounter(0)
-                        axios.get("/").then((res) => {
-                            sethandsData(res.data)
-                        })
+                        sethandsData(originalHandsData)
                     }}
                     color="success"
                 >
@@ -819,6 +870,7 @@ function Allhands({ setObjetoSelecto }) {
                         value='OOP'
                         onClick={(e) => {
                             setPosicion(e.currentTarget.value)
+                            sethandsData(_.filter(handsData, ['preflop.heroPosition', 'OOP']))
                         }}
                     >
                         OOP
@@ -830,52 +882,14 @@ function Allhands({ setObjetoSelecto }) {
                         value='IP'
                         onClick={(e) => {
                             setPosicion(e.currentTarget.value)
+                            sethandsData(_.filter(handsData, ['preflop.heroPosition', 'IP']))
                         }}
                     >
                         IP
                     </Button>
                 </div>
-                {/* Instancia */}
-                <div>
-                    <h4>Instancia</h4>
-                    <Button
-                        variant={instancia === 'flop' ? "contained" : "outlined"}
-                        name="instancia"
-                        value='flop'
-                        onClick={(e) => {
-                            setInstancia(e.currentTarget.value)
-                            setuniquesituationList([...new Set(situationListforFlop)])
-                        }}
-                    >
-                        FLOP
-                    </Button>
-                    <br /><br />
-                    <Button
-                        variant={instancia === 'turn' ? "contained" : "outlined"}
-                        name="instancia"
-                        value='turn'
-                        onClick={(e) => {
-                            setInstancia(e.currentTarget.value)
-                            setuniquesituationList([...new Set(situationListforTurn)])
-                        }}
-                    >
-                        TURN
-                    </Button>
-                    <br /><br />
-                    <Button
-                        variant={instancia === 'river' ? "contained" : "outlined"}
-                        name="instancia"
-                        value='river'
-                        onClick={(e) => {
-                            setInstancia(e.currentTarget.value)
-                            setuniquesituationList([...new Set(situationListforRiver)])
-                        }}
-                    >
-                        RIVER
-                    </Button>
-                </div>
                 {/* Iniciativa */}
-                <div className='settings'>
+                <div className=''>
                     <h4 >Iniciativa</h4>
                     <Button
                         variant={iniciativa === 'SI' ? "contained" : "outlined"}
@@ -883,6 +897,7 @@ function Allhands({ setObjetoSelecto }) {
                         value='SI'
                         onClick={(e) => {
                             setIniciativa(e.currentTarget.value)
+                            sethandsData(_.filter(handsData, [instancia + '.heroIniciativa', 'SI']))
                         }}
                     >
                         Sin iniciativa
@@ -894,11 +909,54 @@ function Allhands({ setObjetoSelecto }) {
                         value='CI'
                         onClick={(e) => {
                             setIniciativa(e.currentTarget.value)
+                            sethandsData(_.filter(handsData, [instancia + '.heroIniciativa', 'CI']))
                         }}
                     >
                         Con iniciativa
                     </Button>
                 </div>
+                {/* Instancia */}
+                <div>
+                    <h4>Instancia</h4>
+                    <Button
+                        id='flopButton'
+                        variant={instancia === 'flop' ? "contained" : "outlined"}
+                        name="instancia"
+                        value='flop'
+                        onClick={(e) => {
+                            setInstancia(e.currentTarget.value)
+                            setSituations(handsData, 'flop')
+                        }}
+                    >
+                        FLOP
+                    </Button>
+                    <br /><br />
+                    <Button
+                        id='turnButton'
+                        variant={instancia === 'turn' ? "contained" : "outlined"}
+                        name="instancia"
+                        value='turn'
+                        onClick={(e) => {
+                            setInstancia(e.currentTarget.value)
+                            setSituations(handsData, 'turn')
+                        }}
+                    >
+                        TURN
+                    </Button>
+                    <br /><br />
+                    <Button
+                        variant={instancia === 'river' ? "contained" : "outlined"}
+                        name="instancia"
+                        value='river'
+                        onClick={(e) => {
+                            setInstancia(e.currentTarget.value)
+                            setSituations(handsData, 'river')
+                        }}
+                    >
+                        RIVER
+                    </Button>
+                </div>
+
                 {/* Board Type */}
                 <div className='settings'>
                     <h4>Board Type</h4>
@@ -970,7 +1028,7 @@ function Allhands({ setObjetoSelecto }) {
                         vs
                     </Button>
                     <br /><br />
-                    {uniquesituationList.map((item) => (
+                    {situaciones.map((item) => (
                         <div className='situationButton'>
                             <Button
                                 variant={situation === item ? "contained" : "outlined"}
@@ -978,13 +1036,13 @@ function Allhands({ setObjetoSelecto }) {
                                 size="small"
                                 onClick={(e) => {
                                     setSituation(e.currentTarget.value)
+                                    sethandsData(_.filter(handsData, [instancia + '.situation', e.currentTarget.value]))
                                 }}
                             >
                                 {item}
                             </Button>
                         </div>
-                    ))
-                    }
+                    ))}
                 </div>
                 {/* Author */}
                 <div>
@@ -1252,7 +1310,7 @@ function Allhands({ setObjetoSelecto }) {
                                     showFlopNotes === true ? setShowFlopNotes(false) : setShowFlopNotes(true)
                                 }}>
                                     {instancia === 'flop' ? orderBoardCards(objeto.flop.boardCards) : <div></div>}
-                                    <div id='flop-notes' className={showFlopNotes === true && idClicked === objeto._id || flopTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes'} >
+                                    <div id='flop-notes' className={showFlopNotes === true && idClicked === objeto._id || flopTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes-active table-notes'} >
                                         {objeto.flop.notes[0] === '' ? '' : <div><strong>Notes</strong>{objeto.flop.notes[0].split("\n").map(item => {
                                             return (
                                                 <tr>
@@ -1308,7 +1366,7 @@ function Allhands({ setObjetoSelecto }) {
 
 
                                     {orderBoardCards(objeto.flop.boardCards.concat(objeto.turn.boardCards))}
-                                    <div id='turn-notes' className={showTurnNotes === true && idClicked === objeto._id || turnTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes'} >
+                                    <div id='turn-notes' className={showTurnNotes === true && idClicked === objeto._id || turnTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes-active table-notes'} >
                                         {objeto.turn.notes[0] === '' ? '' : <div><strong>Notes</strong>{objeto.turn.notes[0].split("\n").map(item => {
                                             return (
                                                 <tr>
@@ -1362,7 +1420,7 @@ function Allhands({ setObjetoSelecto }) {
                                     showRiverNotes === true ? setShowRiverNotes(false) : setShowRiverNotes(true)
                                 }}>
                                     {orderBoardCards(objeto.flop.boardCards.concat(objeto.turn.boardCards).concat(objeto.river.boardCards))}
-                                    <div id='river-notes' className={showRiverNotes === true && idClicked === objeto._id || riverTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes'} >
+                                    <div id='river-notes' className={showRiverNotes === true && idClicked === objeto._id || riverTitleClicked === true ? 'preflopNotes-active table-notes' : 'preflopNotes-active table-notes'} >
 
                                         {objeto.river.notes[0] === '' ? '' : <div ><strong>Notes</strong>{objeto.river.notes[0].split("\n").map(item => {
                                             return (
@@ -1417,7 +1475,7 @@ function Allhands({ setObjetoSelecto }) {
                 </tbody>
             </table>
 
-        </div>
+        </div >
     )
 }
 

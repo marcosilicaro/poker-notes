@@ -147,6 +147,12 @@ function Addhands() {
       <form className="addProductForm">
         {/* PREFLOP SECTION */}
         <h2>Preflop</h2>
+        <Button
+          variant='contained'
+          onClick={handleSubmit}
+        >
+          Send
+        </Button>
         <Selector
           setpreflopCarta1={setpreflopCarta1}
           preflopCarta1={preflopCarta1}
@@ -154,6 +160,7 @@ function Addhands() {
           preflopCarta2={preflopCarta2}
           instancia='preflop'
         />
+
         {/* POS - TABLE POS - INI */}
         <div className='featured'>
           <div className="item">
@@ -274,6 +281,12 @@ function Addhands() {
         <hr />
         {/* FLOP SECTION */}
         <h2>Flop</h2>
+        <Button
+          variant='contained'
+          onClick={handleSubmit}
+        >
+          Send
+        </Button>
         {/* PRIMERA LINEA */}
         <Selector
           setflopCarta1={setflopCarta1}
@@ -458,6 +471,12 @@ function Addhands() {
 
         {/* TURN SECTION */}
         <h2>Turn</h2>
+        <Button
+          variant='contained'
+          onClick={handleSubmit}
+        >
+          Send
+        </Button>
         {/* PRIMERA LINEA */}
         <Selector
           turnCarta={turnCarta}
@@ -714,6 +733,12 @@ function Addhands() {
 
         {/* RIVER SECTION */}
         <h2>River</h2>
+        <Button
+          variant='contained'
+          onClick={handleSubmit}
+        >
+          Send
+        </Button>
         {/* PRIMERA LINEA */}
         <Selector
           riverCarta={riverCarta}
